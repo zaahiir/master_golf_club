@@ -18,11 +18,3 @@
   ::-webkit-scrollbar-thumb:hover {
     background: rgb(27,94,32);
   }
-
-  .home-image {
-    height: 400px;
-    background-image: url('./assets/3872.jpg'); /* Update the path as needed */
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-  }

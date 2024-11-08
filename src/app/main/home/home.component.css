@@ -11,37 +11,60 @@
   box-sizing: border-box;
 }
 
-.page-content {
-  display: grid;
-  grid-gap: 1rem;
-  padding: 1rem;
-  max-width: 1024px;
-  margin: 0 auto;
-  font-family: var(--font-sans);
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.card {
+.home-image {
   position: relative;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  padding: 1rem;
   width: 100%;
-  text-align: center;
-  color: whitesmoke;
-  background-color: whitesmoke;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1),
-    0 2px 2px rgba(0,0,0,0.1),
-    0 4px 4px rgba(0,0,0,0.1),
-    0 8px 8px rgba(0,0,0,0.1),
-    0 16px 16px rgba(0,0,0,0.1);
-  height: 250px;
+  height: 400px;
+  background-image: url('../../../assets/3872.jpg'); /* Update the path as needed */
+  background-size: cover;
+  background-position: center;
 }
 
-.card.landscape {
-  height: 250px;
+.welcome-text {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: whitesmoke;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
+
+.page-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5rem 4rem;
+  }
+  
+  .card {
+    flex: 1;
+    max-width: 30%; /* Adjust this value for a tighter fit if necessary */
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 1rem;
+    text-align: center;
+    color: whitesmoke;
+    background-color: whitesmoke;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1),
+                0 2px 2px rgba(0,0,0,0.1),
+                0 4px 4px rgba(0,0,0,0.1),
+                0 8px 8px rgba(0,0,0,0.1),
+                0 16px 16px rgba(0,0,0,0.1);
+    height: 250px;
+  }
+  
+  .card.landscape {
+    height: 250px;
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      max-width: 100%; /* Stack cards on smaller screens */
+      margin-bottom: 1rem;
+    }
+  }
+  
 
 .card:before {
   content: '';

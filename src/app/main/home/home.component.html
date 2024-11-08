@@ -1,34 +1,23 @@
 <div class="home container-fluid p-0 d-flex flex-column align-items-center">
     <!-- Background Image -->
-    <div class="home-image mb-4"></div>
+    <div class="home-image mb-4 d-flex justify-content-center align-items-center">
+        <h1 class="welcome-text">Welcome to Our Destination</h1>
+    </div>
   
     <!-- Card Section -->
-    <div class="page-content">
-      <div class="card landscape">
+    <div class="container-fluid page-content d-flex justify-content-between">
+      <div *ngFor="let card of cards" class="card landscape">
         <div class="content">
-          <h2 class="title">Landscape Destination 1</h2>
-          <p class="copy">Explore our beautiful landscape destinations.</p>
-          <button class="btn">View Trips</button>
-        </div>
-      </div>
-      <div class="card landscape">
-        <div class="content">
-          <h2 class="title">Landscape Destination 2</h2>
-          <p class="copy">Explore our beautiful landscape destinations.</p>
-          <button class="btn">View Trips</button>
-        </div>
-      </div>
-      <div class="card landscape">
-        <div class="content">
-          <h2 class="title">Landscape Destination 3</h2>
-          <p class="copy">Explore our beautiful landscape destinations.</p>
-          <button class="btn">View Trips</button>
+          <h2 class="title">{{ card.title }}</h2>
+          <p class="copy">{{ card.description }}</p>
+          <button class="btn">{{ card.buttonText }}</button>
         </div>
       </div>
     </div>
   
     <!-- Carousel Section -->
     <div class="carousel-container my-4">
+        <h1>Latest Blog</h1>
       <div id="golfCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item" *ngFor="let image of carouselImages; let i = index" [class.active]="i === 0">
@@ -46,3 +35,4 @@
       </div>
     </div>
   </div>
+  
