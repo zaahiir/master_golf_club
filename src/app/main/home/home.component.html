@@ -1,7 +1,7 @@
 <div class="home container-fluid p-0 d-flex flex-column align-items-center">
     <!-- Background Image -->
     <div class="home-image mb-4 d-flex justify-content-center align-items-center">
-        <h1 class="welcome-text">Welcome to Our Destination</h1>
+      <h1 class="welcome-text">Welcome to Our Destination</h1>
     </div>
   
     <!-- Card Section -->
@@ -17,43 +17,26 @@
   
     <!-- Carousel Section -->
     <div class="carousel-container my-4">
-        <h1>Latest Blog</h1>
-        <div class="carousel">
-          <!-- Slide Navigation (Previous) -->
-          <label for="control-prev" class="carousel-control-prev">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="44.089px" height="94.67px" viewBox="0 0 44.089 94.67">
-              <path d="M2.691,47.335l41.398,45.997l-1.486,1.338L0,47.335L42.603,0l1.486,1.338L2.691,47.335z"/>
-            </svg>
-          </label>
-      
-          <!-- Slide Content -->
-          <input type="radio" id="control-prev" name="control" />
-          <input type="radio" id="control-1" name="control" checked />
-          <input type="radio" id="control-2" name="control" />
-          <input type="radio" id="control-3" name="control" />
-          <input type="radio" id="control-4" name="control" />
-          <input type="radio" id="control-5" name="control" />
-      
-          <!-- Slide Dots (Navigation) -->
-          <label for="control-1" class="dot dot-1"></label>
-          <label for="control-2" class="dot dot-2"></label>
-          <label for="control-3" class="dot dot-3"></label>
-          <label for="control-4" class="dot dot-4"></label>
-          <label for="control-5" class="dot dot-5"></label>
-      
-          <!-- Carousel Slides -->
-          <div class="slide slide-1" *ngFor="let image of carouselImages; let i = index" [class.active]="i === 0">
-            <img [src]="image" class="d-block w-100" alt="Carousel Image" />
-          </div>
-      
-          <!-- Slide Navigation (Next) -->
-          <label for="control-next" class="carousel-control-next">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="44.089px" height="94.67px" viewBox="0 0 44.088 94.67">
-              <path d="M44.089,47.335L1.486,94.671L0,93.333l41.396-45.998L-0.001,1.337L1.485,0L44.089,47.335z"/>
-            </svg>
-          </label>
-        </div>
-      </div>
-      
-  </div>
+      <h1>Latest Blog</h1>
+      <div class="carousel">
+        <!-- Slide Navigation (Previous) -->
+        <label for="control-prev" class="carousel-control-prev" (click)="prevSlide()">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="44.089px" height="94.67px" viewBox="0 0 44.089 94.67">
+            <path d="M2.691,47.335l41.398,45.997l-1.486,1.338L0,47.335L42.603,0l1.486,1.338L2.691,47.335z"/>
+          </svg>
+        </label>
   
+        <!-- Slide Content -->
+        <div class="slide" *ngFor="let image of carouselImages; let i = index" [class.active]="currentSlide === i">
+          <img [src]="image" class="d-block w-100" alt="Carousel Image" />
+        </div>
+  
+        <!-- Slide Navigation (Next) -->
+        <label for="control-next" class="carousel-control-next" (click)="nextSlide()">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="44.089px" height="94.67px" viewBox="0 0 44.088 94.67">
+            <path d="M44.089,47.335L1.486,94.671L0,93.333l41.396-45.998L-0.001,1.337L1.485,0L44.089,47.335z"/>
+          </svg>
+        </label>
+      </div>
+    </div>
+  </div>

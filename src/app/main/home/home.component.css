@@ -15,56 +15,55 @@
   position: relative;
   width: 100%;
   height: 400px;
-  background-image: url('../../../assets/3872.jpg'); /* Update the path as needed */
+  background-image: url('../../../assets/3872.jpg');
   background-size: cover;
   background-position: center;
 }
 
 .welcome-text {
-    font-family: var(--font-serif);
-    font-size: 2rem;
-    color: whitesmoke;
-    text-align: center;
-    font-weight: bold;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .page-content {
-    display: flex;
-    justify-content: space-between;
-    padding: 2.5rem 4rem;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5rem 4rem;
+}
+
+.card {
+  flex: 1;
+  max-width: 30%;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 1rem;
+  text-align: center;
+  color: whitesmoke;
+  background-color: whitesmoke;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1),
+              0 2px 2px rgba(0,0,0,0.1),
+              0 4px 4px rgba(0,0,0,0.1),
+              0 8px 8px rgba(0,0,0,0.1),
+              0 16px 16px rgba(0,0,0,0.1);
+  height: 250px;
+}
+
+.card.landscape {
+  height: 250px;
+}
+
+@media (max-width: 768px) {
   .card {
-    flex: 1;
-    max-width: 30%; /* Adjust this value for a tighter fit if necessary */
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-    padding: 1rem;
-    text-align: center;
-    color: whitesmoke;
-    background-color: whitesmoke;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1),
-                0 2px 2px rgba(0,0,0,0.1),
-                0 4px 4px rgba(0,0,0,0.1),
-                0 8px 8px rgba(0,0,0,0.1),
-                0 16px 16px rgba(0,0,0,0.1);
-    height: 250px;
+    max-width: 100%;
+    margin-bottom: 1rem;
   }
-  
-  .card.landscape {
-    height: 250px;
-  }
-  
-  @media (max-width: 768px) {
-    .card {
-      max-width: 100%; /* Stack cards on smaller screens */
-      margin-bottom: 1rem;
-    }
-  }
-  
+}
 
 .card:before {
   content: '';
@@ -213,110 +212,109 @@
 }
 
 .carousel-container {
-    width: 1000px;
-    margin: 0 auto;
-  }
-  
-  .carousel {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-  }
-  
-  input[type="radio"] {
-    display: none;
-  }
-  
-  .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .slide.active {
-    opacity: 1;
-  }
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .carousel-control-prev,
-  .carousel-control-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 1;
-  }
-  
-  .carousel-control-prev {
-    left: 0;
-  }
-  
-  .carousel-control-next {
-    right: 0;
-  }
-  
-  .carousel-control-prev svg,
-  .carousel-control-next svg {
-    width: 44px;
-    height: 94px;
-    fill: white;
-  }
-  
-  .dot {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: rgba(40, 37, 40, 0.2);
-    border-radius: 50%;
-    bottom: -30px;
-    cursor: pointer;
-  }
-  
-  .dot-1 {
-    left: calc(50% - 28px);
-  }
-  
-  .dot-2 {
-    left: calc(50% - 14px);
-  }
-  
-  .dot-3 {
-    left: calc(50% + 14px);
-  }
-  
-  .dot-4 {
-    left: calc(50% + 28px);
-  }
-  
-  input[type="radio"]:checked ~ .dot-1 {
-    background-color: #fff;
-  }
-  
-  input[type="radio"]:checked ~ .dot-2 {
-    background-color: #fff;
-  }
-  
-  input[type="radio"]:checked ~ .dot-3 {
-    background-color: #fff;
-  }
-  
-  input[type="radio"]:checked ~ .dot-4 {
-    background-color: #fff;
-  }
-  
-  input[type="radio"]:checked ~ .carousel-control-prev {
-    left: 0;
-  }
-  
-  input[type="radio"]:checked ~ .carousel-control-next {
-    right: 0;
-  }
-  
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.carousel-control-prev {
+  left: 0;
+}
+
+.carousel-control-next {
+  right: 0;
+}
+
+.carousel-control-prev svg,
+.carousel-control-next svg {
+  width: 44px;
+  height: 94px;
+  fill: white;
+}
+
+.dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(40, 37, 40, 0.2);
+  border-radius: 50%;
+  bottom: -30px;
+  cursor: pointer;
+}
+
+.dot-1 {
+  left: calc(50% - 28px);
+}
+
+.dot-2 {
+  left: calc(50% - 14px);
+}
+
+.dot-3 {
+  left: calc(50% + 14px);
+}
+
+.dot-4 {
+  left: calc(50% + 28px);
+}
+
+input[type="radio"]:checked ~ .dot-1 {
+  background-color: #2b7a21;
+}
+
+input[type="radio"]:checked ~ .dot-2 {
+  background-color: #2b7a21;
+}
+
+input[type="radio"]:checked ~ .dot-3 {
+  background-color: #2b7a21;
+}
+
+input[type="radio"]:checked ~ .dot-4 {
+  background-color: #2b7a21;
+}
+
+input[type="radio"]:checked ~ .carousel-control-prev {
+  left: 0;
+}
+
+input[type="radio"]:checked ~ .carousel-control-next {
+  right: 0;
+}

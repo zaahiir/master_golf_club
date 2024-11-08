@@ -31,9 +31,18 @@ export class HomeComponent {
   ];
 
   carouselImages = [
-    'assets/carousel1.jpg',
-    'assets/carousel2.jpg',
-    'assets/carousel3.jpg'
+    'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    'https://images.unsplash.com/photo-1552083375-1447ce886485?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
+    'https://images.unsplash.com/photo-1502759683299-cdcd6974244f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
   ];
-}
 
+  currentSlide = 0;
+
+  nextSlide() {
+    this.currentSlide = (this.currentSlide + 1) % this.carouselImages.length;
+  }
+
+  prevSlide() {
+    this.currentSlide = (this.currentSlide - 1 + this.carouselImages.length) % this.carouselImages.length;
+  }
+}
