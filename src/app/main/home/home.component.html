@@ -2,15 +2,27 @@
     <!-- Background Image -->
     <div class="home-image mb-4"></div>
   
-    <!-- Three Cards Section -->
-    <div class="card-container row my-4">
-      <div class="col-md-4" *ngFor="let card of cards">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ card.title }}</h5>
-            <p class="card-text">{{ card.description }}</p>
-            <a href="#" class="btn btn-primary">{{ card.buttonText }}</a>
-          </div>
+    <!-- Card Section -->
+    <div class="page-content">
+      <div class="card landscape">
+        <div class="content">
+          <h2 class="title">Landscape Destination 1</h2>
+          <p class="copy">Explore our beautiful landscape destinations.</p>
+          <button class="btn">View Trips</button>
+        </div>
+      </div>
+      <div class="card landscape">
+        <div class="content">
+          <h2 class="title">Landscape Destination 2</h2>
+          <p class="copy">Explore our beautiful landscape destinations.</p>
+          <button class="btn">View Trips</button>
+        </div>
+      </div>
+      <div class="card landscape">
+        <div class="content">
+          <h2 class="title">Landscape Destination 3</h2>
+          <p class="copy">Explore our beautiful landscape destinations.</p>
+          <button class="btn">View Trips</button>
         </div>
       </div>
     </div>
@@ -34,4 +46,3 @@
       </div>
     </div>
   </div>
-  
