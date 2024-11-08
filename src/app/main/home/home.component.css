@@ -1,8 +1,23 @@
-*{
-    margin: 0;
-}
+/* Background Image for the Home Component */
 
-    p{
-    height: 1500px;
-    background-color: aquamarine;
-}
+  
+  /* Cards Section Styling */
+  .card-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Carousel Styling */
+  .carousel-container {
+    margin-top: 2rem;
+    width: 100%;
+  }
+  
