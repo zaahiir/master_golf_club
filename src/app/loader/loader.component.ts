@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.css'
 })
-export class LoaderComponent {
 
+export class LoaderComponent {
+  public show: boolean = true;
+
+  constructor() {
+    setTimeout(() => {
+      this.show = false;
+    }, 3000);
+  }
 }

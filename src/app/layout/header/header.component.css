@@ -1,18 +1,4 @@
-
-
-.container{
-    display: flex;
-    flex-direction: column;
-    position: sticky;
-}
-
-.layer-one{
-    background-color: #74a354;
-    color: rgb(0, 0, 0);
-    height: 25px;
-}
-
-.header {
+/* .layer-two {
     background-color: #b16767;
 }
 
@@ -23,7 +9,7 @@
 }
 
 .nav_links a {
-    font-size: 18px;
+    font-size: 15px;
     padding: 26px 20px;
     text-decoration: none; 
     color: #000; 
@@ -40,4 +26,4 @@
 .nav_links a.active {
     color: #000000; 
     border-bottom-color: #000000; 
-}
+} */

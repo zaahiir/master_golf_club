@@ -1,0 +1,99 @@
+/*------------Footer-section------------- */
+
+.footer_sec{
+    /* background-image: url(./asset/save.png); */
+    background-size: cover;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+i.fa-solid.fa-envelope.text-light,
+i.fa-solid.fa-phone.text-light,
+i.fa-regular.fa-address-card.text-light{
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    background-color: green;
+    padding: 20px;
+    margin: 0 auto;
+}
+.contact-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+}
+.contact-box img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.contact-box p {
+    margin-bottom: 0;
+    color: #666;
+}
+.card.h-100.text-center {
+    width: 60%;
+}
+
+.btn{
+    border-radius: 3px;
+}
+
+.fa-envelope:before,
+.fa-phone:before,
+.fa-regular.fa-address-card:before {
+    font-size: 2rem;
+}
+.card.h-100.text-center {
+    width: 100%;
+    padding-top: 10px;
+}
+a.text-decoration-none.text-dark {
+    font-size: 11px;
+}
+.card.h-100.text-center img{
+    width: 40px;
+    margin-top: 15px;
+}
+
+.footer_img{
+    background-color: #007429;
+    border-radius: 50px;
+    width: 90px;
+    height: 90px;
+    display: block;
+    margin: 0 auto;
+}
+a.text-decoration-none.text-dark {
+    font-weight: 600;
+}
+.footer_img img{
+    width: 60%;
+    margin: 18px;
+}
+
+.footer_item{
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.footer_bottom{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.partners_sec{
+    background: radial-gradient(74.45% 133.29% at 76.85% 71.12%, #1CBA6A 11.11%, #15925B 22.22%, #128154 33.33%, #10744F 44.44%, #0D6148 55.56%, #0A5443 66.67%, #094D40 77.78%, #08443D 88.89%, #063B39 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    border-radius: 1% 0% 51% 49% / 0% 0% 8% 8%;
+    padding: 60px 0px;
+}
+.partners_logo img{
+    width: 150px;
+    height: 70px;
+}
