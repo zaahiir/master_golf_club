@@ -1,7 +1,20 @@
-/* Partners Section */
+/* footer.component.scss */
+
+/* Partners Section Styles */
 .partners-sec {
   position: relative;
-  background: radial-gradient(74.45% 133.29% at 76.85% 71.12%, #1CBA6A 11.11%, #15925B 22.22%, #128154 33.33%, #10744F 44.44%, #0D6148 55.56%, #0A5443 66.67%, #094D40 77.78%, #08443D 88.89%, #063B39 100%);
+  background: radial-gradient(
+    74.45% 133.29% at 76.85% 71.12%,
+    #1CBA6A 11.11%,
+    #15925B 22.22%,
+    #128154 33.33%,
+    #10744F 44.44%,
+    #0D6148 55.56%,
+    #0A5443 66.67%,
+    #094D40 77.78%,
+    #08443D 88.89%,
+    #063B39 100%
+  );
   border-radius: 1% 0% 50% 50% / 0% 0% 8% 8%;
   padding: 25px 0 60px 0;
   text-align: center;
@@ -17,7 +30,11 @@
 .partners-logo {
   display: flex;
   justify-content: space-between;
-  margin: 20px 180px;
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .partner-image {
@@ -27,23 +44,32 @@
   background-repeat: no-repeat;
 }
 
+/* Partner Images */
 .partner-1 { background-image: url('../../../assets/image.png'); }
 .partner-2 { background-image: url('../../../assets/image (1).png'); }
 .partner-3 { background-image: url('../../../assets/image (2).png'); }
 .partner-4 { background-image: url('../../../assets/image (3).png'); }
 
-/* Footer Section */
+/* Footer Section Styles */
 .footer-sec {
   background: url('../../../assets/save.png') no-repeat center center;
   background-size: cover;
   background-position: 100% 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
   position: relative;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 100px;
 }
 
 .contact-info h6 {
@@ -57,7 +83,7 @@
   height: 70px;
   border-radius: 50%;
   background-color: #007429;
-  background-size: 60%;
+  background-size: 40%;
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 auto 10px;
@@ -66,19 +92,10 @@
   justify-content: center;
 }
 
-.email-icon {
-  background-image: url('../../../assets/sms-tracking.png');
-  background-size: 40%; 
-}
-
-.phone-icon { 
-  background-image: url('../../../assets/call-calling.png');
-  background-size: 40%; 
-}
-.address-icon { 
-  background-image: url('../../../assets/routing.png');
-  background-size: 40%;  
-}
+/* Footer Icons */
+.email-icon { background-image: url('../../../assets/sms-tracking.png'); }
+.phone-icon { background-image: url('../../../assets/call-calling.png'); }
+.address-icon { background-image: url('../../../assets/routing.png'); }
 
 .contact-box {
   background-color: #fff;
@@ -86,44 +103,45 @@
   text-align: center;
   padding: 30px 20px;
   width: 250px;
-  height: auto; 
-}
-
-.contact-box h6 {
-  margin-top: 20px;
+  height: auto;
+  margin: 10px;
 }
 
 .contact-box .footer-img {
-  width: 80px; /* Larger icon to fit the portrait style */
+  width: 80px;
   height: 80px;
 }
 
-.contact-box .email-icon
-.contact-box .phone-icon
-.contact-box .address-icon {
-  background-size: 40%;  /* Maintain smaller ratio in larger container */
+.contact-box a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.contact-info {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 20px;
+.contact-box a:hover {
+  color: #1CBA6A;
 }
 
 .social-icons i {
   color: #1CBA6A;
   font-size: 24px;
   margin: 0 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.social-icons i:hover {
+  color: #158f52;
 }
 
 .footer-bottom {
-  align-items: center;
-  margin-top: 300px;
+  margin-top: auto;
+  padding: 20px 0;
 }
 
 .footer-bottom p {
   color: #ccc;
+  margin: 0;
 }
 
 .smartxoft-logo {
@@ -134,4 +152,36 @@
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .partners-logo {
+    justify-content: center;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-box {
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .partner-image {
+    width: 120px;
+    height: 56px;
+  }
+
+  .contact-box {
+    width: 90%;
+  }
+
+  .smartxoft-logo {
+    width: 150px;
+    height: 30px;
+  }
 }
