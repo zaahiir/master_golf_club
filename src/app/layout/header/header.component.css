@@ -25,11 +25,11 @@
     background-size: contain;
     background-repeat: no-repeat;
     display: block;
-    width: 120px; /* Adjust size as needed */
-    height: 120px; /* Adjust size as needed */
+    width: 120px;
+    height: 120px;
     position: absolute;
-    animation: spin 5s linear infinite; /* Adjust duration as needed */
-    transform-style: preserve-3d; /* Maintains the 3D effect */
+    animation: spin 5s linear infinite;
+    transform-style: preserve-3d;
     animation: spinPause 10s linear infinite;
   }
 
@@ -53,7 +53,3 @@
       transform: rotateY(360deg); 
     }
   }
-  
-  
-  
-  
