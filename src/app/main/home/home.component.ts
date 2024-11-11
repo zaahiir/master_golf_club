@@ -13,7 +13,7 @@ export class HomeComponent {
     {
       image: 'assets/card1.jpg',
       title: 'Golf Lessons',
-      description: 'Improve your skills with our professional coaches.',
+      description: 'Skills with our professional coaches.',
       buttonText: 'Learn More'
     },
     {

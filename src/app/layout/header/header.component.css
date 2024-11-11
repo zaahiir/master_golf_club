@@ -1,6 +1,5 @@
 .index{
     z-index: 999;
-    position: relative;
 }
 
 .layer{    
@@ -25,9 +24,8 @@
     background-size: contain;
     background-repeat: no-repeat;
     display: block;
-    width: 120px;
-    height: 120px;
-    position: absolute;
+    width: 70px;
+    height: 70px;
     animation: spin 5s linear infinite;
     transform-style: preserve-3d;
     animation: spinPause 10s linear infinite;
@@ -38,18 +36,19 @@
       transform: rotateY(0deg);
     }
     100% {
-      transform: rotateY(360deg);
+      transform: rotateY(-360deg);
     }
   }
-
+  
   @keyframes spinPause {
     0% {
       transform: rotateY(0deg);
     }
     70% {
-      transform: rotateY(360deg);
+      transform: rotateY(-360deg);
     }
     100% {
-      transform: rotateY(360deg); 
+      transform: rotateY(-360deg);
     }
   }
+  

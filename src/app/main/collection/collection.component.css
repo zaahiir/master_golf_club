@@ -1,5 +1,44 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+.home-image {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-image: url('../../../assets/3872.jpg');
+  background-size: cover;
+  background-position: 100% 85%;
+}
+
+.welcome-text {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ball-card {
+  width: 120px; /* Set the width and height to the same value */
+  height: 120px;
+  border-radius: 50%; /* Makes the card circular */
+  overflow: hidden; /* Ensures content stays within the rounded shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
