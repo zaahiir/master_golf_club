@@ -21,7 +21,8 @@
        
   
     <!-- Carousel Section -->
-    <div class="carousel-container my-4">
+    <div class="carousel-container mb-4">
+      <h3 class="mb-4">Latest Blog</h3>
       <div class="carousel-content d-flex align-items-center">
         <div class="carousel">
           <!-- Slide Navigation (Previous) -->
@@ -40,9 +41,8 @@
             <div class="carousel-item-content">
               <h2>{{ slide.title }}</h2>
               <p>{{ slide.description }}</p>
-              <a [href]="slide.link" class="btn">{{ slide.buttonText }}</a>
             </div>
-            <img [src]="slide.image" class="d-block w-100" alt="Carousel Image" />
+            <img [src]="slide.image" class="carousel-image" alt="Carousel Image" />
           </div>
     
           <!-- Slide Navigation (Next) -->
@@ -54,4 +54,5 @@
         </div>
       </div>
     </div>
+    
   </div>

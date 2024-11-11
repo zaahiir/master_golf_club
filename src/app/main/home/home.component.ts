@@ -34,7 +34,7 @@ export class HomeComponent {
     {
       image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80',
       title: 'Explore Our Destination ',
-      description: 'Discover the beauty and tranquility of our resort Discover the beauty and tranquility of our resort .',
+      description: 'Discover the beauty and tranquility of our resort Discover the beauty and tranquility of our resort. Discover the beauty and tranquility of our resort Discover the beauty and tranquility of our resort. Discover the beauty and tranquility of our resort Discover the beauty and tranquility of our resort. Discover the beauty and tranquility of our resort Discover the beauty and tranquility of our resort.',
       buttonText: 'Learn More',
       link: '#'
     },
