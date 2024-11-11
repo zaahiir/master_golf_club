@@ -24,16 +24,33 @@
 }
 
 @media (max-width: 768px) {
-.header-logo {
-  width: 40px;
-  height: 40px;
-}
-.socials {
-  padding-right: 2%; /* Adjust for smaller screens */
-}
+  .header-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .socials {
+    padding-right: 2%; /* Adjust for smaller screens */
+  }
+
+  /* Remove margin or padding between toggle and logo */
+  .navbar-nav {
+    margin-left: 0; /* Reset left margin */
+  }
+
+  .navbar-toggler {
+    padding: 0; /* Remove padding */
+    margin-right: 0; /* Ensure no margin between toggle and logo */
+  }
+
+  /* Align the logo to the right of the toggle button */
+  .navbar-brand.d-md-none {
+    margin-left: auto; /* Pushes logo to the right */
+    padding-left: 0; /* Remove any left padding */
+  }
 }
 
 .icon {
-width: 18px;
-height: 18px;
+  width: 18px;
+  height: 18px;
 }
