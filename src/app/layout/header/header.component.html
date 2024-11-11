@@ -1,65 +1,88 @@
-<div class="container-fluid p-0 d-flex flex-column position-sticky top-0 index">
-    <div class="layer p-1">
-      <div class="socials d-flex justify-content-end">
-        <a href="" class="pe-2 link-offset-2 link-underline link-underline-opacity-0 text-light"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+<div class="container-fluid p-0 position-sticky top-0 index">
+  <!-- Social Media and Logo Row -->
+  <div class="layer p-1 d-flex justify-content-end align-items-center">
+    
+    <!-- Social Media Links -->
+    <div class="socials">
+      <a href="#" class="pe-2 link-offset-2 link-underline link-underline-opacity-0 text-light">
+        <!-- Facebook Icon -->
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
           <path fill-rule="evenodd" d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z" clip-rule="evenodd"/>
-        </svg>
-        </a>
-        <a href="" class="pe-2 link-offset-2 link-underline link-underline-opacity-0 text-light"><svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
+        </svg>        
+      </a>
+      <a href="#" class="pe-2 link-offset-2 link-underline link-underline-opacity-0 text-light">
+        <!-- Instagram Icon -->
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
           <path fill="currentColor" fill-rule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clip-rule="evenodd"/>
-        </svg>      
-        </a>
-        <a href="" class="link-offset-2 link-underline link-underline-opacity-0 text-light"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+        </svg>        
+      </a>
+      <a href="#" class="link-offset-2 link-underline link-underline-opacity-0 text-light">
+        <!-- Twitter Icon -->
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
           <path fill-rule="evenodd" d="M22 5.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.343 8.343 0 0 1-2.605.981A4.13 4.13 0 0 0 15.85 4a4.068 4.068 0 0 0-4.1 4.038c0 .31.035.618.105.919A11.705 11.705 0 0 1 3.4 4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 6.1 13.635a4.192 4.192 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 2 18.184 11.732 11.732 0 0 0 8.291 20 11.502 11.502 0 0 0 19.964 8.5c0-.177 0-.349-.012-.523A8.143 8.143 0 0 0 22 5.892Z" clip-rule="evenodd"/>
         </svg>
-        </a>
+        
+      </a>
+    </div>
+  </div>
+  
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light nav_layer p-0">
+    <!-- Logo for Mobile -->
+    <a class="navbar-brand d-md-none" href="#">
+      <div class="header-logo"></div>
+    </a>
+    <div class="container-fluid">
+
+      <!-- Toggle Button for Mobile Navbar -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Logo (Hidden on small screens) -->
+      <div class="d-none d-md-block px-3">
+        <div class="header-logo"></div>
+      </div>
+
+      <!-- Collapsible Nav Links -->
+      <div class="collapse navbar-collapse me-5 pe-5" id="navbarNav">
+        <ul class="navbar-nav ms-auto d-flex align-items-center gap-3">
+          <li class="nav-item"><a routerLink="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a routerLink="/collection" class="nav-link">Collection</a></li>
+          <li class="nav-item"><a routerLink="/collectionPlus" class="nav-link">Collection Plus</a></li>
+          <li class="nav-item"><a routerLink="/BookATee" class="nav-link">Book A Tee</a></li>
+          
+          <!-- Dropdown for Information -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Information</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
+              <li><a class="dropdown-item" href="#">Past Events</a></li>
+              <li><a class="dropdown-item" href="#">Calendar</a></li>
+              <li><a class="dropdown-item" href="#">Register</a></li>
+            </ul>
+          </li>
+
+          <!-- Dropdown for Events -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Events</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
+              <li><a class="dropdown-item" href="#">Past Events</a></li>
+              <li><a class="dropdown-item" href="#">Calendar</a></li>
+              <li><a class="dropdown-item" href="#">Register</a></li>
+            </ul>
+          </li>
+          
+          <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Profile Icon (Visible on all screen sizes) -->
+      <div class="col-auto d-flex align-items-center me-4">
+        <svg width="24" height="24" fill="green" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+        </svg>
       </div>
     </div>
-    <div class="container-fluid nav_layer">
-      <div class="row">
-        <div class="col-4 px-4">
-          <div class="header-logo"></div>        
-        </div>
-        <div class="col-7 p-4">
-          <div class="container nav d-flex gap-4 align-items-center">
-            <a routerLink="/" class="nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark">Home</a>
-            <a routerLink="/collection" class="nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark">Collection</a>
-            <a routerLink="/collectionPlus" class="nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark">Collection Plus</a>
-            <a routerLink="/BookATee" class="nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark">Book A Tee</a>
-        
-            <div class="dropdown">
-              <a routerLink="/information" class="nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Information
-              </a>
-              <ul class="dropdown-menu mt-3">
-                <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
-                <li><a class="dropdown-item" href="#">Past Events</a></li>
-                <li><a class="dropdown-item" href="#">Calendar</a></li>
-                <li><a class="dropdown-item" href="#">Register</a></li>
-              </ul>
-            </div>
-        
-            <div class="dropdown">
-              <a routerLink="/events" class="nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Events
-              </a>
-              <ul class="dropdown-menu mt-3">
-                <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
-                <li><a class="dropdown-item" href="#">Past Events</a></li>
-                <li><a class="dropdown-item" href="#">Calendar</a></li>
-                <li><a class="dropdown-item" href="#">Register</a></li>
-              </ul>
-            </div>
-            
-            <a routerLink="/about" class="nav nav_content link-offset-2 link-underline link-underline-opacity-0 text-dark">About</a>
-          </div>
-        </div>
-        <div class="col p-4">
-          <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-          </svg>          
-        </div>
-      </div>  
-    </div>
+  </nav>
 </div>
-

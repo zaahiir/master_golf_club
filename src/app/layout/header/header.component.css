@@ -1,54 +1,39 @@
-.index{
-    z-index: 999;
+.index {
+  z-index: 999;
 }
 
-.layer{    
-    background: rgb(27,94,32);
+.layer {
+  background: rgb(27,94,32);
 }
 
-.socials{
-    padding-right: 5.5%;
+.nav_layer {
+  background: rgb(236, 250, 236);
 }
 
-.nav_layer{
-    background: rgb(236, 250, 236);
+.socials {
+  padding-right: 1rem; /* Adjusted for smaller screens */
 }
-
-.nav{
-    justify-content: space-between;
-    padding-right: 5%;
-}  
 
 .header-logo {
-    background-image: url('../../../assets/1.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: block;
-    width: 70px;
-    height: 70px;
-    animation: spin 5s linear infinite;
-    transform-style: preserve-3d;
-    animation: spinPause 10s linear infinite;
-  }
+  background-image: url('../../../assets/1.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 70px;
+  height: 70px;
+  animation: spinPause 10s linear infinite;
+}
 
-  @keyframes spin {
-    0% {
-      transform: rotateY(0deg);
-    }
-    100% {
-      transform: rotateY(-360deg);
-    }
-  }
-  
-  @keyframes spinPause {
-    0% {
-      transform: rotateY(0deg);
-    }
-    70% {
-      transform: rotateY(-360deg);
-    }
-    100% {
-      transform: rotateY(-360deg);
-    }
-  }
-  
+@media (max-width: 768px) {
+.header-logo {
+  width: 40px;
+  height: 40px;
+}
+.socials {
+  padding-right: 2%; /* Adjust for smaller screens */
+}
+}
+
+.icon {
+width: 18px;
+height: 18px;
+}
