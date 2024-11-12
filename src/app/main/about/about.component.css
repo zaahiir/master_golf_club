@@ -1,4 +1,9 @@
 /* booking-cards.component.scss */
+a{
+    text-decoration: none;
+    color: white;
+}
+
 .booking-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: 0.5s;
@@ -16,6 +21,7 @@
     overflow: hidden;
     padding: 0;
     height: 330px;
+    background: rgb(28,186,106);
   }
   
   .course-image {
@@ -23,7 +29,7 @@
     height: 100%;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;    
   }
   
   .img-hover {
