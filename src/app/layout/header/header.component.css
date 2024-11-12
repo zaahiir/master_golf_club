@@ -54,3 +54,40 @@
   width: 18px;
   height: 18px;
 }
+
+@media (max-width: 768px) {
+  /* Align the logo to the left on mobile screens */
+  .navbar-brand.d-md-none {
+    margin-left: 0; 
+  }
+
+  
+  .navbar-collapse {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .user-icon {
+      order: 1;
+      margin-left: auto;
+    }
+    .navbar-toggler {
+      order: 2;
+      margin-right: 0;
+    }
+  }
+
+  .header-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .socials {
+    padding-right: 2%; /* Adjust for smaller screens */
+  }
+
+  .navbar-nav {
+    margin-left: 0; /* Reset left margin */
+  }
+}

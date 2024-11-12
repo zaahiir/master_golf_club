@@ -1,1 +1,40 @@
-<p>about works!</p>
+<!-- booking-cards.component.html -->
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-12 col-md-4" *ngFor="let course of golfCourses">
+      <div class="booking-card">
+        <div class="row h-100">
+          <div class="col-12 col-sm-5 col-md-5 image-container">
+            <!-- Option 1: Using background image -->
+            <div class="course-image img-hover" [ngStyle]="{'background-image': 'url(' + course.imageUrl + ')'}"></div>
+            
+            <!-- Option 2: Using img tag -->
+            <!-- <img [src]="course.imageUrl" class="img-fluid img-hover" [alt]="course.name"> -->
+          </div>
+          <!-- Rest of your card content -->
+          <div class="col-12 col-sm-7 col-md-7 p-3">
+            <h4 class="fw-bold">{{ course.name }}</h4>
+            <p class="fw-bold">{{ course.address }}</p>
+            <p class="fw-bold">{{ course.timing }}</p>
+            <p class="fw-bold">
+              <i class="bi bi-telephone-fill"></i> {{ course.phone }}
+            </p>
+            <a [href]="course.website" class="card-link text-decoration-none fw-bold text-success">
+              website link
+            </a>
+            <div class="mt-3 d-flex">
+              <button 
+                class="btn book-btn btn-success text-light fw-bold"
+                data-bs-toggle="modal"
+                (click)="showBookingCard(course.id)"
+                data-bs-target="#bookingModal">
+                Book a slot
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
