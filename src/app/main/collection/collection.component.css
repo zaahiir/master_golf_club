@@ -20,15 +20,13 @@
   height: 400px; 
   background-image: url('../../../assets/3872.jpg');
   background-size: cover; 
-  background-position: center center; 
+  background-position: center; 
 }
 
 .welcome-text {
-  font-family: var(--font-serif);
+  font-family: 'Cardo', serif;
   font-size: 2rem;
   color: whitesmoke;
-  text-align: center;
-  font-weight: bold;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -122,18 +120,11 @@ a{
   background: white;
   border-radius: 8px;
   overflow: hidden;
-  height: 100%;
-  
-  &:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
 }
 
 .image-container {
   overflow: hidden;
-  padding: 0;
   height: 330px;
-  background: rgb(28,186,106);
 }
 
 .course-image {
@@ -141,7 +132,17 @@ a{
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;    
+  background-repeat: no-repeat; 
+  transition: transform 0.5s ease;   
+}
+
+.course-image:hover {
+  transform: scale(1.1);
+}
+
+.btn.book-btn {
+  background-color: #1cba6a;
+  font-weight: bold;
 }
 
 .img-hover {
