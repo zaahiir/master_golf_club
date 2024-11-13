@@ -157,7 +157,7 @@
     z-index: 1000;
   }
   
-  /* Modal Overlay */
+ /* Modal Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -175,25 +175,28 @@
   .modal-content {
     position: relative; /* For positioning the close icon */
     background-color: white;
-    padding: 1.5rem;
+    padding: 2rem; /* Increased padding for larger modal */
     border-radius: 8px;
     text-align: center;
-    max-width: 500px;
-    width: 80%;
+    max-width: 800px; /* Larger width */
+    width: 90%; /* Take up more screen width */
+  }
+  
+  /* lg-modal size - Larger Modal */
+  .lg-modal {
+    max-width: 800px; /* Set the max width */
+    width: 90%; /* Take up more space */
   }
   
   /* Close Icon */
-  /* Close Icon */
-.close-icon {
+  .close-icon {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 24px;
-    height: 24px;
-    border: 2px solid red;  /* Red border for the circle */
-    color: red;           /* Red "X" */
-    background-color: white; /* White background */
-    border-radius: 50%;      /* Circle shape */
+    width: 30px;
+    height: 30px;
+    color: black;     
+    background: none; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,26 +205,26 @@
     cursor: pointer;
   }
   
-  
   /* Modal Image with background URL */
   .modal-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 8px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .modal-paragraph {
     margin-bottom: 1.5rem;
     color: #333;
+    font-size: 1.1rem;
   }
   
   .go-to-website {
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     background-color: #333;
     color: #fff;
     border: none;
@@ -233,5 +236,3 @@
   .go-to-website:hover {
     background-color: #555;
   }
-  
-  

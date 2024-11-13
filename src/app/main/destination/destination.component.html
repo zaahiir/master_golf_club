@@ -5,7 +5,7 @@
     </div>
     
     <div class="container-fluid page-content">
-      <h3 class="text-center">Country</h3>
+      <h3 class="text-center">Canada</h3>
       <p class="p-4 mx-4">
         Lorem ipsum dolor sit amet, adipisicing elit...
       </p>
@@ -30,8 +30,9 @@
   
     <!-- Modal Structure -->
     <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-content  lg-modal" (click)="$event.stopPropagation()">
           <div class="close-icon" (click)="closeModal()">✕</div>
+          <h4 class="mb-3">Country</h4>
           <div class="modal-image"></div>
           <p class="modal-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
           <button class="go-to-website" (click)="goToWebsite()">Go to Website</button>
