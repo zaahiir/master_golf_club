@@ -193,7 +193,7 @@
     </div>
     <!-- booking-cards.component.html -->
     <div class="container-fluid px-5">
-      <h5 class="text-center mb-5">Collections</h5>
+      <h3 class="text-center mb-5">Collections</h3>
       <div class="row">
         <div class="col-12 col-md-4 mb-3 px-2"  *ngFor="let course of golfCourses">
           <div class="booking-card">
@@ -233,7 +233,7 @@
               </div>
               <!-- Rest of your card content -->
               <div class="col-12 col-sm-7 col-md-7 p-3">
-                <h4 class="fw-bold">{{ course.name }}</h4>
+                <h5 class="fw-bold">{{ course.name }}</h5>
                 <p>{{ course.address }}</p>
                 <p>{{ course.timing }}</p>
                 <div class="mt-3 d-flex">
@@ -250,57 +250,6 @@
           </div>
         </div>
       </div>
-    </div>   
-     <!-- pagination  -->
-     <div class="pagination mb-2">
-      <ul>
-        <!-- Previous button -->
-        <li *ngIf="currentPage > 1" 
-            class="btn prev" 
-            (click)="changePage(currentPage - 1)">
-          <span><i class="fas fa-angle-left"></i> Prev</span>
-        </li>
-
-        <!-- First page -->
-        <ng-container *ngIf="currentPage > 2">
-          <li class="first numb" 
-              [class.active]="currentPage === 1"
-              (click)="changePage(1)">
-            <span>1</span>
-          </li>
-          <li *ngIf="currentPage > 3" class="dots">
-            <span>...</span>
-          </li>
-        </ng-container>
-
-        <!-- Page numbers -->
-        <ng-container *ngFor="let pageNum of visiblePages">
-          <li class="numb" 
-              [class.active]="currentPage === pageNum"
-              (click)="changePage(pageNum)">
-            <span>{{ pageNum }}</span>
-          </li>
-        </ng-container>
-
-        <!-- Last page -->
-        <ng-container *ngIf="currentPage < totalPages - 1">
-          <li *ngIf="currentPage < totalPages - 2" class="dots">
-            <span>...</span>
-          </li>
-          <li class="last numb" 
-              [class.active]="currentPage === totalPages"
-              (click)="changePage(totalPages)">
-            <span>{{ totalPages }}</span>
-          </li>
-        </ng-container>
-
-        <!-- Next button -->
-        <li *ngIf="currentPage < totalPages" 
-            class="btn next" 
-            (click)="changePage(currentPage + 1)">
-          <span>Next <i class="fas fa-angle-right"></i></span>
-        </li>
-      </ul>
-    </div>
+    </div> 
     
   </div>
