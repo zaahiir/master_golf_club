@@ -1,17 +1,24 @@
 <div class="home container-fluid p-0 d-flex flex-column align-items-center">
     <!-- Background Image -->
     <div class="home-image d-flex justify-content-center align-items-center">
-      <h1 class="welcome-text">Collections plus</h1>
-    </div>   
+      <h1 class="welcome-text">Collections Plus</h1>
+    </div>
+    
     <div class="container-fluid page-content">
-      <div class="row custom-gap px-5">
-        <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card landscape">
-            <div class="content justify-content-center">
-              <h2 class="country">{{ card.country }}</h2>
+        <h3 class="text-center mt-4">Collections Plus</h3>
+        <p class="p-4 mx-4">Lorem ipsum dolor sit amet  adipisicing elit. Iusto magni nulla laborum, deserunt facere molestiae architecto provident voluptas, magnam, omnis doloremque pariatur asperiores consequuntur beatae debitis odio ipsam culpa eum!</p>
+        <div class="row custom-gap px-5">
+          <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div
+              class="card landscape" style="text-decoration: none;"
+              [ngStyle]="{ 'background-image': card.backgroundImage }"
+              [routerLink]="['/destination']"
+            >
+              <div class="content justify-content-center">
+                <h2 class="country">{{ card.country }}</h2>
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>

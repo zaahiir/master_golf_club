@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+.home-image {
+  position: relative;
+  width: 100%;
+  height: 400px; 
+  background-image: url('../../../assets/3872.jpg');
+  background-size: cover; 
+  background-position: center; 
+}
+
+.welcome-text {
+  font-family: 'Cardo', serif;
+  font-size: 2rem;
+  color: whitesmoke;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .home-image {
+    height: 300px;
+  }
+
+  .welcome-text {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .home-image {
+    height: 250px;
+  }
+
+  .welcome-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-image {
+    height: 200px;
+  }
+
+  .welcome-text {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .home-image {
+    height: 150px;
+  }
+
+  .welcome-text {
+    font-size: 1rem;
+  }
+}
+
+/* Page Content Section */
+.page-content {
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+/* Background Card */
+.background-card {
+    width: 70%;
+    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire container */
+    background-position: center; /* Centers the image within the container */
+    padding: 2rem;
+    margin: 1rem auto;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+/* Card Styling */
+.card-container {
+  width: 30%; /* Adjust width as needed */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card {
+  width: 100%;
+  padding: 1.5rem;
+  background-color: #f4f4f4;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-family: var(--font-sans);
+  text-align: left;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.read-more {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.card-button {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: background-color 0.3s;
+}
+
+.card-button:hover {
+  background-color: #555;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    position: relative; /* For positioning the close icon */
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 500px;
+    width: 80%;
+  }
+  
+  /* Close Icon */
+  /* Close Icon */
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    border: 2px solid red;  /* Red border for the circle */
+    color: red;           /* Red "X" */
+    background-color: white; /* White background */
+    border-radius: 50%;      /* Circle shape */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  
+  /* Modal Image with background URL */
+  .modal-image {
+    width: 100%;
+    height: 200px;
+    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-paragraph {
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .go-to-website {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .go-to-website:hover {
+    background-color: #555;
+  }
+  
+  
