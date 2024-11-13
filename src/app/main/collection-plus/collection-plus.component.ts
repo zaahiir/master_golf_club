@@ -11,16 +11,13 @@ import { CommonModule } from '@angular/common';
 export class CollectionPlusComponent {
   cards = [
     {
-      image: 'assets/card1.jpg',
-      title: 'Golf Lessons',
+      country: 'Canada',
     },
     {
-      image: 'assets/card2.jpg',
-      title: 'Golf Events',
+      country: 'USA',
     },
     {
-      image: 'assets/card3.jpg',
-      title: 'Membership',
+      country: 'Europe',
     }
   ];
 
