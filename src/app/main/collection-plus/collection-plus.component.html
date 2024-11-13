@@ -1,1 +1,17 @@
-<p>collection-plus works!</p>
+<div class="home container-fluid p-0 d-flex flex-column align-items-center">
+    <!-- Background Image -->
+    <div class="home-image d-flex justify-content-center align-items-center">
+      <h1 class="welcome-text">Collections plus</h1>
+    </div>   
+    <div class="container-fluid page-content">
+      <div class="row custom-gap px-5">
+        <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+          <div class="card landscape">
+            <div class="content">
+              <h2 class="title">{{ card.title }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

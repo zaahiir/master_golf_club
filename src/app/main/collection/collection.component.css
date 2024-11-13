@@ -30,6 +30,11 @@
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
+.col-xl-1-5 {
+  flex: 0 0 12.5%;
+  max-width: 12.5%;
+}
+
 .ball-card {
   width: 120px;
   height: 120px;
