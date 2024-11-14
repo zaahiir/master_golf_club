@@ -27,196 +27,191 @@
     text-align: center;
   }
 
-  .event-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-  }
-  
-  .event-section {
-    margin-bottom: 4rem;
-  }
-  
-  .event-section h2 {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    position: relative;
-  }
-  
-  .event-section h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: #2c3e50;
-    margin: 1rem auto 0;
+  /* Event Overview */
+  .event-overview {
+    background-color: var(--masters-green);
+    color: var(--white);
+    padding: 4rem 2rem;
   }
   
   .overview-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .venue {
+    font-size: 1.25rem;
+    margin: 1rem 0 2rem;
   }
   
   .key-details {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #eee;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
   }
   
   .detail-item {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
-  .detail-item i {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    display: block;
+  .label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
   }
   
-  .detail-item span {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-weight: 500;
+  .value {
+    font-size: 1.25rem;
+    font-weight: 600;
   }
   
-  .description {
-    font-family: var(--font-sans);
-    color: #666;
-    line-height: 1.8;
-    font-size: 1.1rem;
-    text-align: center;
+  /* Tournament History */
+  .tournament-history {
+    padding: 4rem 2rem;
+    background-color: var(--white);
   }
   
-  .format-details {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  .history-content {
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
-  .format-specs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-  }
-  
-  .spec {
-    text-align: center;
-    padding: 1.5rem;
-    background: #f8f9fa;
+  .history-image {
+    height: 400px;
+    background-image: url('../../../assets//images/man-golfer-taking-out-golf-club-from-bag.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 2rem 0;
     border-radius: 8px;
   }
   
-  .spec .label {
+  .traditions-list {
+    list-style-position: inside;
+    margin: 1rem 0;
+  }
+  
+  .traditions-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+  
+  /* Course Details */
+  .course-details {
+    padding: 4rem 2rem;
+    background-color: #f5f5f5;
+  }
+  
+  .course-image {
+    height: 400px;
+    background-image: url('../../../assets/images/gettyimages-171362434-612x612.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 2rem 0;
+    border-radius: 8px;
+  }
+  
+  .course-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat-label {
     display: block;
-    font-family: var(--font-serif);
-    color: #666;
-    font-style: italic;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: var(--masters-green);
     margin-bottom: 0.5rem;
   }
   
-  .spec .value {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-size: 1.2rem;
-    font-weight: 500;
+  .stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
   }
   
-  .schedule-grid {
+  /* Past Champions */
+  .past-champions {
+    padding: 4rem 2rem;
+    background-color: var(--white);
+  }
+  
+  .champions-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    margin-top: 2rem;
   }
   
-  .schedule-item {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  .champion {
     text-align: center;
   }
   
-  .schedule-item h3 {
-    font-family: var(--font-sans);
-    color: #2c3e50;
+  .champion-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
     margin-bottom: 1rem;
-    font-size: 1.4rem;
+    border-radius: 8px;
   }
   
-  .schedule-item p {
-    color: #666;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-sans);
+  .champion-2023 {
+    background-image: url('../../../assets/images/3872.jpg');
   }
   
-  .inclusions-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 1rem;
+  .champion-2022 {
+    background-image: url('../../../assets/images/3859.jpg');
   }
   
-  .inclusion-item {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  .champion-2021 {
+    background-image: url('../../../assets/images/3872.jpg');
   }
   
-  .inclusion-item i {
-    font-size: 2rem;
-    color: #2c3e50;
-  }
-  
-  .inclusion-item span {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-weight: 500;
-  }
-  
+  /* Responsive Design */
   @media (max-width: 768px) {
-    .welcome-text {
+    .event-title {
       font-size: 2.5rem;
     }
   
     .event-date {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
     }
   
     .key-details {
-      flex-direction: column;
-      gap: 2rem;
-    }
-  
-    .format-specs {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .schedule-grid {
       grid-template-columns: 1fr;
       gap: 1rem;
     }
   
-    .inclusions-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .history-image,
+    .course-image,
+    .champion-image {
+      height: 300px;
     }
   }
   
-  @media (max-width: 480px) {
-    .inclusions-grid {
-      grid-template-columns: 1fr;
-    }
+  h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--masters-green);
+  }
+  
+  h3 {
+    font-family: 'Merriweather', serif;
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+    color: var(--text-dark);
+  }
+  
+  p {
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
   }
