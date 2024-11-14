@@ -1,132 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { RouterModule } from '@angular/router';
 
-interface GolfCourse {
+interface NewsItem {
   id: number;
-  name: string;
-  address: string;
-  timing: string;
-  phone: string;
-  website: string;
+  title: string;
+  date: string;
+  description: string;
   imageUrl: string;
 }
 
 @Component({
   selector: 'app-members-news',
   standalone: true,
-  imports: [CommonModule, InfiniteScrollModule],
+  imports: [CommonModule, InfiniteScrollModule, RouterModule],
   templateUrl: './members-news.component.html',
   styleUrl: './members-news.component.css'
 })
 export class MembersNewsComponent implements OnInit {
-  golfCourses: GolfCourse[] = [];
-  displayedCourses: GolfCourse[] = [];
-  courseBatchSize: number = 6; // Number of items to load per batch
+  newsItems: NewsItem[] = [];
+  displayedNews: NewsItem[] = [];
+  batchSize: number = 6;
   loadedItemsCount: number = 0;
 
   constructor() {}
 
   ngOnInit() {
-    // Full list of courses
-    this.golfCourses = [
-      { id: 1, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 2, name: 'Richmond Park Golf Course', address: 'Roehampton Gate, Richmond TW10 5LD', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 3, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 4, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 5, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 6, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 7, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 8, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 9, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 10, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 11, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
-      { id: 13, name: 'Another Course', address: 'Example Address', timing: 'Daily from 9am', phone: '020 8876 3205', website: '#', imageUrl: 'assets/3859.jpg' },
-      { id: 12, name: 'Aldenham - Church Course', address: 'Church Ln, Aldenham, Radlett WD25 8NN', timing: 'Weekends from 11am', phone: '01923 853929', website: '#', imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg' },
+    // Sample news data
+    this.newsItems = [
+      {
+        id: 1,
+        title: 'Annual Golf Tournament Announcement',
+        date: 'March 15, 2024',
+        description: 'Join us for our prestigious annual golf tournament featuring top players from across the region. Early bird registration now open.',
+        imageUrl: 'assets/3872.jpg'
+      },
+      {
+        id: 2,
+        title: 'New Golf Course Facilities Opening',
+        date: 'March 12, 2024',
+        description: 'We are excited to announce the opening of our new state-of-the-art practice facilities, including a driving range and putting green.',
+        imageUrl: 'assets/3859.jpg'
+      },
+      {
+        id: 3,
+        title: 'Spring Golf Clinic Series',
+        date: 'March 10, 2024',
+        description: 'Improve your game with our professional instructors in our upcoming spring clinic series. Perfect for all skill levels.',
+        imageUrl: 'assets/images/man-golfer-taking-out-golf-club-from-bag.jpg'
+      },
     ];
 
-    // Load the initial set of courses
-    this.loadMoreCourses();
+    this.loadMoreNews();
   }
 
-  loadMoreCourses() {
-    const nextBatch = this.golfCourses.slice(this.loadedItemsCount, this.loadedItemsCount + this.courseBatchSize);
-    this.displayedCourses.push(...nextBatch);
+  loadMoreNews() {
+    const nextBatch = this.newsItems.slice(
+      this.loadedItemsCount,
+      this.loadedItemsCount + this.batchSize
+    );
+    this.displayedNews.push(...nextBatch);
     this.loadedItemsCount += nextBatch.length;
-  }
-
-  showBookingCard(courseId: number) {
-    console.log('Opening booking modal for course:', courseId);
   }
 }
