@@ -1,6 +1,6 @@
 <div class="container-fluid p-0 position-sticky top-0 index">
   <!-- Social Media and Logo Row -->
-  <div class="layer d-flex justify-content-end align-items-center">
+  <div class="layer d-flex justify-content-end align-items-center socials-section">
     
     <!-- Social Media Links -->
     <div class="socials me-4">
@@ -51,10 +51,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Information</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
-              <li><a class="dropdown-item" href="#">Past Events</a></li>
-              <li><a class="dropdown-item" href="#">Calendar</a></li>
-              <li><a class="dropdown-item" href="#">Register</a></li>
+              <li><a class="dropdown-item" href="#">News</a></li>
+              <li><a class="dropdown-item" href="#">Rules</a></li>
+              <li><a class="dropdown-item" href="#">Team Leader</a></li>
             </ul>
           </li>
 
@@ -62,10 +61,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Events</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Upcoming Events</a></li>
-              <li><a class="dropdown-item" href="#">Past Events</a></li>
-              <li><a class="dropdown-item" href="#">Calendar</a></li>
-              <li><a class="dropdown-item" href="#">Register</a></li>
+              <li><a class="dropdown-item" href="#">Events</a></li>
+              <li><a class="dropdown-item" href="#">Tournaments</a></li>
             </ul>
           </li>
           
@@ -79,11 +76,21 @@
       </button>
 
       <!-- Profile Icon (Visible on all screen sizes) -->
-      <div class="col-auto d-flex align-items-center me-4  user-icon">
-        <svg width="24" height="24" fill="green" viewBox="0 0 24 24">
-          <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-        </svg>
+      <div class="col-auto d-flex align-items-center me-4 user-icon dropdown">
+        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg width="24" height="24" fill="green" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Account</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">Orders</a></li>
+          <li><a class="dropdown-item" href="#">Memberships</a></li>
+          <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
       </div>
+      
     </div>
   </nav>
 </div>
