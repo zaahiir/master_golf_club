@@ -32,17 +32,6 @@
   cursor: pointer;
 }
 
-/* Change dropdown caret color to green */
-.navbar .dropdown-toggle::after {
-  border-top-color: green; /* Changes the color of the caret to green */
-}
-
-/* Optional: Ensure it’s green on hover as well */
-.navbar .dropdown-toggle:hover::after,
-.navbar .dropdown-toggle:focus::after {
-  border-top-color: green; /* Keeps the caret green on hover and focus */
-}
-
 
 @media (max-width: 768px) {
   .header-logo {

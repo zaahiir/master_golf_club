@@ -1,7 +1,7 @@
 <div class="home container-fluid p-0 d-flex flex-column align-items-center">
     <!-- Background Image -->
     <div class="home-image d-flex justify-content-center align-items-center">
-      <h1 class="welcome-text">Collections Plus</h1>
+      <h1 class="welcome-text">Destination</h1>
     </div>
     
     <div class="container-fluid page-content">
@@ -27,6 +27,21 @@
         </div>
       </div>
     </div>
+      <div class="background-card">
+        <div class="card-container">
+          <div class="card">
+            <h4 class="card-title">Lorem Ipsum</h4>
+            <p class="card-text">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry ...
+              <span class="read-more">Read More</span>
+            </p>
+            <button class="card-button" (click)="openModal()">Explore</button>
+          </div>
+        </div>
+      </div>
   
     <!-- Modal Structure -->
     <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
