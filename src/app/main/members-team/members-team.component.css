@@ -17,3 +17,155 @@
     background-image: url('../../../assets/3872.jpg');
     background-position: center; 
   }
+
+  .team-section {
+    padding: 4rem 2rem;
+    font-family: var(--font-sans);
+  }
+  
+  /* Leader Card Styles */
+  .leader-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    transition: transform var(--d) var(--e);
+  }
+  
+  .leader-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .leader-image-wrapper {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    padding: 10px;
+    background: linear-gradient(135deg, #0a5d1e, #34d058, #88ce02, #b3e572);
+    position: relative;
+}
+  
+  .leader-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .member-1 {
+    background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3');
+  }
+  
+  .member-2 {
+    background-image: url('https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3');
+  }
+  
+  .member-3 {
+    background-image: url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3');
+  }
+  
+  .leader-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--d) var(--e);
+    border-radius: 50%;
+  }
+  
+  .leader-image:hover .leader-overlay {
+    opacity: 1;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-link {
+    color: white;
+    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--d) var(--e);
+  }
+  
+  .social-link:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+  }
+  
+  .leader-info {
+    padding: 1rem;
+  }
+  
+  .leader-info h3 {
+    color: #333;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .leader-role {
+    display: block;
+    color: #0a5d1e;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .leader-desc {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .welcome-text {
+      font-size: 2rem;
+    }
+    
+    .team-section {
+      padding: 2rem 1rem;
+    }
+    
+    .leader-image-wrapper {
+      width: 240px;
+      height: 240px;
+    }
+  }
+  
+  /* Add a subtle animation to the gradient border */
+  @keyframes gradientBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  } 
+  
+
+.leader-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #0a5d1e, #34d058, #88ce02, #a8f16a);
+    z-index: -1;
+    animation: gradientBorder 3s linear infinite;
+}
