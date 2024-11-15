@@ -18,47 +18,6 @@
     background-position: 100% 78%;
   }
 
-.col-xl-1-5 {
-  flex: 0 0 12.5%;
-  max-width: 12.5%;
-}
-
-.ball-card {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.card {
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card svg {
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 576px) {
-  
-  .mx-4 {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  
-  .px-4 {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-  }
-}
-
 /* booking-cards.component.scss */
 a{
   text-decoration: none;

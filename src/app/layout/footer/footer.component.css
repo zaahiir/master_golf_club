@@ -1,7 +1,7 @@
 /* Wrapper for both Partners and Footer */
 .container {
   position: relative;
-  z-index: 999;  /* Set z-index for the entire container */
+  z-index: 1;  /* Set z-index for the entire container */
   max-width: 1650px;
 }
 
