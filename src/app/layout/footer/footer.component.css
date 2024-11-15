@@ -8,7 +8,7 @@
 .container-max {
   width: 100%;
   max-width: 1650px;
-  margin: 0 ;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -19,8 +19,8 @@
   z-index: 1; /* Ensure Partners have z-index 1 */
 }
 
-/* Add gradient to partners-logo */
-.partners-logo {
+/* Apply green gradient background to the title section */
+.partners-sec {
   background: radial-gradient(
     74.45% 133.29% at 76.85% 71.12%,
     #1CBA6A 11.11%,
@@ -32,15 +32,11 @@
     #094D40 77.78%,
     #08443D 88.89%,
     #063B39 100%
-  );
+  ); /* Green gradient for title section */
   border-radius: 1% 0% 50% 50% / 0% 0% 8% 8%;
-  padding: 20px 0;  /* Ensure space around logos */
-}
-
-.partners-sec {
-  position: relative;
   padding: 25px 0 60px 0;
   text-align: center;
+  color: white;  /* Ensure the text is visible on the green background */
 }
 
 .partners-logo {
@@ -51,6 +47,7 @@
   gap: 20px;
 }
 
+/* Partner Logos section (background is white for this part) */
 .partner-image {
   width: 150px;
   height: 70px;
@@ -63,6 +60,7 @@
 .partner-2 { background-image: url('../../../assets/image (1).png'); }
 .partner-3 { background-image: url('../../../assets/image (2).png'); }
 .partner-4 { background-image: url('../../../assets/image (3).png'); }
+
 
 
 /* Footer Styles */
