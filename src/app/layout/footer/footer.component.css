@@ -8,12 +8,19 @@
 .container-max {
   width: 100%;
   max-width: 1650px;
-  margin: 0 auto;
-  padding: 0 10px;
+  margin: 0 ;
+  padding: 0;
 }
 
 /* Partners Section Styles */
 .partners {
+  background-color: #fff; /* Set background to white */
+  width: 100%;
+  z-index: 1; /* Ensure Partners have z-index 1 */
+}
+
+/* Add gradient to partners-logo */
+.partners-logo {
   background: radial-gradient(
     74.45% 133.29% at 76.85% 71.12%,
     #1CBA6A 11.11%,
@@ -27,8 +34,7 @@
     #063B39 100%
   );
   border-radius: 1% 0% 50% 50% / 0% 0% 8% 8%;
-  width: 100%;
-  z-index: 1; /* Ensure Partners have z-index 1 */
+  padding: 20px 0;  /* Ensure space around logos */
 }
 
 .partners-sec {
@@ -57,6 +63,7 @@
 .partner-2 { background-image: url('../../../assets/image (1).png'); }
 .partner-3 { background-image: url('../../../assets/image (2).png'); }
 .partner-4 { background-image: url('../../../assets/image (3).png'); }
+
 
 /* Footer Styles */
 .footer {
