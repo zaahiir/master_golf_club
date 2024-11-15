@@ -1,29 +1,5 @@
-:root {
-    --primary-color: #004d26; /* Dark green */
-    --secondary-color: #a1d99b; /* Soft green */
-    --background-color: #e3f2e1; /* Light green background */
-    --text-color: #2e3d3d;
-    --light-text: #7d8c7c;
-    --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  }
-  
-  .container {
-    display: flex;
-    max-width: 100%;
-    margin: 0 auto;
-    height: 100vh;
-    background-color: var(--background-color);
-    overflow: hidden;
-  }
-  
-  .content-wrapper {
-    display: flex;
-    width: 100%;
-  }
-  
-  /* Sticky Sidebar */
-  .sidebar {
+/* Sidebar Styles */
+.sidebar {
     width: 20%;
     padding: 1rem;
     background-color: white;
@@ -32,95 +8,56 @@
     top: 0;
     height: 100vh;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
   
+  /* Amenity Item */
   .amenity-item {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid #ddd;
+    padding: 0.75rem;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    border-radius: 8px;
   }
   
   .amenity-item:hover {
     background-color: var(--secondary-color);
   }
   
-  .amenity-icon {
-    font-size: 24px;
+  /* Icon */
+  .animated-icon {
+    font-size: 20px;
     color: var(--primary-color);
+    transition: transform 0.6s ease-in-out;
   }
   
+  .amenity-item:hover .animated-icon {
+    animation: coin-flip 0.6s forwards;
+  }
+  
+  /* Title */
   .amenity-title {
     color: var(--text-color);
-    font-weight: bold;
-  }
-  
-  /* Scrollable Main Content */
-  .main-content {
-    width: 80%;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    overflow-y: auto;
-    height: 100vh;
-  }
-  
-  .course-card {
-    background: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-  
-  .course-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--card-hover-shadow);
-  }
-  
-  .course-card h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--primary-color);
-  }
-  
-  .course-card p {
-    color: var(--light-text);
     font-size: 1rem;
-    margin-top: 0.5rem;
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
+    white-space: nowrap; /* Ensure title remains on a single line */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
-  @keyframes rotate {
+  /* Keyframes for Coin Flip Animation */
+  @keyframes coin-flip {
     0% {
-      transform: rotate(0deg);
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(90deg);
     }
     100% {
-      transform: rotate(360deg);
+      transform: rotateY(180deg);
     }
   }
-  
-  .amenity-item:hover .amenity-icon {
-    animation: bounce 0.6s ease-in-out;
-  }
-  
-  .amenity-item:hover .amenity-icon.rotate {
-    animation: rotate 1s linear;
-  }
-  
   

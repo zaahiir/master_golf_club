@@ -1,20 +1,16 @@
-<div class="container">
-    <div class="content-wrapper">
-      <!-- Sticky Sidebar for Amenities -->
-      <div class="sidebar">
-        <div class="amenity-item" *ngFor="let amenity of amenities" [title]="amenity.tooltip">
-          <fa-icon [icon]="amenity.icon" class="amenity-icon"></fa-icon>
-          <span class="amenity-title">{{ amenity.title }}</span>
-        </div>
-      </div>
-  
-      <!-- Scrollable Main Content for Courses -->
-      <div class="main-content">
-        <div class="course-card" *ngFor="let course of courses">
-          <h3>Course {{ course.id }}</h3>
-          <p>{{ course.description }}</p>
-        </div>
-      </div>
+<div class="sidebar">
+    <div
+      class="amenity-item"
+      *ngFor="let amenity of amenities"
+      [attr.title]="amenity.tooltip" 
+      data-bs-toggle="tooltip"       
+      data-bs-placement="top"     
+    >
+      <fa-icon
+        [icon]="amenity.icon"
+        class="animated-icon"
+      ></fa-icon>
+      <span class="amenity-title">{{ amenity.title }}</span>
     </div>
   </div>
   
