@@ -5,66 +5,69 @@
       <h1 class="welcome-text">Collections</h1>
     </div>
     <!-- booking-cards.component.html -->
-    <div class="container-fluid px-5">
+    <div class="container-fluid px-5 d-flex">
+      <!-- Sidebar Section (Amenities) -->
       <div class="sidebar">
         <div
           class="amenity-item"
           *ngFor="let amenity of amenities"
-          [attr.title]="amenity.tooltip" 
-          data-bs-toggle="tooltip"       
-          data-bs-placement="top"     
+          [attr.title]="amenity.tooltip"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
         >
-          <fa-icon
-            [icon]="amenity.icon"
-            class="animated-icon"
-          ></fa-icon>
+          <fa-icon [icon]="amenity.icon" class="animated-icon"></fa-icon>
           <span class="amenity-title">{{ amenity.title }}</span>
         </div>
       </div>
-      <h3 class="text-center mb-5">Collections</h3>
-      <div
-        class="row"
-        infiniteScroll
-        (scrolled)="loadMoreCourses()"
-        [infiniteScrollDistance]="1"
-        [infiniteScrollThrottle]="300"
-      >
+    
+      <!-- Main Content Section (Booking Cards) -->
+      <div class="main-content">
+        <h3 class="text-center mb-5">Collections</h3>
         <div
-          class="col-12 col-md-4 mb-3 px-2"
-          *ngFor="let course of displayedCourses"
+          class="row"
+          infiniteScroll
+          (scrolled)="loadMoreCourses()"
+          [infiniteScrollDistance]="1"
+          [infiniteScrollThrottle]="300"
         >
-          <div class="booking-card">
-            <div class="row h-100">
-              <div class="col-12 col-sm-5 col-md-5 image-container">
-                <div
-                  class="course-image img-hover"
-                  [ngStyle]="{ 'background-image': 'url(' + course.imageUrl + ')' }"
-                  style="display: flex; flex-direction: column; height: 100%;"
-                >
-                  <div class="p-5 botton-10 c-ion" style="margin-top: auto;">
-                    <a href="" class="me-4">...</a>
-                    <a href="">...</a>
+          <div
+            class="col-12 col-md-4 mb-3 px-2"
+            *ngFor="let course of displayedCourses"
+          >
+            <div class="booking-card">
+              <div class="row h-100">
+                <div class="col-12 col-sm-5 col-md-5 image-container">
+                  <div
+                    class="course-image img-hover"
+                    [ngStyle]="{ 'background-image': 'url(' + course.imageUrl + ')' }"
+                    style="display: flex; flex-direction: column; height: 100%;"
+                  >
+                    <div class="p-5 botton-10 c-ion" style="margin-top: auto;">
+                      <a href="" class="me-4">...</a>
+                      <a href="">...</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12 col-sm-7 col-md-7 p-3">
-                <h5 class="fw-bold">{{ course.name }}</h5>
-                <p>{{ course.address }}</p>
-                <p>{{ course.timing }}</p>
-                <div class="mt-3 d-flex">
-                  <button
-                    class="btn book-btn btn-success text-light fw-bold"
-                    data-bs-toggle="modal"
-                    (click)="showBookingCard(course.id)"
-                    data-bs-target="#bookingModal"
-                  >
-                    Book a slot
-                  </button>
+                <div class="col-12 col-sm-7 col-md-7 p-3">
+                  <h5 class="fw-bold">{{ course.name }}</h5>
+                  <p>{{ course.address }}</p>
+                  <p>{{ course.timing }}</p>
+                  <div class="mt-3 d-flex">
+                    <button
+                      class="btn book-btn btn-success text-light fw-bold"
+                      data-bs-toggle="modal"
+                      (click)="showBookingCard(course.id)"
+                      data-bs-target="#bookingModal"
+                    >
+                      Book a slot
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>    
+    </div>
+    
 </div>

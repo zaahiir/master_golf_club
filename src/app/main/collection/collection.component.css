@@ -18,20 +18,32 @@
     background-position: 100% 78%;
   }
 
-  /* Sidebar Styles */
-.sidebar {
-  width: 20%;
-  padding: 1rem;
-  background-color: white;
-  border-right: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: scroll; /* Allows scrolling */
+.container-fluid {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-wrap: nowrap;
 }
+
+.main-content {
+  width: 80%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  overflow: hidden; /* Ensures no content overflows */
+}
+
+  /* Sidebar Styles */
+  .sidebar {
+    width: 20%;
+    padding: 5px;
+    background-color: white;
+    border-right: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
 /* Hide Scrollbar */
 .sidebar::-webkit-scrollbar {
@@ -93,8 +105,6 @@
   }
 }
 
-
-/* booking-cards.component.scss */
 a{
   text-decoration: none;
   color: white;
