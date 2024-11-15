@@ -1,17 +1,35 @@
+.header-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.container-max {
+  width: 100%;
+  max-width: 1650px;
+  margin: 0 auto;
+}
+
 .index {
   z-index: 999;
 }
 
 .layer {
   background: rgb(27,94,32);
+  width: 100%;
 }
 
 .nav_layer {
   background: rgb(236, 250, 236);
+  width: 100%;
 }
 
+/* Rest of your existing styles remain the same */
 .socials {
-  padding-right: 1rem; /* Adjusted for smaller screens */
+  padding-right: 1rem;
 }
 
 .header-logo {
@@ -23,16 +41,7 @@
   animation: spinPause 10s linear infinite;
 }
 
-.user-icon .dropdown-menu {
-  min-width: 150px;
-  padding: 0.5rem 0;
-}
-
-.user-icon svg {
-  cursor: pointer;
-}
-
-
+/* Existing responsive styles */
 @media (max-width: 768px) {
   .header-logo {
     width: 40px;
@@ -40,65 +49,34 @@
   }
 
   .socials {
-    padding-right: 2%; /* Adjust for smaller screens */
+    padding-right: 2%;
   }
 
-  /* Remove margin or padding between toggle and logo */
   .navbar-nav {
-    margin-left: 0; /* Reset left margin */
+    margin-left: 0;
   }
 
   .navbar-toggler {
-    padding: 0; /* Remove padding */
-    margin-right: 0; /* Ensure no margin between toggle and logo */
+    padding: 0;
+    margin-right: 0;
   }
 
-  /* Align the logo to the right of the toggle button */
   .navbar-brand.d-md-none {
-    margin-left: auto; /* Pushes logo to the right */
-    padding-left: 0; /* Remove any left padding */
-  }
-}
-
-.icon {
-  width: 18px;
-  height: 18px;
-}
-
-@media (max-width: 768px) {
-  /* Align the logo to the left on mobile screens */
-  .navbar-brand.d-md-none {
-    margin-left: 0; 
+    margin-left: 0;
   }
 
-  
   .navbar-collapse {
     margin-right: 0 !important;
     padding-right: 0 !important;
   }
 
-  @media (max-width: 768px) {
-    .user-icon {
-      order: 1;
-      margin-left: auto;
-    }
-    .navbar-toggler {
-      order: 2;
-      margin-right: 0;
-    }
-  }
-  
-
-  .header-logo {
-    width: 40px;
-    height: 40px;
+  .user-icon {
+    order: 1;
+    margin-left: auto;
   }
 
-  .socials {
-    padding-right: 2%; /* Adjust for smaller screens */
-  }
-
-  .navbar-nav {
-    margin-left: 0; /* Reset left margin */
+  .navbar-toggler {
+    order: 2;
+    margin-right: 0;
   }
 }
