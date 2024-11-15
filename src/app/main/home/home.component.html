@@ -2,23 +2,25 @@
     <!-- Background Image -->
     <div class="home-image d-flex justify-content-center align-items-center">
       <h1 class="welcome-text">Welcome to Our Destination</h1>
-    </div>
-  
+    </div>  
     <!-- Card Section -->
     <div class="container-fluid page-content">
-      <div class="row custom-gap px-5">
+      <div class="row custom-gap px-5 justify-content-center">
         <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card landscape">
-            <div class="content">
-              <h2 class="title">{{ card.title }}</h2>
-              <p class="copy">{{ card.description }}</p>
-              <button class="btn">{{ card.buttonText }}</button>
+          <a [routerLink]="[card.route]" class="card-link">
+            <div class="golf-ball-card">
+              <div class="golf-ball">
+                <div class="dimples"></div>
+                <div class="content">
+                  <h2 class="title">{{ card.title }}</h2>
+                  <p class="copy">{{ card.description }}</p>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
-       
   
     <!-- Carousel Section -->
     <div class="carousel-container mb-4">

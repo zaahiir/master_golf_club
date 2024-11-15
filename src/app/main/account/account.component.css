@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap');
+
+.account {
+  font-family: 'Rubik', sans-serif;
+  max-width: 60%;
+  margin: auto;
+}
+
+.profile-section,
+.password-section,
+.address-section,
+.payment-section {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url('../../../assets/member-avatar.jpg'); /* Replace with actual path */
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 10px;
+}
+
+.profile-details,
+.password-details,
+.address-details,
+.payment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+button {
+  align-self: start;
+}
+
+input.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

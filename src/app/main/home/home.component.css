@@ -16,271 +16,188 @@
 .home-image {
     background-image: url('../../../assets/3859.jpg');
     background-position: 100% 78%; 
-  }
-
-.page-content {
-  padding: 1.5rem 1rem;
-}
-.custom-gap .col-lg-4,
-.custom-gap .col-md-6,
-.custom-gap .col-sm-12 {
-  padding: 1rem; /* Adjust this value for desired spacing */
-}
-
-.page-content .row.custom-gap {
-  margin-left: -1rem;
-  margin-right: -1rem;
-}
-
-.card {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  padding: 1rem;
-  text-align: center;
-  color: whitesmoke;
-  background-color: whitesmoke;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.1),
-              0 2px 2px rgba(0,0,0,0.1),
-              0 4px 4px rgba(0,0,0,0.1),
-              0 8px 8px rgba(0,0,0,0.1),
-              0 16px 16px rgba(0,0,0,0.1);
-  height: 250px;
-  max-width: 100%;
-}
-
-.card.landscape {
-  height: 250px;
-}
-
-@media (max-width: 768px) {
+  }  
+  /* Layout & Spacing */
   .page-content {
+    padding: 3rem 1rem;
+    background-color: #f5f5f5;
+  }
+  
+  .custom-gap .col-lg-4,
+  .custom-gap .col-md-6,
+  .custom-gap .col-sm-12 {
     padding: 1.5rem;
   }
-}
-
-.card:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 110%;
-  background-size: cover;
-  background-position: 0 0;
-  transition: transform calc(var(--d) * 1.5) var(--e);
-  pointer-events: none;
-  background-image: url('https://images.unsplash.com/photo-1533903345306-15d1c30952de?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ');
-}
-
-.card:after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  pointer-events: none;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.009) 11.7%,
-    rgba(0, 0, 0, 0.034) 22.1%,
-    rgba(0, 0, 0, 0.072) 31.2%,
-    rgba(0, 0, 0, 0.123) 39.4%,
-    rgba(0, 0, 0, 0.182) 46.6%,
-    rgba(0, 0, 0, 0.249) 53.1%,
-    rgba(0, 0, 0, 0.320) 58.9%,
-    rgba(0, 0, 0, 0.394) 64.3%,
-    rgba(0, 0, 0, 0.468) 69.3%,
-    rgba(0, 0, 0, 0.540) 74.1%,
-    rgba(0, 0, 0, 0.607) 78.8%,
-    rgba(0, 0, 0, 0.668) 83.6%,
-    rgba(0, 0, 0, 0.721) 88.7%,
-    rgba(0, 0, 0, 0.762) 94.1%,
-    rgba(0, 0, 0, 0.790) 100%
-  );
-  transform: translateY(-50%);
-  transition: transform calc(var(--d) * 2) var(--e);
-}
-
-.content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 1rem;
-  transition: transform var(--d) var(--e);
-  z-index: 1;
-}
-
-.content > * + * {
-  margin-top: 1rem;
-}
-
-.title {
-  font-size: 1.3rem;
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-.copy {
-  font-family: var(--font-serif);
-  font-size: 1.125rem;
-  font-style: italic;
-  line-height: 1.35;
-}
-
-.btn {
-  cursor: pointer;
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.65rem;
-  font-weight: bold;
-  letter-spacing: 0.025rem;
-  text-transform: uppercase;
-  color: white;
-  background-color: black;
-  border: none;
-}
-
-.btn:hover {
-  background-color: #0d0d0d;
-}
-
-.btn:focus {
-  outline: 1px dashed yellow;
-  outline-offset: 3px;
-}
-
-@media (hover: hover) {
-  .card:after {
-    transform: translateY(0);
+  
+  .page-content .row.custom-gap {
+    margin-left: -1rem;
+    margin-right: -1rem;
   }
-
-  .content {
-    transform: translateY(calc(100% - 4.5rem));
+  
+  /* Golf Ball Cards */
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
-
-  .content > *:not(.title) {
-    opacity: 0;
-    transform: translateY(1rem);
-    transition: transform var(--d) var(--e), opacity var(--d) var(--e);
-  }
-
-  .card:hover,
-  .card:focus-within {
+  
+  .golf-ball-card {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    cursor: pointer;
+    animation: fadeIn 0.6s ease-out forwards;
   }
 
-  .card:hover:before,
-  .card:focus-within:before {
-    transform: translateY(-4%);
+  .golf-ball {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(145deg, #ffffff 0%, #e6e6e6 100%);
+    border-radius: 50%;
+    box-shadow: 
+      -8px -8px 12px rgba(255, 255, 255, 0.8),
+      8px 8px 12px rgba(0, 0, 0, 0.2),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+      inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
 
-  .card:hover:after,
-  .card:focus-within:after {
-    transform: translateY(-50%);
+  .dimples {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 33% 33%, transparent 2px, rgba(0, 0, 0, 0.05) 2px),
+      radial-gradient(circle at 66% 33%, transparent 2px, rgba(0, 0, 0, 0.05) 2px),
+      radial-gradient(circle at 33% 66%, transparent 2px, rgba(0, 0, 0, 0.05) 2px),
+      radial-gradient(circle at 66% 66%, transparent 2px, rgba(0, 0, 0, 0.05) 2px);
+    background-size: 15px 15px;
+    background-position: 0 0, 7.5px 0, 0 7.5px, 7.5px 7.5px;
+    border-radius: 50%;
   }
 
-  .card:hover .content,
-  .card:focus-within .content {
-    transform: translateY(0);
+  .golf-ball .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+    color: #333;
+    z-index: 1;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
   }
 
-  .card:hover .content > *:not(.title),
-  .card:focus-within .content > *:not(.title) {
+  .golf-ball .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1a472a;
+  }
+
+  .golf-ball .copy {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #2d5a40;
+    font-style: italic;
+  }
+
+  .golf-ball-card:hover .golf-ball {
+    transform: scale(1.05);
+    box-shadow: 
+      -12px -12px 16px rgba(255, 255, 255, 0.8),
+      12px 12px 16px rgba(0, 0, 0, 0.2),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+      inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .golf-ball-card:hover .content {
     opacity: 1;
-    transform: translateY(0);
-    transition-delay: calc(var(--d) / 8);
   }
 
-  .card:focus-within:before,
-  .card:focus-within:after,
-  .card:focus-within .content,
-  .card:focus-within .content > *:not(.title) {
-    transition-duration: 0s;
-  }
-}
-
-.card.landscape {
-    height: 250px;
+  .card-link:focus {
+    outline: none;
   }
 
-.carousel-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  .card-link:focus .golf-ball {
+    box-shadow: 
+      0 0 0 3px #1a472a,
+      -8px -8px 12px rgba(255, 255, 255, 0.8),
+      8px 8px 12px rgba(0, 0, 0, 0.2);
+  }
   
-.carousel-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 600px;
-  overflow: hidden;
-}
+  /* Carousel Styles */
+  .carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
   
-.carousel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.carousel .slide {
-  display: none;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel .slide.active {
-  display: flex;
-  opacity: 1;
-}
+  .carousel-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+  }
   
-.carousel-item-content {
-  position: absolute;
-  top: 15%;
-  left: 13%;
-  max-width: 27%;
-  max-height: 70%;
-  background-color: white;
-  opacity: 0.5;
-  padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: left;
-  color: #333;
-}
-
-.carousel-item-content h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.carousel-item-content p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-}
-
-.carousel-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carousel .slide.active {
+    opacity: 1;
+  }
+  
+  .carousel-item-content {
+    position: absolute;
+    top: 15%;
+    left: 13%;
+    max-width: 27%;
+    max-height: 70%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    color: #333;
+  }
+  
+  .carousel-item-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-sans);
+  }
+  
+  .carousel-item-content p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-family: var(--font-serif);
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   
   .carousel-control-prev,
   .carousel-control-next {
@@ -289,6 +206,12 @@
     transform: translateY(-50%);
     cursor: pointer;
     z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    padding: 1rem;
+    color: white;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
   }
   
   .carousel-control-prev {
@@ -299,24 +222,61 @@
     right: 10px;
   }
   
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
   .carousel-control-prev svg,
   .carousel-control-next svg {
     width: 44px;
     height: 94px;
     fill: white;
   }
-
+  
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    .golf-ball {
+      width: 250px;
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .welcome-text {
+      font-size: 2.5rem;
+    }
+  }
+  
   @media (max-width: 768px) {
+    .home-image {
+      height: 300px;
+    }
+  
+    .welcome-text {
+      font-size: 2rem;
+    }
+  
+    .golf-ball {
+      width: 220px;
+      height: 220px;
+    }
+    
+    .golf-ball .title {
+      font-size: 1.5rem;
+    }
+    
+    .golf-ball .copy {
+      font-size: 0.9rem;
+    }
+  
     .carousel-content {
       height: 400px;
     }
   
-    .carousel-item-content h2 {
-      font-size: 1.8rem;
-    }
-  
-    .carousel-item-content p {
-      font-size: 0.9rem;
+    .carousel-item-content {
+      max-width: 50%;
+      left: 25%;
     }
   
     .carousel-control-prev svg,
@@ -327,12 +287,34 @@
   }
   
   @media (max-width: 576px) {
+    .home-image {
+      height: 200px;
+    }
+  
+    .welcome-text {
+      font-size: 1.5rem;
+    }
+  
+    .golf-ball {
+      width: 180px;
+      height: 180px;
+    }
+    
+    .golf-ball .title {
+      font-size: 1.2rem;
+    }
+    
+    .golf-ball .copy {
+      font-size: 0.8rem;
+    }
+  
     .carousel-content {
       height: 300px;
     }
   
     .carousel-item-content {
       max-width: 80%;
+      left: 10%;
       padding: 0.8rem;
     }
   
@@ -344,5 +326,35 @@
       font-size: 0.8rem;
     }
   }
-
   
+  /* Accessibility Enhancements */
+  .card-link:focus {
+    outline: none;
+  }
+  
+  .card-link:focus .golf-ball {
+    box-shadow: 
+      0 0 0 3px #1a472a,
+      -8px -8px 12px rgba(255, 255, 255, 0.8),
+      8px 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animation for page load */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .golf-ball-card {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .golf-ball-card:nth-child(2) {
+    animation-delay: 0.2s;
+  }

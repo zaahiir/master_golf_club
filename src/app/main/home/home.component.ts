@@ -1,32 +1,30 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   cards = [
     {
-      image: 'assets/card1.jpg',
-      title: 'Golf Lessons',
-      description: 'Skills with our professional coaches.',
-      buttonText: 'Learn More'
+      title: 'Collection',
+      description: 'Explore our exclusive golf equipment collection',
+      route: '/collection'
     },
     {
-      image: 'assets/card2.jpg',
-      title: 'Golf Events',
-      description: 'Join our upcoming tournaments and events.',
-      buttonText: 'View Events'
+      title: 'Events',
+      description: 'Join our upcoming tournaments and events',
+      route: '/events'
     },
     {
-      image: 'assets/card3.jpg',
-      title: 'Membership',
-      description: 'Become a member and enjoy exclusive benefits.',
-      buttonText: 'Join Now'
+      title: 'Collection Plus',
+      description: 'Professional golf training programs',
+      route: '/collectionPlus'
     }
   ];
 

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap');
+
+.membership {
+  font-family: 'Rubik', sans-serif;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2, h3 {
+  color: #333;
+}
+
+.benefit-cards {
+  gap: 20px;
+}
+
+.benefit-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  width: 250px;
+  text-align: center;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.benefit-card:hover {
+  transform: scale(1.05);
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+  background-size: cover;
+  background-position: center;
+}
+
+.access-icon {
+  background-image: url('../../../assets/access-icon.png'); /* Replace with actual path */
+}
+
+.events-icon {
+  background-image: url('../../../assets/access-icon.png'); /* Replace with actual path */
+}
+
+.training-icon {
+  background-image: url('../../../assets/access-icon.png'); /* Replace with actual path */
+}
+
+.discount-icon {
+  background-image: url('../../../assets/access-icon.png'); /* Replace with actual path */
+}
+
+.spa-icon {
+  background-image: url('../../../assets/access-icon.png'); /* Replace with actual path */
+}
+
+.membership-table {
+  margin-top: 20px;
+}
+
+table th, table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  color: #fff;
+}

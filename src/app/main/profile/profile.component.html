@@ -1,1 +1,33 @@
-<p>profile works!</p>
+<div class="profile container-fluid mt-4">
+    <!-- Profile Header -->
+    <div class="profile-header d-flex align-items-center">
+      <div class="profile-avatar"></div>
+      <div class="profile-info ms-3">
+        <h2>John Doe</h2>
+        <p><strong>Member ID:</strong> 123456</p>
+      </div>
+    </div>
+  
+    <!-- Membership Details Section -->
+    <section class="membership-details mt-4">
+      <h3>Membership Details</h3>
+      <p><strong>Membership Type:</strong> Platinum</p>
+      <p><strong>Join Date:</strong> January 15, 2022</p>
+      <p><strong>Expiry Date:</strong> January 15, 2025</p>
+      <p><strong>Status:</strong> Active</p>
+    </section>
+  
+    <!-- Contact Information Section -->
+    <section class="contact-info mt-4">
+      <h3>Contact Information</h3>
+      <p><strong>Email:</strong> {{'johndoe@example.com'}}</p>
+      <p><strong>Phone:</strong> +123-456-7890</p>
+      <p><strong>Address:</strong> 123 Fairway Drive, Greenfield</p>
+    </section>
+  
+    <!-- Update Button -->
+    <div class="update-button mt-4">
+      <button class="btn btn-primary" (click)="redirectToAccount()">Update Profile</button>
+    </div>
+  </div>
+  

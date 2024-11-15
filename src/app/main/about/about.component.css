@@ -22,7 +22,7 @@
 .contact-content,
 .membership-form {
   font-family: var(--font-sans);
-  max-width: 800px;
+  max-width: 80%;
   text-align: left;
 }
 
