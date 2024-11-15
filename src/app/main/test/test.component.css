@@ -1,5 +1,3 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
-
 :root {
     --primary-color: #004d26; /* Dark green */
     --secondary-color: #a1d99b; /* Soft green */
@@ -8,118 +6,121 @@
     --light-text: #7d8c7c;
     --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    --icon-size: 40px; /* Size of the icon */
-}
-
-.container {
-    max-width: 1650px;
+  }
+  
+  .container {
+    display: flex;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 3rem;
+    height: 100vh;
     background-color: var(--background-color);
-}
-
-.tooltip-info {
-    color: var(--light-text);
-    font-style: italic;
-    margin-top: 1rem;
-}
-
-.amenities-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 6 cards in a row */
-    gap: 2rem;
+    overflow: hidden;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    width: 100%;
+  }
+  
+  /* Sticky Sidebar */
+  .sidebar {
+    width: 20%;
     padding: 1rem;
-}
-
-.amenity-card {
+    background-color: white;
+    border-right: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .amenity-item:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .amenity-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+  }
+  
+  .amenity-title {
+    color: var(--text-color);
+    font-weight: bold;
+  }
+  
+  /* Scrollable Main Content */
+  .main-content {
+    width: 80%;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    overflow-y: auto;
+    height: 100vh;
+  }
+  
+  .course-card {
     background: white;
     border-radius: 12px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
+    padding: 1.5rem;
     box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.amenity-card:hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .course-card:hover {
     transform: translateY(-10px);
     box-shadow: var(--card-hover-shadow);
-    background-color: var(--secondary-color);
-}
-
-.icon {
-    background: var(--primary-color);
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.icon i {
-    font-size: var(--icon-size);
-    color: white;
-    transition: transform 0.3s ease-in-out;
-}
-
-.amenity-card:hover .icon {
-    transform: rotate(360deg); /* Spin the icon when the card is hovered */
-}
-
-.amenity-info h3 {
+  }
+  
+  .course-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
     color: var(--primary-color);
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-    line-height: 1.3;
-    font-weight: 600;
-}
-
-.amenity-value {
+  }
+  
+  .course-card p {
     color: var(--light-text);
-    font-size: 0.95rem;
-}
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
 
-@media (max-width: 1650px) {
-    .amenities-grid {
-        grid-template-columns: repeat(6, 1fr); /* Still 6 cards in a row for large screens */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
     }
-}
-
-@media (max-width: 1400px) and (min-width: 1024px) {
-    .amenities-grid {
-        grid-template-columns: repeat(5, 1fr); /* 5 cards in a row for medium screens */
+    40% {
+      transform: translateY(-10px);
     }
-}
-
-@media (max-width: 1024px) and (min-width: 768px) {
-    .amenities-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 cards in a row for smaller screens */
+    60% {
+      transform: translateY(-5px);
     }
-}
-
-@media (max-width: 767px) and (min-width: 480px) {
-    .amenities-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards in a row for very small screens */
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
     }
-}
-
-@media (max-width: 479px) {
-    .amenities-grid {
-        grid-template-columns: 1fr; /* 1 card per row for mobile screens */
+    100% {
+      transform: rotate(360deg);
     }
-
-    .container {
-        padding: 1rem;
-    }
-
-    .header h1 {
-        font-size: 2rem;
-    }
-}
+  }
+  
+  .amenity-item:hover .amenity-icon {
+    animation: bounce 0.6s ease-in-out;
+  }
+  
+  .amenity-item:hover .amenity-icon.rotate {
+    animation: rotate 1s linear;
+  }
+  
+  

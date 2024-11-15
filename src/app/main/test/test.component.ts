@@ -7,7 +7,12 @@ interface GolfAmenity {
   id: number;
   title: string;
   tooltip: string;
-  icon: any; 
+  icon: any; // Font Awesome icon type
+}
+
+interface Course {
+  id: number;
+  description: string;
 }
 
 @Component({
@@ -15,51 +20,32 @@ interface GolfAmenity {
   standalone: true,
   imports: [CommonModule, FontAwesomeModule],
   templateUrl: './test.component.html',
-  styleUrl: './test.component.css'
+  styleUrls: ['./test.component.css'],
 })
 export class TestComponent {
-  // Define icons 
+  // Define icons
   clockIcon = faClock;
   usersIcon = faUsers;
   chartIcon = faChartBar;
   boxIcon = faBox;
 
-  amenities: GolfAmenity[] = [
-    {
-      id: 1,
-      title: 'No. of Tees per Day',
-      tooltip: 'Number of tee times available per day',
-      icon: this.clockIcon
-    },
-    {
-      id: 2,
-      title: 'Guest Restrictions',
-      tooltip: 'Guest policy information',
-      icon: this.usersIcon
-    },
-    {
-      id: 3,
-      title: 'Minimum Handicap',
-      tooltip: 'Required minimum handicap',
-      icon: this.chartIcon
-    },
-    {
-      id: 18,
-      title: 'Club Storage',
-      tooltip: 'Equipment storage service',
-      icon: this.boxIcon
-    },
-    {
-      id: 3,
-      title: 'Minimum Handicap',
-      tooltip: 'Required minimum handicap',
-      icon: this.chartIcon
-    },
-    {
-      id: 18,
-      title: 'Club Storage',
-      tooltip: 'Equipment storage service',
-      icon: this.boxIcon
-    }
-  ];
+  // Amenities data
+  amenities: GolfAmenity[] = Array.from({ length: 18 }, (_, i) => ({
+    id: i + 1,
+    title: `Amenity ${i + 1}`,
+    tooltip: `Tooltip for Amenity ${i + 1}`,
+    icon: this.getRandomIcon(),
+  }));
+
+  // Courses data
+  courses: Course[] = Array.from({ length: 15 }, (_, i) => ({
+    id: i + 1,
+    description: `This is the description for Course ${i + 1}.`,
+  }));
+
+  // Return a random icon
+  private getRandomIcon() {
+    const icons = [this.clockIcon, this.usersIcon, this.chartIcon, this.boxIcon];
+    return icons[Math.floor(Math.random() * icons.length)];
+  }
 }

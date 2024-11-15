@@ -1,12 +1,20 @@
 <div class="container">
-    <div class="amenities-grid">
-        <div class="amenity-card" *ngFor="let amenity of amenities" [title]="amenity.tooltip" [attr.data-id]="amenity.id">
-            <div class="icon">
-                <fa-icon [icon]="amenity.icon"></fa-icon>
-            </div>
-            <div class="amenity-info">
-                <p>{{ amenity.title }}</p>
-            </div>
+    <div class="content-wrapper">
+      <!-- Sticky Sidebar for Amenities -->
+      <div class="sidebar">
+        <div class="amenity-item" *ngFor="let amenity of amenities" [title]="amenity.tooltip">
+          <fa-icon [icon]="amenity.icon" class="amenity-icon"></fa-icon>
+          <span class="amenity-title">{{ amenity.title }}</span>
         </div>
+      </div>
+  
+      <!-- Scrollable Main Content for Courses -->
+      <div class="main-content">
+        <div class="course-card" *ngFor="let course of courses">
+          <h3>Course {{ course.id }}</h3>
+          <p>{{ course.description }}</p>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  
