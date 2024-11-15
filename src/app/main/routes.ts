@@ -64,6 +64,10 @@ export const mainRoutes: Routes = [
     {
       path: 'destination',
       loadComponent: () => import('./destination/destination.component').then(m => m.DestinationComponent)
+    },
+    {
+      path: 'test',
+      loadComponent: () => import('./test/test.component').then(m => m.TestComponent)
     }
 
 

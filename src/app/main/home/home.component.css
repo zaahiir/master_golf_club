@@ -14,15 +14,16 @@
 }
 
 .home-image {
-    background-image: url('../../../assets/3859.jpg');
+    background-image: url('../../../assets/images/golfground.jpeg');
     background-position: 100% 78%; 
   }  
   /* Layout & Spacing */
   .page-content {
     padding: 3rem 1rem;
-    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg');
+    /* background-image: url('../../../assets/images/golfground\ \(9\).jpeg'); */
     background-size: cover;
-    background-position: 100% 25%;
+    background-color: #67696979;
+    background-position: 100% 40%;
   }
   
   .custom-gap .col-lg-4,
@@ -56,17 +57,40 @@
     position: relative;
     width: 280px;
     height: 280px;
-    background-image: url('../../../assets/images/rb_2147510440.png');
-    background-size: 135%;
-    background-position: center;
-    background-repeat: no-repeat;
     border-radius: 50%;
     box-shadow: 
       -8px -8px 12px rgba(255, 255, 255, 0.8),
       8px 8px 12px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-  }
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.golf-ball::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/images/rb_2147510440.png');
+    background-size: 140%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    transform: rotate(0deg); /* Initial rotation angle */
+    animation: rotateBackground 30s linear infinite; /* Add rotation animation */
+}
+
+/* Keyframes for rotation */
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
   .golf-ball .content {
     position: absolute;
@@ -116,110 +140,98 @@
       -8px -8px 12px rgba(255, 255, 255, 0.8),
       8px 8px 12px rgba(0, 0, 0, 0.2);
   }
-  
-  /* Carousel Styles */
-  .carousel-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+
+  /* Container styles */
+.padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Main featured article */
+.featured-article {
+  height: 550px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  background: url('../../../assets/images/female-professional-golfer-playing-golf-course-zlati-gric-slovenia.jpg') center / cover;
+}
+
+/* Small articles */
+.small-article {
+  height: 275px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  background: url('../../../assets/images/professional-golfer-bali-indonesia\ \(1\).jpg') center / cover;
+}
+
+/* Main article text styling */
+.article-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+}
+
+/* Small articles text styling */
+.article-content-sm {
+  padding: 15px;
+}
+
+/* Date link styles */
+.text-white {
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.text-white:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Main article title */
+.title-link, .title-link-sm {
+  color: #fff;
+  text-decoration: none;
+}
+
+.title-link-sm:hover,
+.title-link:hover {
+  color: #fff;
+}
+
+/* Smaller article title */
+.title-link-sm {
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-top: 5px;
+  line-height: 1.3;
+}
+
+.title-link-sm:hover {
+  color: #fff;
+}
+
+/* Animation styles */
+.animate-box {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
   }
-  
-  .carousel-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
+  to {
+      opacity: 1;
   }
-  
-  .carousel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-  
-  .carousel .slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .carousel .slide.active {
-    opacity: 1;
-  }
-  
-  .carousel-item-content {
-    position: absolute;
-    top: 15%;
-    left: 13%;
-    max-width: 27%;
-    max-height: 70%;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    color: #333;
-  }
-  
-  .carousel-item-content h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-sans);
-  }
-  
-  .carousel-item-content p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    font-family: var(--font-serif);
-  }
-  
-  .carousel-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .carousel-control-prev,
-  .carousel-control-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.5);
-    border: none;
-    padding: 1rem;
-    color: white;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .carousel-control-prev {
-    left: 10px;
-  }
-  
-  .carousel-control-next {
-    right: 10px;
-  }
-  
-  .carousel-control-prev:hover,
-  .carousel-control-next:hover {
-    background: rgba(0, 0, 0, 0.7);
-  }
-  
-  .carousel-control-prev svg,
-  .carousel-control-next svg {
-    width: 44px;
-    height: 94px;
-    fill: white;
-  }
+}
   
   /* Responsive Styles */
 @media (max-width: 1650px) {
@@ -262,21 +274,22 @@
     .golf-ball .copy {
       font-size: 0.9rem;
     }
-  
-    .carousel-content {
-      height: 400px;
+    .featured-article {
+        height: 400px;
+    }
+    
+    .small-article {
+        height: 200px;
+    }
+    
+    .title-link {
+        font-size: 20px;
+    }
+    
+    .title-link-sm {
+        font-size: 14px;
     }
   
-    .carousel-item-content {
-      max-width: 50%;
-      left: 25%;
-    }
-  
-    .carousel-control-prev svg,
-    .carousel-control-next svg {
-      width: 32px;
-      height: 64px;
-    }
   }
   
   @media (max-width: 576px) {
@@ -300,23 +313,12 @@
     .golf-ball .copy {
       font-size: 0.8rem;
     }
-  
-    .carousel-content {
-      height: 300px;
+    .featured-article {
+        height: 300px;
     }
-  
-    .carousel-item-content {
-      max-width: 80%;
-      left: 10%;
-      padding: 0.8rem;
-    }
-  
-    .carousel-item-content h2 {
-      font-size: 1rem;
-    }
-  
-    .carousel-item-content p {
-      font-size: 0.8rem;
+    
+    .small-article {
+        height: 150px;
     }
   }
   

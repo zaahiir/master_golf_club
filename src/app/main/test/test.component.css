@@ -1,0 +1,140 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+:root {
+    --primary-color: #2c5530;
+    --secondary-color: #e8f5e9;
+    --text-color: #333;
+    --light-text: #666;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.container {
+    max-width: 1650px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: var(--light-text);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tooltip-info {
+    color: var(--light-text);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.amenity-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.amenity-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.icon {
+    background: var(--secondary-color);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.icon i {
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.amenity-info h3 {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.2;
+}
+
+.amenity-value {
+    color: var(--light-text);
+    font-size: 0.85rem;
+}
+
+@media (min-width: 1650px) {
+    .amenities-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 1649px) and (min-width: 1400px) {
+    .amenities-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1399px) and (min-width: 1024px) {
+    .amenities-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+    .amenities-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 767px) and (min-width: 480px) {
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 479px) {
+    .amenities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .header h1 {
+        font-size: 2rem;
+    }
+}
