@@ -26,7 +26,7 @@ export class TestComponent implements AfterViewInit {
   chartIcon = faChartBar;
   boxIcon = faBox;
 
-  amenities: GolfAmenity[] = Array.from({ length: 12 }, (_, i) => ({
+  amenities: GolfAmenity[] = Array.from({ length: 19 }, (_, i) => ({
     id: i + 1,
     title: `Amenity ${i + 1}`,
     tooltip: `Tooltip for Amenity ${i + 1}`,

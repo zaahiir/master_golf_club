@@ -7,10 +7,21 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll; /* Allows scrolling */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+  
+  /* Hide Scrollbar */
+  .sidebar::-webkit-scrollbar {
+    width: 0;  /* Hide the scrollbar */
+    height: 0;
+  }
+  
+  .sidebar {
+    -ms-overflow-style: none;  /* For IE and Edge */
+    scrollbar-width: none;  /* For Firefox */
   }
   
   /* Amenity Item */
@@ -18,19 +29,20 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.75rem;
+    padding: 1.5px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     border-radius: 8px;
   }
   
+  /* Hover effect */
   .amenity-item:hover {
     background-color: var(--secondary-color);
   }
   
   /* Icon */
   .animated-icon {
-    font-size: 20px;
+    font-size: 16px;    
     color: var(--primary-color);
     transition: transform 0.6s ease-in-out;
   }
@@ -42,7 +54,7 @@
   /* Title */
   .amenity-title {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 15px;
     white-space: nowrap; /* Ensure title remains on a single line */
     overflow: hidden;
     text-overflow: ellipsis;
