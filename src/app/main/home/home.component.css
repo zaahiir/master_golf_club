@@ -14,16 +14,38 @@
 }
 
 .home-image {
-    background-image: url('../../../assets/images/golfground.jpeg');
+    background-image: url('../../../assets/images/golfground\ 1.jpeg');
     background-position: 100% 78%; 
   }  
-  /* Layout & Spacing */
+  
   .page-content {
-    padding: 3rem 1rem;
-    /* background-image: url('../../../assets/images/golfground\ \(9\).jpeg'); */
-    background-size: cover;
-    background-color: #67696979;
-    background-position: 100% 40%;
+    background-color: rgb(236, 250, 236); /* Light color for the base */
+    position: relative;
+  }
+  
+  .page-content-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .page-content-inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(23, 112, 29); /* Darker color for the diagonal part */
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    z-index: 0;
+  }
+  
+  /* To ensure content stays above the diagonal background */
+  .page-content-inner > * {
+    position: relative;
+    z-index: 1;
   }
   
   .custom-gap .col-lg-4,
@@ -59,8 +81,8 @@
     height: 280px;
     border-radius: 50%;
     box-shadow: 
-      -8px -8px 12px rgba(255, 255, 255, 0.8),
-      8px 8px 12px rgba(0, 0, 0, 0.2);
+      -4px -4px 12px rgba(255, 255, 255, 0.8),
+      4px 4px 12px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -73,7 +95,7 @@
     width: 100%;
     height: 100%;
     background-image: url('../../../assets/images/rb_2147510440.png');
-    background-size: 140%;
+    background-size: 146%;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
@@ -122,8 +144,8 @@
   .golf-ball-card:hover .golf-ball {
     transform: scale(1.05);
     box-shadow: 
-      -12px -12px 16px rgba(255, 255, 255, 0.8),
-      12px 12px 16px rgba(0, 0, 0, 0.2);
+      -8px -8px 12px rgba(255, 255, 255, 0.8),
+      8px 8px 12px rgba(0, 0, 0, 0.2);
   }
 
   .golf-ball-card:hover .content {
@@ -137,8 +159,8 @@
   .card-link:focus .golf-ball {
     box-shadow: 
       0 0 0 3px #1a472a,
-      -8px -8px 12px rgba(255, 255, 255, 0.8),
-      8px 8px 12px rgba(0, 0, 0, 0.2);
+      -4px -4px 6px rgba(255, 255, 255, 0.8),
+      4px 4px 6px rgba(0, 0, 0, 0.2);
   }
 
   /* Container styles */

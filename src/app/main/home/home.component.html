@@ -5,6 +5,7 @@
   </div>
   <!-- Card Section -->
   <div class="container-fluid page-content">
+    <div class="page-content-inner">
     <div class="row custom-gap px-5 justify-content-center">
       <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
         <a [routerLink]="[card.route]" class="card-link">
@@ -19,19 +20,22 @@
         </a>
       </div>
     </div>
+</div>
   </div>
   <!-- News Grid Section -->
   <div class="container-fluid padding">
     <div class="row mx-0">
         <!-- Main Featured Article -->
         <div class="col-md-6 col-12 padding animate-box fade-in">
-            <div class="featured-article">
+            <div class="featured-article" [routerLink]="'/news'" style="cursor: pointer;">
                 <div class="article-content">
                     <div class="article-date">
-                        <a href="#" class="text-white"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Dec 31, 2017</a>
+                        <span class="text-white">
+                            <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Dec 31, 2017
+                        </span>
                     </div>
                     <div class="article-title">
-                        <a href="single.html" class="title-link"> After all is said and done, more is said than done </a>
+                        <span class="title-link">After all is said and done, more is said than done</span>
                     </div>
                 </div>
             </div>
@@ -42,13 +46,15 @@
             <div class="row">
                 <!-- Small Article 1 -->
                 <div class="col-md-6 col-6 padding animate-box fade-in">
-                    <div class="small-article">
+                    <div class="small-article" [routerLink]="'/news'" style="cursor: pointer;">
                         <div class="article-content">
                             <div class="article-date">
-                                <a href="#" class="text-white"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017 </a>
+                                <span class="text-white">
+                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017
+                                </span>
                             </div>
                             <div class="article-title">
-                                <a href="single.html" class="title-link-sm"> After all is said and done, <br>more is said than done </a>
+                                <span class="title-link-sm">After all is said and done, <br>more is said than done</span>
                             </div>
                         </div>
                     </div>
@@ -56,13 +62,15 @@
                 
                 <!-- Small Article 2 -->
                 <div class="col-md-6 col-6 padding animate-box fade-in">
-                    <div class="small-article">
+                    <div class="small-article" [routerLink]="'/news'" style="cursor: pointer;">
                         <div class="article-content">
                             <div class="article-date">
-                                <a href="#" class="text-white"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017 </a>
+                                <span class="text-white">
+                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017
+                                </span>
                             </div>
                             <div class="article-title">
-                                <a href="single.html" class="title-link-sm"> After all is said and done... </a>
+                                <span class="title-link-sm">After all is said and done...</span>
                             </div>
                         </div>
                     </div>
@@ -70,13 +78,15 @@
                 
                 <!-- Small Article 3 -->
                 <div class="col-md-6 col-6 padding animate-box fade-in">
-                    <div class="small-article">
+                    <div class="small-article" [routerLink]="'/news'" style="cursor: pointer;">
                         <div class="article-content">
                             <div class="article-date">
-                                <a href="#" class="text-white"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017 </a>
+                                <span class="text-white">
+                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017
+                                </span>
                             </div>
                             <div class="article-title">
-                                <a href="single.html" class="title-link-sm"> After all is said and done, more is said than done </a>
+                                <span class="title-link-sm">After all is said and done, more is said than done</span>
                             </div>
                         </div>
                     </div>
@@ -84,13 +94,15 @@
                 
                 <!-- Small Article 4 -->
                 <div class="col-md-6 col-6 padding animate-box fade-in">
-                    <div class="small-article">
+                    <div class="small-article" [routerLink]="'/news'" style="cursor: pointer;">
                         <div class="article-content">
                             <div class="article-date">
-                                <a href="#" class="text-white"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017 </a>
+                                <span class="text-white">
+                                    <i class="fa fa-clock-o"></i>&nbsp;&nbsp;Oct 28, 2017
+                                </span>
                             </div>
                             <div class="article-title">
-                                <a href="single.html" class="title-link-sm"> After all is said and done, more is said... </a>
+                                <span class="title-link-sm">After all is said and done, more is said...</span>
                             </div>
                         </div>
                     </div>
@@ -99,4 +111,5 @@
         </div>
     </div>
 </div>
+
 </div>

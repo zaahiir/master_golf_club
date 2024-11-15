@@ -1,23 +1,11 @@
 <div class="container">
-    <div class="header">
-        <h1>OGC Golf Courses</h1>
-        <p class="description">{{ description }}</p>
-        <p class="tooltip-info">Hover over the cards for more information</p>
-    </div>
-
     <div class="amenities-grid">
-        <div
-            class="amenity-card"
-            *ngFor="let amenity of amenities"
-            [title]="amenity.tooltip"
-            [attr.data-id]="amenity.id"
-        >
+        <div class="amenity-card" *ngFor="let amenity of amenities" [title]="amenity.tooltip" [attr.data-id]="amenity.id">
             <div class="icon">
                 <fa-icon [icon]="amenity.icon"></fa-icon>
             </div>
             <div class="amenity-info">
-                <h3>{{ amenity.title }}</h3>
-                <div class="amenity-value">{{ amenity.value }}</div>
+                <p>{{ amenity.title }}</p>
             </div>
         </div>
     </div>

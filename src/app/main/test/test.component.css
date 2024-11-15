@@ -1,54 +1,21 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
 
 :root {
-    --primary-color: #2c5530;
-    --secondary-color: #e8f5e9;
-    --accent-color: #e6a400;
-    --text-color: #333;
-    --light-text: #666;
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --card-hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    --border-radius: 12px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7f6;
+    --primary-color: #004d26; /* Dark green */
+    --secondary-color: #a1d99b; /* Soft green */
+    --background-color: #e3f2e1; /* Light green background */
+    --text-color: #2e3d3d;
+    --light-text: #7d8c7c;
+    --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --icon-size: 40px; /* Size of the icon */
 }
 
 .container {
     max-width: 1650px;
     margin: 0 auto;
-    padding: 2rem;
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 3rem;
-    padding: 0 1rem;
-}
-
-.header h1 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.description {
-    color: var(--light-text);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
+    padding: 3rem;
+    background-color: var(--background-color);
 }
 
 .tooltip-info {
@@ -59,54 +26,58 @@ body {
 
 .amenities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(6, 1fr); /* 6 cards in a row */
+    gap: 2rem;
     padding: 1rem;
 }
 
 .amenity-card {
     background: white;
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 1rem;
     box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .amenity-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     box-shadow: var(--card-hover-shadow);
     background-color: var(--secondary-color);
 }
 
 .icon {
-    background: var(--accent-color);
-    width: 70px;
-    height: 70px;
+    background: var(--primary-color);
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.75rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .icon i {
-    font-size: 28px;
+    font-size: var(--icon-size);
     color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.amenity-card:hover .icon {
+    transform: rotate(360deg); /* Spin the icon when the card is hovered */
 }
 
 .amenity-info h3 {
     color: var(--primary-color);
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
     font-weight: 600;
 }
 
@@ -115,56 +86,40 @@ body {
     font-size: 0.95rem;
 }
 
-@media (max-width: 767px) {
-    .container {
-        padding: 1rem;
-    }
-
-    .header h1 {
-        font-size: 1.8rem;
-    }
-
-    .description {
-        font-size: 1rem;
+@media (max-width: 1650px) {
+    .amenities-grid {
+        grid-template-columns: repeat(6, 1fr); /* Still 6 cards in a row for large screens */
     }
 }
 
-@media (min-width: 1650px) {
+@media (max-width: 1400px) and (min-width: 1024px) {
     .amenities-grid {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(5, 1fr); /* 5 cards in a row for medium screens */
     }
 }
 
-@media (max-width: 1649px) and (min-width: 1400px) {
+@media (max-width: 1024px) and (min-width: 768px) {
     .amenities-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-@media (max-width: 1399px) and (min-width: 1024px) {
-    .amenities-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media (max-width: 1023px) and (min-width: 768px) {
-    .amenities-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 cards in a row for smaller screens */
     }
 }
 
 @media (max-width: 767px) and (min-width: 480px) {
     .amenities-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* 2 cards in a row for very small screens */
     }
 }
 
 @media (max-width: 479px) {
     .amenities-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* 1 card per row for mobile screens */
+    }
+
+    .container {
+        padding: 1rem;
     }
 
     .header h1 {
-        font-size: 1.6rem;
+        font-size: 2rem;
     }
 }
