@@ -1,60 +1,56 @@
 <div class="home container-fluid p-0 d-flex flex-column align-items-center">
-    <!-- Background Image -->
-    <div class="home-image d-flex justify-content-center align-items-center">
-      <h1 class="welcome-text">Welcome to Our Destination</h1>
-    </div>  
-    <!-- Card Section -->
-    <div class="container-fluid page-content">
-      <div class="row custom-gap px-5 justify-content-center">
-        <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <a [routerLink]="[card.route]" class="card-link">
-            <div class="golf-ball-card">
-              <div class="golf-ball">
-                <div class="dimples"></div>
-                <div class="content">
-                  <h2 class="title">{{ card.title }}</h2>
-                  <p class="copy">{{ card.description }}</p>
-                </div>
+  <!-- Background Image Section -->
+  <div class="home-image d-flex justify-content-center align-items-center">
+    <h1 class="welcome-text">Welcome to Our Destination</h1>
+  </div>
+
+  <!-- Card Section -->
+  <div class="container-fluid page-content">
+    <div class="row custom-gap px-5 justify-content-center">
+      <div *ngFor="let card of cards" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <a [routerLink]="[card.route]" class="card-link">
+          <div class="golf-ball-card">
+            <div class="golf-ball">
+              <div class="content">
+                <h2 class="title">{{ card.title }}</h2>
+                <p class="copy">{{ card.description }}</p>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Carousel Section -->
-    <div class="carousel-container mb-4">
-      <h3 class="mb-4">Latest Blog</h3>
-      <div class="carousel-content d-flex align-items-center">
-        <div class="carousel">
-          <!-- Slide Navigation (Previous) -->
-          <label class="carousel-control-prev" (click)="prevSlide()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="44.089px" height="94.67px" viewBox="0 0 44.089 94.67">
-              <path d="M2.691,47.335l41.398,45.997l-1.486,1.338L0,47.335L42.603,0l1.486,1.338L2.691,47.335z" />
-            </svg>
-          </label>
-    
-          <!-- Slide Content -->
-          <div
-            class="slide"
-            *ngFor="let slide of carouselSlides; let i = index"
-            [class.active]="currentSlide === i"
-          >
-            <div class="carousel-item-content">
-              <h2>{{ slide.title }}</h2>
-              <p>{{ slide.description }}</p>
-            </div>
-            <img [src]="slide.image" class="carousel-image" alt="Carousel Image" />
           </div>
-    
-          <!-- Slide Navigation (Next) -->
-          <label class="carousel-control-next" (click)="nextSlide()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="44.089px" height="94.67px" viewBox="0 0 44.088 94.67">
-              <path d="M44.089,47.335L1.486,94.671L0,93.333l41.396-45.998L-0.001,1.337L1.485,0L44.089,47.335z" />
-            </svg>
-          </label>
-        </div>
+        </a>
       </div>
     </div>
-    
   </div>
+
+  <!-- Carousel Section -->
+  <div class="carousel-container mb-4">
+    <h3 class="mb-4">Latest Blog</h3>
+    <div class="carousel-content d-flex align-items-center">
+      <div class="carousel">
+        <label class="carousel-control-prev" (click)="prevSlide()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44.089px" height="94.67px" viewBox="0 0 44.089 94.67">
+            <path d="M2.691,47.335l41.398,45.997l-1.486,1.338L0,47.335L42.603,0l1.486,1.338L2.691,47.335z" />
+          </svg>
+        </label>
+
+        <div
+          class="slide"
+          *ngFor="let slide of carouselSlides; let i = index"
+          [class.active]="currentSlide === i"
+        >
+          <div class="carousel-item-content">
+            <h2>{{ slide.title }}</h2>
+            <p>{{ slide.description }}</p>
+          </div>
+          <img [src]="slide.image" class="carousel-image" alt="Carousel Image" />
+        </div>
+
+        <label class="carousel-control-next" (click)="nextSlide()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="44.089px" height="94.67px" viewBox="0 0 44.088 94.67">
+            <path d="M44.089,47.335L1.486,94.671L0,93.333l41.396-45.998L-0.001,1.337L1.485,0L44.089,47.335z" />
+          </svg>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
