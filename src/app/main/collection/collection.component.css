@@ -122,7 +122,7 @@ a{
 
 .image-container {
   overflow: hidden;
-  height: 330px;
+  height: 300px;
 }
 
 .course-image {
@@ -134,13 +134,19 @@ a{
   transition: transform 0.5s ease;   
 }
 
-.course-image:hover {
-  transform: scale(1.1);
+.card-content{
+  background-color: #ECFAEC;
 }
 
-.btn.book-btn {
-  background-color: #1cba6a;
-  font-weight: bold;
+.card-content .info{
+  text-decoration: none;
+  color: #17701D;
+  font-size: 13px; 
+  cursor: pointer; 
+}
+
+.course-image:hover {
+  transform: scale(1.1);
 }
 
 .img-hover {

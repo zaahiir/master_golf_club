@@ -1,0 +1,52 @@
+<div class="tee-booking-container">
+    <div class="golf-course-details">
+      <div
+        class="course-image"
+        [ngStyle]="{ 'background-image': 'url(' + golfCourse?.imageUrl + ')' }"
+      ></div>
+      <div class="course-info">
+        <h2>{{ golfCourse?.name }}</h2>
+        <p><strong>Lane:</strong> {{ golfCourse?.lane }}</p>
+        <p><strong>Address:</strong> {{ golfCourse?.address }}</p>
+        <p><strong>Code:</strong> {{ golfCourse?.code }}</p>
+        <p><strong>Timing:</strong> {{ golfCourse?.timing }}</p>
+        <p><strong>Description:</strong> A beautiful course offering the best golfing experience.</p>
+      </div>
+    </div>
+  
+    <div class="booking-section">
+      <h3>Book Your Tee Time</h3>
+      <div>
+        <label for="guest-count">Number of Guests:</label>
+        <input type="number" id="guest-count" [(ngModel)]="guestCount" min="1" max="10" />
+      </div>
+  
+      <div>
+        <label for="date-picker">Select Date:</label>
+        <input
+          type="date"
+          id="date-picker"
+          [min]="minDate"
+          [max]="maxDate"
+          [(ngModel)]="selectedDate"
+          (change)="generateTimeSlots()"
+        />
+      </div>
+  
+      <div *ngIf="timeSlots.length > 0">
+        <label>Select Time:</label>
+        <div class="time-slots">
+          <button
+            *ngFor="let slot of timeSlots"
+            [class.selected]="slot === selectedTime"
+            (click)="selectTime(slot)"
+          >
+            {{ slot }}
+          </button>
+        </div>
+      </div>
+  
+      <button (click)="bookTeeTime()" class="book-button">Book Now</button>
+    </div>
+  </div>
+  

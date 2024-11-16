@@ -48,20 +48,13 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 col-sm-7 col-md-7 p-3">
-                  <h5 class="fw-bold">{{ course.name }}</h5>
+                <div class="card-content col-12 col-sm-7 col-md-7 p-3">
+                  <h6 class="fw-bold pb-2">{{ course.name }}</h6>
+                  <p>{{ course.lane }}</p>
                   <p>{{ course.address }}</p>
+                  <p>{{ course.code }}</p>
                   <p>{{ course.timing }}</p>
-                  <div class="mt-3 d-flex">
-                    <button
-                      class="btn book-btn btn-success text-light fw-bold"
-                      data-bs-toggle="modal"
-                      (click)="showBookingCard(course.id)"
-                      data-bs-target="#bookingModal"
-                    >
-                      Book a slot
-                    </button>
-                  </div>
+                  <a class="info pt-4" [routerLink]="'/teeBooking'">More information >></a>
                 </div>
               </div>
             </div>

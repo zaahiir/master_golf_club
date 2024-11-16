@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+.tee-booking-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .golf-course-details {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .course-image {
+    flex: 1;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 20px;
+  }
+  
+  .course-info {
+    flex: 2;
+  }
+  
+  .booking-section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .time-slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .time-slots button {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .time-slots button.selected {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #0056b3;
+  }
+  
+  .book-button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
