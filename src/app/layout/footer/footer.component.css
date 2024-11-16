@@ -39,6 +39,10 @@
   color: white;  /* Ensure the text is visible on the green background */
 }
 
+.partners-sec h2{
+  color: #ECFAEC;
+}
+
 .partners-logo {
   display: flex;
   justify-content: space-between;
@@ -118,7 +122,7 @@
 .address-icon { background-image: url('../../../assets/routing.png'); }
 
 .contact-box {
-  background-color: #fff;
+  background-color: #ECFAEC;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   padding: 30px 20px;
