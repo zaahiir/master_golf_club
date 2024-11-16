@@ -29,11 +29,6 @@
     padding: 1.5rem;
   }
   
-  .page-content .row.custom-gap {
-    margin-left: -1rem;
-    margin-right: -1rem;
-  }
-  
   /* Golf Ball Cards */
   .card-link {
     text-decoration: none;
