@@ -19,6 +19,31 @@
           <span class="amenity-title">{{ amenity.title }}</span>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content lg-modal" (click)="$event.stopPropagation()">
+          <div class="close-icon" (click)="closeModal()">✕</div>
+          <h4 class="mb-3">{{ selectedCourse?.name }} - Guest Policies</h4>
+          <div class="modal-image" [style.backgroundImage]="'url(' + selectedCourse?.imageUrl + ')'"></div>
+          <div class="guest-policies mt-4">
+            <h5>Guest Availability Information</h5>
+            <ul class="policy-list">
+              <li>Members can bring up to 3 guests per visit</li>
+              <li>Guest green fees: £45 weekdays, £65 weekends</li>
+              <li>Advance booking required for all guests</li>
+              <li>Guests must maintain proper golf etiquette</li>
+              <li>Members are responsible for their guests' conduct</li>
+              <li>Guest restrictions may apply during peak times</li>
+            </ul>
+            <p class="mt-3">
+              Please note that guest policies may vary during tournaments and special events. 
+              Contact the club directly for specific event restrictions and current guest rates.
+            </p>
+          </div>
+          <button class="go-to-website" (click)="goToWebsite()">Visit Course Website</button>
+        </div>
+      </div>
     
       <!-- Main Content Section (Booking Cards) -->
       <div class="main-content pe-2">
@@ -55,6 +80,24 @@
                   <p>{{ course.code }}</p>
                   <p>{{ course.timing }}</p>
                   <!--amentiies icon icon -->
+                
+                <!-- Amenities Icons -->
+                <div class="amenities-container d-flex gap-2 mb-3">
+                  <div *ngFor="let amenity of amenities" 
+                       class="amenity-icon"
+                       [class.active]="hasAmenity(course, amenity.id)"
+                       [attr.title]="amenity.tooltip"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       (click)="amenity.id === 2 ? openGuestModal($event, course) : null"
+                       [class.clickable]="amenity.id === 2">
+                    <fa-icon 
+                      [icon]="amenity.icon" 
+                      [class.text-success]="hasAmenity(course, amenity.id)"
+                      [class.text-muted]="!hasAmenity(course, amenity.id)">
+                    </fa-icon>
+                  </div>
+                </div>
                   <a class="info pt-4" [routerLink]="'/teeBooking'">More information >></a>
                 </div>
               </div>
