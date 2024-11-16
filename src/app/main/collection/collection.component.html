@@ -1,89 +1,87 @@
-
 <div class="home container-fluid p-0 d-flex flex-column align-items-center">
-    <!-- Background Image -->
-    <div class="home-image d-flex justify-content-center align-items-center">
-      <h1 class="welcome-text">Collections</h1>
-    </div>
-    <!-- booking-cards.component.html -->
-    <div class="container-fluid ps-4 d-flex">
-      <!-- Sidebar Section (Amenities) -->
-      <div class="sidebar mt-2">
-        <div
-          class="amenity-item"
-          *ngFor="let amenity of amenities"
-          [attr.title]="amenity.tooltip"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-        >
-          <fa-icon [icon]="amenity.icon" class="animated-icon"></fa-icon>
-          <span class="amenity-title">{{ amenity.title }}</span>
-        </div>
-      </div>
+  <!-- Background Image -->
+  <div class="home-image d-flex justify-content-center align-items-center">
+    <h1 class="welcome-text">Collections</h1>
+  </div>
 
-      <!-- Modal -->
-      <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
-        <div class="modal-content lg-modal" (click)="$event.stopPropagation()">
-          <div class="close-icon" (click)="closeModal()">✕</div>
-          <h4 class="mb-3">{{ selectedCourse?.name }} - Guest Policies</h4>
-          <div class="modal-image" [style.backgroundImage]="'url(' + selectedCourse?.imageUrl + ')'"></div>
-          <div class="guest-policies mt-4">
-            <h5>Guest Availability Information</h5>
-            <ul class="policy-list">
-              <li>Members can bring up to 3 guests per visit</li>
-              <li>Guest green fees: £45 weekdays, £65 weekends</li>
-              <li>Advance booking required for all guests</li>
-              <li>Guests must maintain proper golf etiquette</li>
-              <li>Members are responsible for their guests' conduct</li>
-              <li>Guest restrictions may apply during peak times</li>
-            </ul>
-            <p class="mt-3">
-              Please note that guest policies may vary during tournaments and special events. 
-              Contact the club directly for specific event restrictions and current guest rates.
-            </p>
-          </div>
-          <button class="go-to-website" (click)="goToWebsite()">Visit Course Website</button>
-        </div>
+  <div class="container-fluid ps-4 d-flex">
+    <!-- Sidebar Section (Amenities) -->
+    <div class="sidebar mt-2">
+      <div
+        class="amenity-item"
+        *ngFor="let amenity of amenities"
+        [attr.title]="amenity.tooltip"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+      >
+        <fa-icon [icon]="amenity.icon" class="animated-icon"></fa-icon>
+        <span class="amenity-title">{{ amenity.title }}</span>
       </div>
-    
-      <!-- Main Content Section (Booking Cards) -->
-      <div class="main-content pe-2">
-        <h3 class="text-center my-5">Collections</h3>
+    </div>
+
+    <!-- Modal -->
+    <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
+      <div class="modal-content lg-modal" (click)="$event.stopPropagation()">
+        <div class="close-icon" (click)="closeModal()">✕</div>
+        <h4 class="mb-3">{{ selectedCourse?.name }} - Guest Policies</h4>
+        <div class="modal-image" [style.backgroundImage]="'url(' + selectedCourse?.imageUrl + ')'"></div>
+        <div class="guest-policies mt-4">
+          <h5>Guest Availability Information</h5>
+          <ul class="policy-list">
+            <li>Members can bring up to 3 guests per visit</li>
+            <li>Guest green fees: £45 weekdays, £65 weekends</li>
+            <li>Advance booking required for all guests</li>
+            <li>Guests must maintain proper golf etiquette</li>
+            <li>Members are responsible for their guests' conduct</li>
+            <li>Guest restrictions may apply during peak times</li>
+          </ul>
+          <p class="mt-3">
+            Please note that guest policies may vary during tournaments and special events. 
+            Contact the club directly for specific event restrictions and current guest rates.
+          </p>
+        </div>
+        <button class="go-to-website" (click)="goToWebsite()">Visit Course Website</button>
+      </div>
+    </div>
+
+    <!-- Main Content Section (Booking Cards) -->
+    <div class="main-content pe-2">
+      <h3 class="text-center my-5">Collections</h3>
+      <div
+        class="row"
+        infiniteScroll
+        (scrolled)="loadMoreCourses()"
+        [infiniteScrollDistance]="1"
+        [infiniteScrollThrottle]="300"
+      >
         <div
-          class="row"
-          infiniteScroll
-          (scrolled)="loadMoreCourses()"
-          [infiniteScrollDistance]="1"
-          [infiniteScrollThrottle]="300"
+          class="col-12 col-md-4 mb-3 px-2"
+          *ngFor="let course of displayedCourses"
         >
-          <div
-            class="col-12 col-md-4 mb-3 px-2"
-            *ngFor="let course of displayedCourses"
-          >
-            <div class="booking-card">
-              <div class="row h-100">
-                <div class="col-12 col-sm-5 col-md-5 image-container">
-                  <div
-                    class="course-image img-hover"
-                    [ngStyle]="{ 'background-image': 'url(' + course.imageUrl + ')' }"
-                    style="display: flex; flex-direction: column; height: 100%;"
-                  >
-                    <div class="p-5 botton-10 c-ion" style="margin-top: auto;">
-                      <a href="" class="me-4">...</a>
-                      <a href="">...</a>
-                    </div>
+          <div class="booking-card">
+            <div class="row h-100">
+              <div class="col-12 col-sm-5 col-md-5 image-container">
+                <div
+                  class="course-image img-hover"
+                  [ngStyle]="{ 'background-image': 'url(' + course.imageUrl + ')' }"
+                  style="display: flex; flex-direction: column; height: 100%;"
+                >
+                  <div class="p-5 botton-10 c-ion" style="margin-top: auto;">
+                    <a href="" class="me-4">...</a>
+                    <a href="">...</a>
                   </div>
                 </div>
-                <div class="card-content col-12 col-sm-7 col-md-7 p-3">
-                  <h6 class="fw-bold pb-2">{{ course.name }}</h6>
-                  <p>{{ course.lane }}</p>
-                  <p>{{ course.address }}</p>
-                  <p>{{ course.code }}</p>
-                  <p>{{ course.timing }}</p>
-                  <!--amentiies icon icon -->
+              </div>
+              <div class="card-content col-12 col-sm-7 col-md-7 p-3">
+                <h6 class="fw-bold pb-2">{{ course.name }}</h6>
+                <p>{{ course.lane }}</p>
+                <p>{{ course.address }}</p>
+                <p>{{ course.code }}</p>
+                <p>{{ course.timing }}</p>
                 
-                <!-- Amenities Icons -->
+                <!-- Display only 6 amenity icons -->
                 <div class="amenities-container d-flex gap-2 mb-3">
-                  <div *ngFor="let amenity of amenities" 
+                  <div *ngFor="let amenity of getDisplayedAmenities(course)" 
                        class="amenity-icon"
                        [class.active]="hasAmenity(course, amenity.id)"
                        [attr.title]="amenity.tooltip"
@@ -98,13 +96,12 @@
                     </fa-icon>
                   </div>
                 </div>
-                  <a class="info pt-4" [routerLink]="'/teeBooking'">More information >></a>
-                </div>
+                <a class="info pt-4" [routerLink]="'/teeBooking'">More information >></a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+  </div>
 </div>

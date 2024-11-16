@@ -49,6 +49,9 @@ export class CollectionComponent implements OnInit, AfterViewInit {
   courseBatchSize: number = 6;
   loadedItemsCount: number = 0;
 
+  // Priority order for displaying amenities
+  priorityAmenities: number[] = [1, 2, 3, 4, 5, 6];
+
   amenities: GolfAmenity[] = [
     { id: 1, title: 'No. of Tees per Day', tooltip: '2 Tees Per Day', icon: this.usersIcon },
     { id: 2, title: 'Guest Restrictions', tooltip: 'Guests Allowed', icon: this.chartIcon },
@@ -84,66 +87,6 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
         amenities: [1, 2, 4]
       },
-      { 
-        id: 2, 
-        name: 'Arkley Golf Club', 
-        lane: 'Rowley Green Road', 
-        address: 'Arkley, Barnet',
-        code: 'EN5 3HL', 
-        timing: 'Weekdays after 2pm, Weekends from 12pm', 
-        phone: '020 8449 0394', 
-        website: 'https://www.arkleygolf.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
-        amenities: [2, 3, 4, 6, 8, 15]
-      },
-      { 
-        id: 3, 
-        name: 'Ashridge Golf Club', 
-        lane: 'Little Gaddesden', 
-        address: 'Berkhamsted',
-        code: 'HP4 1LY', 
-        timing: 'All week from 10am', 
-        phone: '01442 842244', 
-        website: 'https://www.ashridgegolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
-        amenities: [1, 2, 5, 9, 11, 12]
-      },
-      { 
-        id: 4, 
-        name: 'Beaconsfield Golf Club', 
-        lane: 'Seer Green', 
-        address: 'Beaconsfield',
-        code: 'HP9 2UR', 
-        timing: 'Weekdays only, from 9am', 
-        phone: '01494 676545', 
-        website: 'https://www.beaconsfieldgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
-        amenities: [2, 3, 7, 10, 13, 16]
-      },
-      { 
-        id: 5, 
-        name: 'Berkhamsted Golf Club', 
-        lane: 'The Common', 
-        address: 'Berkhamsted',
-        code: 'HP4 2QB', 
-        timing: 'All week after 1pm', 
-        phone: '01442 865832', 
-        website: 'https://www.berkhamstedgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
-        amenities: [1, 4, 6, 8, 12, 14]
-      },
-      { 
-        id: 6, 
-        name: 'Brookmans Park Golf Club', 
-        lane: 'Golf Club Road', 
-        address: 'Brookmans Park',
-        code: 'AL9 7AT', 
-        timing: 'Weekends and bank holidays from 2pm', 
-        phone: '01707 652487', 
-        website: 'https://www.bpgc.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
-        amenities: [2, 5, 7, 9, 11, 15]
-      }
     ];
     this.loadMoreCourses();
   }
@@ -159,6 +102,24 @@ export class CollectionComponent implements OnInit, AfterViewInit {
     tooltipElements.forEach((element) => {
       new bootstrap.Tooltip(element);
     });
+  }
+
+  // New method to get only 6 amenities for display
+  getDisplayedAmenities(course: GolfCourse): GolfAmenity[] {
+    // First, get amenities that the course has (matched with priority)
+    const matchedAmenities = this.priorityAmenities
+      .filter(id => course.amenities.includes(id))
+      .map(id => this.amenities.find(a => a.id === id))
+      .filter((amenity): amenity is GolfAmenity => amenity !== undefined);
+
+    // Then, get remaining priority amenities not in the course
+    const remainingAmenities = this.priorityAmenities
+      .filter(id => !course.amenities.includes(id))
+      .map(id => this.amenities.find(a => a.id === id))
+      .filter((amenity): amenity is GolfAmenity => amenity !== undefined);
+
+    // Combine and limit to 6 items
+    return [...matchedAmenities, ...remainingAmenities].slice(0, 6);
   }
 
   loadMoreCourses(): void {
@@ -209,6 +170,5 @@ export class CollectionComponent implements OnInit, AfterViewInit {
 
   showBookingCard(courseId: number): void {
     console.log('Opening booking modal for course:', courseId);
-    // Add your booking card logic here
   }
 }
