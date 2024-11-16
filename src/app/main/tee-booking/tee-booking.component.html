@@ -1,52 +1,78 @@
-<div class="tee-booking-container">
-    <div class="golf-course-details">
-      <div
-        class="course-image"
-        [ngStyle]="{ 'background-image': 'url(' + golfCourse?.imageUrl + ')' }"
-      ></div>
-      <div class="course-info">
-        <h2>{{ golfCourse?.name }}</h2>
-        <p><strong>Lane:</strong> {{ golfCourse?.lane }}</p>
-        <p><strong>Address:</strong> {{ golfCourse?.address }}</p>
-        <p><strong>Code:</strong> {{ golfCourse?.code }}</p>
-        <p><strong>Timing:</strong> {{ golfCourse?.timing }}</p>
-        <p><strong>Description:</strong> A beautiful course offering the best golfing experience.</p>
+<div class="container my-4">
+    <!-- Course Details Section -->
+    <div class="row mb-4">
+      <div class="col-md-5">
+        <div class="course-image rounded"></div>
+      </div>
+      <div class="col-md-7">
+        <h2 class="mb-3">{{course.name}}</h2>
+        <div class="d-flex align-items-center mb-2">
+          <fa-icon [icon]="locationIcon" class="me-2 text-primary"></fa-icon>
+          <p class="mb-0">{{course.lane}}, {{course.address}}, {{course.code}}</p>
+        </div>
+        <div class="d-flex align-items-center mb-2">
+          <fa-icon [icon]="clockIcon" class="me-2 text-primary"></fa-icon>
+          <p class="mb-0">{{course.timing}}</p>
+        </div>
+        <div class="d-flex align-items-center mb-2">
+          <fa-icon [icon]="globeIcon" class="me-2 text-primary"></fa-icon>
+          <a [href]="course.website" target="_blank" class="text-decoration-none">Visit Website</a>
+        </div>
+        <div class="mt-4">
+          <h5>About the Course</h5>
+          <p>This beautiful golf course offers challenging holes and stunning views. Perfect for both beginners and experienced players, the course features well-maintained greens and excellent facilities.</p>
+        </div>
       </div>
     </div>
-  
-    <div class="booking-section">
-      <h3>Book Your Tee Time</h3>
-      <div>
-        <label for="guest-count">Number of Guests:</label>
-        <input type="number" id="guest-count" [(ngModel)]="guestCount" min="1" max="10" />
+
+    <!-- Booking Section -->
+    <div class="booking-section p-4 bg-light rounded">
+      <h3 class="mb-4">Book a Tee Time</h3>
+      
+      <!-- Guest Selection -->
+      <div class="mb-4">
+        <label class="form-label">Number of Guests</label>
+        <div class="input-group" style="max-width: 200px;">
+          <button class="btn btn-outline-secondary" type="button" (click)="decrementGuests()">-</button>
+          <input type="number" class="form-control text-center" [(ngModel)]="guestCount" readonly>
+          <button class="btn btn-outline-secondary" type="button" (click)="incrementGuests()">+</button>
+        </div>
       </div>
-  
-      <div>
-        <label for="date-picker">Select Date:</label>
-        <input
-          type="date"
-          id="date-picker"
-          [min]="minDate"
-          [max]="maxDate"
-          [(ngModel)]="selectedDate"
-          (change)="generateTimeSlots()"
-        />
-      </div>
-  
-      <div *ngIf="timeSlots.length > 0">
-        <label>Select Time:</label>
-        <div class="time-slots">
-          <button
-            *ngFor="let slot of timeSlots"
-            [class.selected]="slot === selectedTime"
-            (click)="selectTime(slot)"
-          >
-            {{ slot }}
+
+      <!-- Date Selection -->
+      <div class="mb-4">
+        <label class="form-label">Select Date</label>
+        <div class="d-flex flex-wrap gap-2">
+          <button *ngFor="let date of availableDates" 
+                  class="btn"
+                  [class.btn-primary]="selectedDate === date"
+                  [class.btn-outline-primary]="selectedDate !== date"
+                  (click)="selectDate(date)">
+            {{date | date:'MMM d'}}
           </button>
         </div>
       </div>
-  
-      <button (click)="bookTeeTime()" class="book-button">Book Now</button>
+
+      <!-- Time Selection -->
+      <div *ngIf="selectedDate" class="mb-4">
+        <label class="form-label">Select Time</label>
+        <div class="d-flex flex-wrap gap-2">
+          <button *ngFor="let slot of timeSlots" 
+                  class="btn"
+                  [class.btn-primary]="selectedTime === slot.time"
+                  [class.btn-outline-primary]="selectedTime !== slot.time"
+                  [disabled]="!slot.available"
+                  (click)="selectTime(slot.time)">
+            {{slot.time}}
+          </button>
+        </div>
+      </div>
+
+      <!-- Booking Button -->
+      <button class="btn btn-success"
+              [disabled]="!canBook()"
+              (click)="bookTeeTime()">
+        Book Tee Time
+      </button>
     </div>
   </div>
-  

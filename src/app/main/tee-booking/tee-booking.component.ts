@@ -1,81 +1,105 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faClock, faUsers, faLocationDot, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
-interface GolfCourse {
-  id: number;
-  name: string;
-  lane: string;
-  address: string;
-  code: string;
-  timing: string;
-  imageUrl: string;
+interface TimeSlot {
+  time: string;
+  available: boolean;
 }
 
 @Component({
   selector: 'app-tee-booking',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FontAwesomeModule],
   templateUrl: './tee-booking.component.html',
   styleUrls: ['./tee-booking.component.css'],
 })
 export class TeeBookingComponent implements OnInit {
-  golfCourse: GolfCourse | undefined;
-  guestCount: number = 1;
-  minDate: string = '';
-  maxDate: string = '';
-  selectedDate: string = '';
-  timeSlots: string[] = [];
-  selectedTime: string = '';
+  locationIcon = faLocationDot;
+  clockIcon = faClock;
+  usersIcon = faUsers;
+  globeIcon = faGlobe;
+
+  course = {
+    id: 1,
+    name: 'Aldenham - Church Course',
+    lane: 'Church Ln',
+    address: 'Aldenham, Radlett',
+    code: 'WD25 8NN',
+    timing: 'Weekends from 11am',
+    phone: '01923 853929',
+    website: '#',
+    imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg'
+  };
+
+  guestCount = 1;
+  selectedDate: Date | null = null;
+  selectedTime: string | null = null;
+  availableDates: Date[] = [];
+  timeSlots: TimeSlot[] = [];
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-    // Fetch golf course data from route parameters or service
-    this.route.queryParams.subscribe((params) => {
-      this.golfCourse = JSON.parse(params['courseDetails'] || '{}');
-    });
-
-    // Set date range for one week from today
+  ngOnInit() {
+    // Generate available dates (next 7 days)
     const today = new Date();
-    const nextWeek = new Date(today);
-    nextWeek.setDate(today.getDate() + 7);
-    this.minDate = this.formatDate(today);
-    this.maxDate = this.formatDate(nextWeek);
-  }
+    for (let i = 0; i < 7; i++) {
+      const date = new Date();
+      date.setDate(today.getDate() + i);
+      this.availableDates.push(date);
+    }
 
-  private formatDate(date: Date): string {
-    return date.toISOString().split('T')[0];
-  }
-
-  generateTimeSlots(): void {
-    this.timeSlots = [];
-    const start = 7 * 60; // 7:00 AM in minutes
-    const end = 19 * 60; // 7:00 PM in minutes
-    for (let mins = start; mins < end; mins += 15) {
-      const hours = Math.floor(mins / 60);
-      const minutes = mins % 60;
-      const time = `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
-      this.timeSlots.push(time);
+    // Generate time slots (7 AM to 7 PM, 15-minute intervals)
+    for (let hour = 7; hour < 19; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+        this.timeSlots.push({
+          time: timeString,
+          available: Math.random() > 0.3 // Randomly set availability (70% available)
+        });
+      }
     }
   }
 
-  selectTime(slot: string): void {
-    this.selectedTime = slot;
+  incrementGuests() {
+    if (this.guestCount < 4) {
+      this.guestCount++;
+    }
   }
 
-  bookTeeTime(): void {
-    if (this.selectedDate && this.selectedTime && this.guestCount > 0) {
-      console.log('Booking confirmed for:', {
-        course: this.golfCourse,
-        guests: this.guestCount,
+  decrementGuests() {
+    if (this.guestCount > 1) {
+      this.guestCount--;
+    }
+  }
+
+  selectDate(date: Date) {
+    this.selectedDate = date;
+    this.selectedTime = null; // Reset time selection when date changes
+  }
+
+  selectTime(time: string) {
+    this.selectedTime = time;
+  }
+
+  canBook(): boolean {
+    return !!this.selectedDate && !!this.selectedTime;
+  }
+
+  bookTeeTime() {
+    if (this.canBook()) {
+      const booking = {
         date: this.selectedDate,
         time: this.selectedTime,
-      });
+        guests: this.guestCount,
+        course: this.course.name
+      };
+      console.log('Booking details:', booking);
+      // Here you would typically make an API call to save the booking
       alert('Booking successful!');
-    } else {
-      alert('Please select all booking details.');
     }
   }
 }
