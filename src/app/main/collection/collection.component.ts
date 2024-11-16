@@ -41,12 +41,25 @@ export class CollectionComponent implements OnInit, AfterViewInit {
   courseBatchSize: number = 6; // Number of items to load per batch
   loadedItemsCount: number = 0;
 
-  amenities: GolfAmenity[] = Array.from({ length: 18 }, (_, i) => ({
-    id: i + 1,
-    title: `Amenity ${i + 1}`,
-    tooltip: `Tooltip for Amenity ${i + 1}`,
-    icon: this.getRandomIcon(),
-  }));
+  amenities: GolfAmenity[] = [
+    { id: 1, title: 'No. of Tees per Day', tooltip: '2 Tees Per Day', icon: this.usersIcon },
+    { id: 2, title: 'Guest Restrictions', tooltip: 'Guests Allowed', icon: this.chartIcon },
+    { id: 3, title: 'Minimum Handicap', tooltip: 'HDP 24 and Under Only', icon: this.boxIcon },
+    { id: 4, title: 'Time Restrictions', tooltip: 'Time Restrictions Apply', icon: this.clockIcon },
+    { id: 5, title: 'Gap Between Booking', tooltip: 'Min 2 Weeks Between Play', icon: this.boxIcon },
+    { id: 6, title: 'Advance Booking (up to)', tooltip: 'Book up to 7 days in advance', icon: this.usersIcon },
+    { id: 7, title: 'Call MCG to Book', tooltip: 'DO NOT CALL COURSE - CALL MGC', icon: this.chartIcon },
+    { id: 8, title: '9 Hole Course', tooltip: '9 Hole Course', icon: this.clockIcon },
+    { id: 9, title: 'Two Courses Available', tooltip: 'Two Courses', icon: this.chartIcon },
+    { id: 10, title: 'Virtual Golf Simulator', tooltip: 'Virtual Golf Simulator', icon: this.boxIcon },
+    { id: 11, title: 'Marriott Group', tooltip: 'Marriott Hotel Group', icon: this.usersIcon },
+    { id: 12, title: 'Discounted Overnight Stays', tooltip: 'Discounted Overnight Stays', icon: this.chartIcon },
+    { id: 13, title: 'Food & Drink Discounts', tooltip: 'Food & Drink Discount', icon: this.boxIcon },
+    { id: 14, title: 'Buggy Discounts', tooltip: 'Discounted Buggies', icon: this.clockIcon },
+    { id: 15, title: 'Putting Lesson Included', tooltip: 'Inc. 20min Putting Lesson', icon: this.boxIcon },
+    { id: 16, title: 'Additional Restrictions', tooltip: 'Additional Restrictions See Course Details', icon: this.usersIcon },
+  ];
+  
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
