@@ -39,7 +39,7 @@
     background-color: white;
     /* border-right: 1px solid #ddd; */
     position: sticky;
-    top: 13%;
+    top: 100px;
     height: 90vh;
     /* overflow-y: auto; */
     display: flex;
@@ -160,10 +160,11 @@ img.img-hover {
 /* Responsive Sidebar */
 @media (max-width: 768px) {
   .sidebar {
-    width: 10%;
-    padding: 5px 0;
+    width: 12%;
+    padding: 2px 0;
     justify-content: center; /* Center align items */
     align-items: center;
+    top: 5px;
   }
 
   /* Only display the icon */
@@ -173,25 +174,6 @@ img.img-hover {
 
   .amenity-item {
     justify-content: center; /* Center align icons */
-  }
-}
-
-/* On hover, show tooltip */
-.amenity-item:hover .amenity-title {
-  display: block; /* Temporarily display title when hovered (desktop view) */
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px 10px;
-  z-index: 10;
-  white-space: nowrap;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-@media (max-width: 768px) {
-  .amenity-item:hover .amenity-title {
-    display: none; /* For smaller screens, rely on Bootstrap tooltip */
   }
 }
 
