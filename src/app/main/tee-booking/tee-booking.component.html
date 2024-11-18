@@ -1,5 +1,5 @@
-<!-- HTML Template -->
 <div class="booking-container">
+  <!-- Hero Section remains the same -->
   <div class="course-hero">
     <div class="course-overlay"></div>
     <div class="course-info">
@@ -17,21 +17,28 @@
     </div>
   </div>
 
-  <div class="booking-content">
-    <div class="course-details">
-      <div class="info-card">
-        <h3>About the Course</h3>
-        <p>This beautiful golf course offers challenging holes and stunning views. Perfect for both beginners and experienced players, the course features well-maintained greens and excellent facilities.</p>
-        <div class="amenities">
-          <span><i class="fas fa-wifi"></i> Free WiFi</span>
-          <span><i class="fas fa-parking"></i> Free Parking</span>
-          <span><i class="fas fa-utensils"></i> Restaurant</span>
-          <span><i class="fas fa-shopping-bag"></i> Pro Shop</span>
-        </div>
+  <!-- Course Details Row remains the same -->
+  <div class="row-section">
+    <div class="info-card">
+      <h3>About the Course</h3>
+      <p>Aldenham Golf Club is renowned for the quality of the course, particularly our immaculate greens and exceptional condition of the fairways and surrounding areas. The Church Course opened in 1975 and has matured well over the years with many different tree species and lovely views over the neighboring countryside. The 13th is their signature hole and was, for many years, the longest hole in Europe at 621 yards.
+
+        Their team of expert groundsmen led by Course Manager Marc Winnan has some of the best equipment available to maintain this course to its reputation.
+        
+        Members will get the benefits of the course throughout the whole year even in the depths of winter. The club prides itself on maintaining the greens all year round so there is no need for temporary greens.</p>
+      <div class="amenities">
+        <span><i class="fas fa-wifi"></i> Free WiFi</span>
+        <span><i class="fas fa-parking"></i> Free Parking</span>
+        <span><i class="fas fa-utensils"></i> Restaurant</span>
+        <span><i class="fas fa-shopping-bag"></i> Pro Shop</span>
       </div>
     </div>
+  </div>
 
-    <div class="booking-form">
+  <!-- Booking and Location Info Row -->
+  <div class="row-section booking-info-container">
+    <!-- Booking Form Column -->
+    <div class="booking-column">
       <div class="form-card">
         <h2>Book Your Tee Time</h2>
         
@@ -79,55 +86,60 @@
       </div>
     </div>
 
-    <div class="map-section">
-      <div class="map-content">
-        <div class="map-info">
-          <h2>Location & Directions</h2>
-          <div class="location-details">
-            <div class="detail-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Address</h4>
-                <p>{{course.lane}}, {{course.address}}, {{course.code}}</p>
-              </div>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-phone-alt"></i>
-              <div>
-                <h4>Contact</h4>
-                <p>{{course.phone}}</p>
-              </div>
-            </div>
-            <div class="detail-item">
-              <i class="fas fa-clock"></i>
-              <div>
-                <h4>Hours</h4>
-                <p>{{course.timing}}</p>
-              </div>
+    <!-- Location Info Column -->
+    <div class="location-column">
+      <div class="form-card">
+        <h2>Location & Directions</h2>
+        <div class="location-details">
+          <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Address</h4>
+              <p>{{course.lane}}, {{course.address}}, {{course.code}}</p>
             </div>
           </div>
-          <div class="direction-actions">
-            <button class="direction-btn">
-              <i class="fas fa-directions"></i>
-              Get Directions
-            </button>
-            <button class="direction-btn secondary">
-              <i class="fas fa-share-alt"></i>
-              Share Location
-            </button>
+          <div class="detail-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <h4>Contact</h4>
+              <p>{{course.phone}}</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Hours</h4>
+              <p>{{course.timing}}</p>
+            </div>
           </div>
         </div>
-        <div class="map-container">
-          <!-- Replace src with your actual Google Maps embed URL -->
-          <!-- <iframe
-            width="100%"
-            height="100%"
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q={{course.name}}+{{course.address}}">
-          </iframe> -->
+        <div class="direction-actions">
+          <button class="direction-btn" (click)="getDirections()">
+            <i class="fas fa-directions"></i>
+            Get Directions
+          </button>
+          <button class="direction-btn secondary" (click)="shareLocation()">
+            <i class="fas fa-share-alt"></i>
+            Share Location
+          </button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Row -->
+  <div class="row-section">
+    <div class="map-card">
+      <div class="map-container">
+        <iframe
+          width="100%"
+          height="100%"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          [src]="mapUrl"
+          (error)="handleMapError($event)">
+        </iframe>
       </div>
     </div>
   </div>

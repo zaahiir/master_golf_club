@@ -83,7 +83,7 @@ export class TeeBookingComponent implements OnInit {
   };
 
   // Booking State
-  guestCount: number = 1;
+  guestCount: number = 0;
   maxGuests: number = 4;
   selectedDate: Date | null = null;
   selectedTime: string | null = null;
