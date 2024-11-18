@@ -46,7 +46,7 @@
 
     <!-- Main Content Section (Booking Cards) -->
     <div class="main-content pe-2">
-      <h3 class="text-center my-5">Collections</h3>
+      <h3 class="text-center my-4">Collections</h3>
       <div
         class="row"
         infiniteScroll
@@ -58,48 +58,79 @@
           class="col-12 col-md-4 mb-3 px-2"
           *ngFor="let course of displayedCourses"
         >
-          <div class="booking-card">
-            <div class="row h-100">
-              <div class="col-12 col-sm-5 col-md-5 image-container">
-                <div
-                  class="course-image img-hover"
-                  [ngStyle]="{ 'background-image': 'url(' + course.imageUrl + ')' }"
-                  style="display: flex; flex-direction: column; height: 100%;"
-                >
-                  <div class="p-5 botton-10 c-ion" style="margin-top: auto;">
-                    <a href="" class="me-4">...</a>
-                    <a href="">...</a>
-                  </div>
-                </div>
+        <div class="booking-card">
+          <div class="row h-100">
+            <div class="col-12 col-sm-5 col-md-5 image-container">
+              <div
+                class="course-image img-hover"
+                [ngStyle]="{ 'background-image': 'url(' + course.imageUrl + ')' }"
+                style="display: flex; flex-direction: column; height: 100%;"
+              >
+              <div class="p-5 botton-10 c-ion" style="margin-top: auto;">
+                <!-- Phone Icon with link -->
+                <a 
+                  href="tel:{{ course.phone }}" 
+                  class="me-4 text-decoration-none text-white"
+                  [attr.title]="'Call ' + course.phone"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top">
+                  <fa-icon [icon]="faPhone"></fa-icon>
+                </a>
+              
+                <!-- Website Icon with link -->
+                <a 
+                  [href]="course.website" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-decoration-none text-white"
+                  [attr.title]="'Visit ' + course.name + ' website'"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top">
+                  <fa-icon [icon]="faGlobe"></fa-icon>
+                </a>
               </div>
-              <div class="card-content col-12 col-sm-7 col-md-7 p-3">
-                <h6 class="fw-bold pb-2">{{ course.name }}</h6>
-                <p>{{ course.lane }}</p>
-                <p>{{ course.address }}</p>
-                <p>{{ course.code }}</p>
-                <p>{{ course.timing }}</p>
-                
-                <!-- Display only 6 amenity icons -->
-                <div class="amenities-container d-flex gap-2 mb-3">
-                  <div *ngFor="let amenity of getDisplayedAmenities(course)" 
-                       class="amenity-icon"
-                       [class.active]="hasAmenity(course, amenity.id)"
-                       [attr.title]="amenity.tooltip"
-                       data-bs-toggle="tooltip"
-                       data-bs-placement="top"
-                       (click)="amenity.id === 2 ? openGuestModal($event, course) : null"
-                       [class.clickable]="amenity.id === 2">
-                    <fa-icon 
-                      [icon]="amenity.icon" 
-                      [class.text-success]="hasAmenity(course, amenity.id)"
-                      [class.text-muted]="!hasAmenity(course, amenity.id)">
-                    </fa-icon>
-                  </div>
-                </div>
-                <a class="info pt-4" [routerLink]="'/teeBooking'">More information >></a>
+              
               </div>
             </div>
+            <div class="card-content col-12 col-sm-7 col-md-7 px-3 pt-3 pb-2">
+              <h6 class="fw-bold pb-2">{{ course.name }}</h6>
+              <p>{{ course.lane }}</p>
+              <p>{{ course.address }}</p>
+              <p>{{ course.code }}</p>
+              <p>{{ course.timing }}</p>
+        
+              <!-- Display only 6 amenity icons -->
+              <div class="amenities-container d-flex gap-2 mb-2">
+                <div *ngFor="let amenity of getDisplayedAmenities(course)" 
+                     class="amenity-icon"
+                     [class.active]="hasAmenity(course, amenity.id)"
+                     [attr.title]="amenity.tooltip"
+                     data-bs-toggle="tooltip"
+                     data-bs-placement="top"
+                     [class.clickable]="amenity.id === 2">
+                  <fa-icon 
+                    [icon]="amenity.icon" 
+                    [class.text-success]="hasAmenity(course, amenity.id)"
+                    [class.text-muted]="!hasAmenity(course, amenity.id)">
+                  </fa-icon>
+                </div>
+              </div>      
+              <!-- New Section: Date Icons -->
+              <div class="date-container d-flex justify-content-between my-2 pt-2">
+                <div
+                  *ngFor="let date of getNextSevenDates()"
+                  class="date-icon"
+                  (click)="openDateModal(date, course)"
+                >
+                  <div class="date-circle">{{ date | date: 'dd' }}</div>
+                  <div class="date-text">{{ date | date: 'EEE' }}</div>
+                </div>
+              </div>              
+              <a class="info pt-4 " [routerLink]="'/teeBooking'">More information >></a>  
+            </div>
           </div>
+        </div>
+        
         </div>
       </div>
     </div>

@@ -1,78 +1,134 @@
-<div class="container my-4">
-    <!-- Course Details Section -->
-    <div class="row mb-4">
-      <div class="col-md-5">
-        <div class="course-image rounded"></div>
+<!-- HTML Template -->
+<div class="booking-container">
+  <div class="course-hero">
+    <div class="course-overlay"></div>
+    <div class="course-info">
+      <h1>{{course.name}}</h1>
+      <div class="course-meta">
+        <span>
+          <i class="fas fa-map-marker-alt"></i>
+          {{course.lane}}, {{course.address}}
+        </span>
+        <span>
+          <i class="fas fa-clock"></i>
+          {{course.timing}}
+        </span>
       </div>
-      <div class="col-md-7">
-        <h2 class="mb-3">{{course.name}}</h2>
-        <div class="d-flex align-items-center mb-2">
-          <fa-icon [icon]="locationIcon" class="me-2 text-primary"></fa-icon>
-          <p class="mb-0">{{course.lane}}, {{course.address}}, {{course.code}}</p>
-        </div>
-        <div class="d-flex align-items-center mb-2">
-          <fa-icon [icon]="clockIcon" class="me-2 text-primary"></fa-icon>
-          <p class="mb-0">{{course.timing}}</p>
-        </div>
-        <div class="d-flex align-items-center mb-2">
-          <fa-icon [icon]="globeIcon" class="me-2 text-primary"></fa-icon>
-          <a [href]="course.website" target="_blank" class="text-decoration-none">Visit Website</a>
-        </div>
-        <div class="mt-4">
-          <h5>About the Course</h5>
-          <p>This beautiful golf course offers challenging holes and stunning views. Perfect for both beginners and experienced players, the course features well-maintained greens and excellent facilities.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Booking Section -->
-    <div class="booking-section p-4 bg-light rounded">
-      <h3 class="mb-4">Book a Tee Time</h3>
-      
-      <!-- Guest Selection -->
-      <div class="mb-4">
-        <label class="form-label">Number of Guests</label>
-        <div class="input-group" style="max-width: 200px;">
-          <button class="btn btn-outline-secondary" type="button" (click)="decrementGuests()">-</button>
-          <input type="number" class="form-control text-center" [(ngModel)]="guestCount" readonly>
-          <button class="btn btn-outline-secondary" type="button" (click)="incrementGuests()">+</button>
-        </div>
-      </div>
-
-      <!-- Date Selection -->
-      <div class="mb-4">
-        <label class="form-label">Select Date</label>
-        <div class="d-flex flex-wrap gap-2">
-          <button *ngFor="let date of availableDates" 
-                  class="btn"
-                  [class.btn-primary]="selectedDate === date"
-                  [class.btn-outline-primary]="selectedDate !== date"
-                  (click)="selectDate(date)">
-            {{date | date:'MMM d'}}
-          </button>
-        </div>
-      </div>
-
-      <!-- Time Selection -->
-      <div *ngIf="selectedDate" class="mb-4">
-        <label class="form-label">Select Time</label>
-        <div class="d-flex flex-wrap gap-2">
-          <button *ngFor="let slot of timeSlots" 
-                  class="btn"
-                  [class.btn-primary]="selectedTime === slot.time"
-                  [class.btn-outline-primary]="selectedTime !== slot.time"
-                  [disabled]="!slot.available"
-                  (click)="selectTime(slot.time)">
-            {{slot.time}}
-          </button>
-        </div>
-      </div>
-
-      <!-- Booking Button -->
-      <button class="btn btn-success"
-              [disabled]="!canBook()"
-              (click)="bookTeeTime()">
-        Book Tee Time
-      </button>
     </div>
   </div>
+
+  <div class="booking-content">
+    <div class="course-details">
+      <div class="info-card">
+        <h3>About the Course</h3>
+        <p>This beautiful golf course offers challenging holes and stunning views. Perfect for both beginners and experienced players, the course features well-maintained greens and excellent facilities.</p>
+        <div class="amenities">
+          <span><i class="fas fa-wifi"></i> Free WiFi</span>
+          <span><i class="fas fa-parking"></i> Free Parking</span>
+          <span><i class="fas fa-utensils"></i> Restaurant</span>
+          <span><i class="fas fa-shopping-bag"></i> Pro Shop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form">
+      <div class="form-card">
+        <h2>Book Your Tee Time</h2>
+        
+        <div class="form-section">
+          <label>Guests</label>
+          <div class="player-selector">
+            <button class="circle-btn" (click)="decrementGuests()" [disabled]="guestCount === 0">-</button>
+            <span class="player-count">{{guestCount}}</span>
+            <button class="circle-btn" (click)="incrementGuests()" [disabled]="guestCount === maxGuests">+</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>Select Date</label>
+          <div class="date-scroll">
+            <button *ngFor="let date of availableDates" 
+                    class="date-btn"
+                    [class.selected]="selectedDate === date"
+                    (click)="selectDate(date)">
+              <span class="day">{{date | date:'EEE'}}</span>
+              <span class="date">{{date | date:'d'}}</span>
+              <span class="month">{{date | date:'MMM'}}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-section" *ngIf="selectedDate">
+          <label>Available Times</label>
+          <div class="time-grid">
+            <button *ngFor="let slot of timeSlots"
+                    class="time-btn"
+                    [class.selected]="selectedTime === slot.time"
+                    [disabled]="!slot.available"
+                    (click)="selectTime(slot.time)">
+              {{slot.time}}
+            </button>
+          </div>
+        </div>
+
+        <button class="book-btn" 
+                [disabled]="!canBook()"
+                (click)="bookTeeTime()">
+          Book Now
+        </button>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <div class="map-content">
+        <div class="map-info">
+          <h2>Location & Directions</h2>
+          <div class="location-details">
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Address</h4>
+                <p>{{course.lane}}, {{course.address}}, {{course.code}}</p>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-phone-alt"></i>
+              <div>
+                <h4>Contact</h4>
+                <p>{{course.phone}}</p>
+              </div>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>Hours</h4>
+                <p>{{course.timing}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="direction-actions">
+            <button class="direction-btn">
+              <i class="fas fa-directions"></i>
+              Get Directions
+            </button>
+            <button class="direction-btn secondary">
+              <i class="fas fa-share-alt"></i>
+              Share Location
+            </button>
+          </div>
+        </div>
+        <div class="map-container">
+          <!-- Replace src with your actual Google Maps embed URL -->
+          <!-- <iframe
+            width="100%"
+            height="100%"
+            style="border:0"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q={{course.name}}+{{course.address}}">
+          </iframe> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

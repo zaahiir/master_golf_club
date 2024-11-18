@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import { faClock, faUsers, faChartBar, faBox } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faUsers, faChartBar, faBox, faPhone, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { isPlatformBrowser } from '@angular/common';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 declare var bootstrap: any;
@@ -40,6 +40,11 @@ export class CollectionComponent implements OnInit, AfterViewInit {
   usersIcon = faUsers;
   chartIcon = faChartBar;
   boxIcon = faBox;
+  faPhone = faPhone;
+  faGlobe = faGlobe;
+
+  currentDate: Date = new Date();
+  selectedDate: Date | null = null;
 
   isModalOpen = false;
   selectedCourse: GolfCourse | null = null;
@@ -292,10 +297,32 @@ export class CollectionComponent implements OnInit, AfterViewInit {
     }
   }
 
+  getNextSevenDates(): Date[] {
+    const dates: Date[] = [];
+    for (let i = 0; i < 8; i++) {
+      const nextDate = new Date();
+      nextDate.setDate(this.currentDate.getDate() + i);
+      dates.push(nextDate);
+    }
+    return dates;
+  }
+
+  openDateModal(selectedDate: Date, course: GolfCourse): void {
+    this.selectedDate = selectedDate;
+    this.selectedCourse = course;
+    this.isModalOpen = true;
+
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  // Close modal
   closeModal(): void {
     this.isModalOpen = false;
+    this.selectedDate = null;
     this.selectedCourse = null;
-    
+
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = 'auto';
     }
