@@ -8,11 +8,11 @@
 
 body {
   background-color: #f3f4f6;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .booking-container {
   max-width: 1650px;
-  font-family: 'Inter', system-ui, sans-serif;
 }
 
 /* Hero Section */
@@ -62,11 +62,25 @@ body {
   width: 100%;
 }
 
+.booking-info-container {
+  display: flex;
+  gap: 2rem;
+}
+
+.booking-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 /* Cards */
-.info-card, .form-card, .map-card {
+.info-card, 
+.form-card, 
+.map-card,
+.location-details-card {
   background: white;
   border-radius: 16px;
-  padding: 2rem;
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
 }
 
@@ -81,13 +95,14 @@ body {
 .info-card p {
   color: #4b5563;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .amenities {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .amenities span {
@@ -98,24 +113,7 @@ body {
   color: #4b5563;
 }
 
-/* Booking and Location Container */
-.booking-info-container {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.booking-column,
-.location-column {
-  flex: 1;
-  min-width: 0;
-}
-
 /* Booking Form Styles */
-.form-card {
-  height: 100%;
-}
-
 .form-card h2 {
   font-size: 1.5rem;
   color: #1f2937;
@@ -175,9 +173,9 @@ body {
 /* Date Selector */
 .date-scroll {
   display: flex;
-  gap: 0.70rem;
+  gap: 1rem;
   overflow-x: auto;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -380,8 +378,7 @@ body {
     gap: 1rem;
   }
 
-  .booking-column,
-  .location-column {
+  .booking-column {
     width: 100%;
   }
 
