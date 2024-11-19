@@ -15,8 +15,6 @@
 
 .home {
   width: 100%;
-  max-width: 1650px;
-  margin: 0 auto;
 }
 
 .home-image {
@@ -24,33 +22,38 @@
   background-position: center;
 }
 
-.main-container {
-  width: 100%;
-}
-
-.content-wrapper {
-  max-width: 1650px;
-  margin: 0 auto;
-}
-
-.cards-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
 .event-date {
   font-family: var(--font-serif);
   font-size: 1.8rem;
   font-style: italic;
+  color: white;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin-top: 10px;
   text-align: center;
 }
 
+.main-container {
+  width: 100%;
+  background-color: #f8f9fa;
+}
+
+.content-wrapper {
+  max-width: 1650px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Cards Grid Layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Tournament Sections */
 .tournament-section {
-  margin-bottom: 2rem;
+  width: 100%;
 }
 
 .tournament-section h2 {
@@ -59,6 +62,7 @@
   font-size: 2.2rem;
   margin-bottom: 2rem;
   text-align: center;
+  position: relative;
 }
 
 .tournament-section h2::after {
@@ -70,7 +74,9 @@
   margin: 1rem auto 0;
 }
 
-.overview-content, .course-details {
+/* Card Content Styles */
+.overview-content,
+.course-details {
   background: white;
   padding: 2rem;
   border-radius: 10px;
@@ -103,7 +109,8 @@
   font-weight: 500;
 }
 
-.description, .course-description {
+.description,
+.course-description {
   font-family: var(--font-sans);
   color: #666;
   line-height: 1.8;
@@ -111,6 +118,7 @@
   text-align: center;
 }
 
+/* Course Specifications */
 .course-specs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -137,6 +145,16 @@
   color: #2c3e50;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+/* Schedule Section */
+.schedule {
+  width: 100%;
+}
+
+.schedule-container {
+  max-width: 1650px;
+  margin: 0 auto;
 }
 
 .schedule-grid {
@@ -166,9 +184,20 @@
   font-family: var(--font-sans);
 }
 
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .content-wrapper {
+    padding: 2rem;
+  }
+}
+
 @media (max-width: 1200px) {
-  .cards-row {
+  .cards-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .schedule-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -192,6 +221,15 @@
 
   .schedule-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-wrapper {
+    padding: 1rem;
+  }
+  
+  .course-specs {
+    grid-template-columns: 1fr;
   }
 }
