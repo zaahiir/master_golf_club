@@ -13,177 +13,185 @@
   --font-serif: 'Cardo', serif;
 }
 
+.home {
+  width: 100%;
+  max-width: 1650px;
+  margin: 0 auto;
+}
+
 .home-image {
-    background-image: url('../../../assets/3872.jpg');
-    background-position: center; 
+  background-image: url('../../../assets/3872.jpg');
+  background-position: center;
+}
+
+.main-container {
+  width: 100%;
+}
+
+.content-wrapper {
+  max-width: 1650px;
+  margin: 0 auto;
+}
+
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.event-date {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
+  text-align: center;
+}
+
+.tournament-section {
+  margin-bottom: 2rem;
+}
+
+.tournament-section h2 {
+  font-family: var(--font-sans);
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.tournament-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #e67e22;
+  margin: 1rem auto 0;
+}
+
+.overview-content, .course-details {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.key-details {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-item {
+  text-align: center;
+}
+
+.detail-item i {
+  font-size: 2rem;
+  color: #e67e22;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.detail-item span {
+  font-family: var(--font-sans);
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.description, .course-description {
+  font-family: var(--font-sans);
+  color: #666;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.course-specs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.spec {
+  text-align: center;
+}
+
+.spec .label {
+  display: block;
+  font-family: var(--font-serif);
+  color: #666;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.spec .value {
+  font-family: var(--font-sans);
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.schedule-day {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.schedule-day h3 {
+  font-family: var(--font-sans);
+  color: #e67e22;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.schedule-day p {
+  color: #666;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-sans);
+}
+
+@media (max-width: 1200px) {
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-text {
+    font-size: 2.5rem;
   }
 
   .event-date {
-    font-family: var(--font-serif);
-    font-size: 1.8rem;
-    font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-top: 10px; /* Adjust for desired spacing */
-    text-align: center;
+    font-size: 1.4rem;
   }
-  
-  .tournament-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 1rem;
-  }
-  
-  .tournament-section {
-    margin-bottom: 4rem;
-  }
-  
-  .tournament-section h2 {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    position: relative;
-  }
-  
-  .tournament-section h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: #e67e22;
-    margin: 1rem auto 0;
-  }
-  
-  .overview-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-  }
-  
+
   .key-details {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #eee;
+    flex-direction: column;
+    gap: 2rem;
   }
-  
-  .detail-item {
-    text-align: center;
-  }
-  
-  .detail-item i {
-    font-size: 2rem;
-    color: #e67e22;
-    margin-bottom: 1rem;
-    display: block;
-  }
-  
-  .detail-item span {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-weight: 500;
-  }
-  
-  .description {
-    font-family: var(--font-sans);
-    color: #666;
-    line-height: 1.8;
-    font-size: 1.1rem;
-    text-align: center;
-  }
-  
-  .course-details {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-  }
-  
+
   .course-specs {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #eee;
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .spec {
-    text-align: center;
-  }
-  
-  .spec .label {
-    display: block;
-    font-family: var(--font-serif);
-    color: #666;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-  }
-  
-  .spec .value {
-    font-family: var(--font-sans);
-    color: #2c3e50;
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-  
-  .course-description {
-    font-family: var(--font-sans);
-    color: #666;
-    line-height: 1.8;
-    text-align: center;
-  }
-  
+
   .schedule-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  
-  .schedule-day {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .schedule-day h3 {
-    font-family: var(--font-sans);
-    color: #e67e22;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-  }
-  
-  .schedule-day p {
-    color: #666;
-    margin-bottom: 0.5rem;
-    font-family: var(--font-sans);
-  }
-  
-  @media (max-width: 768px) {
-    .welcome-text {
-      font-size: 2.5rem;
-    }
-  
-    .event-date {
-      font-size: 1.4rem;
-    }
-  
-    .key-details {
-      flex-direction: column;
-      gap: 2rem;
-    }
-  
-    .course-specs {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .schedule-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
+}
