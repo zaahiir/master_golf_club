@@ -18,10 +18,6 @@
 .home-image {
   background-image: url('../../../assets/3872.jpg');
   background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 400px;
-  width: 100%;
 }
 
 .team-section {
