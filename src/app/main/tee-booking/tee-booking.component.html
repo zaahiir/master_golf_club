@@ -39,7 +39,7 @@
           <div class="date-scroll">
             <button *ngFor="let date of availableDates" 
                     class="date-btn"
-                    [class.selected]="selectedDate === date"
+                    [class.selected]="isDateSelected(date)"
                     (click)="selectDate(date)">
               <span class="day">{{date | date:'EEE'}}</span>
               <span class="date">{{date | date:'d'}}</span>
@@ -48,24 +48,29 @@
           </div>
         </div>
 
-        <div class="form-section" *ngIf="selectedDate">
+        <div class="form-section">
           <label>Available Times</label>
           <div class="time-grid">
-            <button *ngFor="let slot of timeSlots"
+            <button *ngFor="let slot of currentTimeSlots"
                     class="time-btn"
                     [class.selected]="selectedTime === slot.time"
                     [disabled]="!slot.available"
                     (click)="selectTime(slot.time)">
-              {{slot.time}}
+              {{formatTime(slot.time)}}
             </button>
           </div>
         </div>
 
         <button class="book-btn" 
                 [disabled]="!canBook()"
+                [class.loading]="isLoading"
                 (click)="bookTeeTime()">
-          Book Now
+          {{isLoading ? 'Booking...' : 'Book Now'}}
         </button>
+
+        <div class="error-message" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
       </div>
     </div>
 
@@ -112,7 +117,7 @@
             </div>
           </div>
         </div>
-        <div class="direction-actions">
+        <div class="direction-actions mt-4">
           <button class="direction-btn" (click)="getDirections()">
             <i class="fas fa-directions"></i>
             Get Directions

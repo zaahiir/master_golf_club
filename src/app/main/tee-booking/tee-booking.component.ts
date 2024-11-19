@@ -40,12 +40,20 @@ interface TimeSlot {
   available: boolean;
 }
 
+interface Booking {
+  date: Date;
+  time: string;
+  guests: number;
+  course: string;
+  totalPrice: number;
+}
+
 @Component({
   selector: 'app-tee-booking',
   standalone: true,
   imports: [CommonModule, FormsModule, FontAwesomeModule],
   templateUrl: './tee-booking.component.html',
-  styleUrls: ['./tee-booking.component.css'],
+  styleUrls: ['./tee-booking.component.css']
 })
 export class TeeBookingComponent implements OnInit {
   // Icons
@@ -61,9 +69,6 @@ export class TeeBookingComponent implements OnInit {
   restaurantIcon = faUtensils;
   shopIcon = faShoppingBag;
 
-  // Map URL
-  mapUrl: SafeResourceUrl;
-  
   // Course Details
   course: Course = {
     id: 1,
@@ -82,23 +87,33 @@ export class TeeBookingComponent implements OnInit {
     amenities: ['WiFi', 'Parking', 'Restaurant', 'Pro Shop']
   };
 
+  // Map URL
+  mapUrl: SafeResourceUrl;
+
   // Booking State
-  guestCount: number = 0;
+  guestCount: number = 1;
   maxGuests: number = 4;
-  selectedDate: Date | null = null;
+  selectedDate: Date;
   selectedTime: string | null = null;
   availableDates: Date[] = [];
-  timeSlots: TimeSlot[] = [];
+  timeSlotsByDate: Map<string, TimeSlot[]> = new Map();
+  currentTimeSlots: TimeSlot[] = [];
   isLoading: boolean = false;
   errorMessage: string = '';
+  initialLoad: boolean = true;
+  basePrice: number = 50;
 
   constructor(
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
   ) {
-    // Initialize mapUrl in constructor
+    // Initialize selectedDate to today
+    this.selectedDate = new Date();
+    this.selectedDate.setHours(0, 0, 0, 0);
+
+    // Initialize mapUrl
     const baseMapUrl = 'https://www.google.com/maps/embed/v1/place';
-    const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
+    const apiKey = 'YOUR_API_KEY'; // Replace with actual API key
     const query = encodeURIComponent(`${this.course.name} ${this.course.address}`);
     
     this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -108,30 +123,91 @@ export class TeeBookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateAvailableDates();
-    this.generateTimeSlots();
+    this.initializeTimeSlots();
   }
 
   private generateAvailableDates(): void {
     const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
     this.availableDates = Array.from({ length: 8 }, (_, i) => {
-      const date = new Date();
+      const date = new Date(today);
       date.setDate(today.getDate() + i);
       return date;
     });
   }
 
-  private generateTimeSlots(): void {
-    this.timeSlots = [];
+  private initializeTimeSlots(): void {
+    // Generate time slots for each available date
+    this.availableDates.forEach(date => {
+      const dateKey = this.getDateKey(date);
+      const timeSlots = this.generateTimeSlotsForDate(date);
+      this.timeSlotsByDate.set(dateKey, timeSlots);
+    });
+
+    // Set current time slots to today's slots
+    this.updateCurrentTimeSlots(this.selectedDate);
+    this.initialLoad = false;
+  }
+
+  private generateTimeSlotsForDate(date: Date): TimeSlot[] {
+    const slots: TimeSlot[] = [];
+    const isToday = this.isToday(date);
+    const currentHour = new Date().getHours();
+    const currentMinute = new Date().getMinutes();
+    
     // Generate slots from 7 AM to 7 PM
     for (let hour = 7; hour < 19; hour++) {
-      for (let minute = 0; minute < 60; minute += 30) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        // Skip past times if it's today
+        if (isToday && (hour < currentHour || (hour === currentHour && minute <= currentMinute))) {
+          continue;
+        }
+        
         const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-        this.timeSlots.push({
+        slots.push({
           time: timeString,
           available: Math.random() > 0.3 // Simulate availability
         });
       }
     }
+    
+    return slots;
+  }
+
+  private updateCurrentTimeSlots(date: Date): void {
+    const dateKey = this.getDateKey(date);
+    this.currentTimeSlots = this.timeSlotsByDate.get(dateKey) || [];
+    
+    if (!this.initialLoad) {
+      this.selectedTime = null; // Reset selected time when date changes, but not on initial load
+    }
+  }
+
+  // Helper functions
+  private getDateKey(date: Date): string {
+    return date.toISOString().split('T')[0];
+  }
+
+  private isToday(date: Date): boolean {
+    const today = new Date();
+    return date.getDate() === today.getDate() &&
+           date.getMonth() === today.getMonth() &&
+           date.getFullYear() === today.getFullYear();
+  }
+
+  isDateSelected(date: Date): boolean {
+    return this.getDateKey(date) === this.getDateKey(this.selectedDate);
+  }
+
+  // Event handlers
+  selectDate(date: Date): void {
+    this.selectedDate = date;
+    this.updateCurrentTimeSlots(date);
+  }
+
+  selectTime(time: string): void {
+    this.selectedTime = time;
   }
 
   incrementGuests(): void {
@@ -141,26 +217,27 @@ export class TeeBookingComponent implements OnInit {
   }
 
   decrementGuests(): void {
-    if (this.guestCount > 0) {
+    if (this.guestCount > 1) {
       this.guestCount--;
     }
   }
 
-  selectDate(date: Date): void {
-    this.selectedDate = date;
-    this.selectedTime = null; // Reset time when date changes
-    this.generateTimeSlots(); // Regenerate time slots for the new date
-  }
-
-  selectTime(time: string): void {
-    this.selectedTime = time;
-  }
-
   canBook(): boolean {
-    return !!this.selectedDate && 
-           !!this.selectedTime && 
+    return !!this.selectedTime && 
            this.guestCount > 0 && 
            this.guestCount <= this.maxGuests;
+  }
+
+  formatTime(time: string): string {
+    const [hour, minute] = time.split(':');
+    const hourNum = parseInt(hour);
+    const ampm = hourNum >= 12 ? 'PM' : 'AM';
+    const hour12 = hourNum % 12 || 12;
+    return `${hour12}:${minute} ${ampm}`;
+  }
+
+  calculatePrice(): number {
+    return this.guestCount * this.basePrice;
   }
 
   async bookTeeTime(): Promise<void> {
@@ -173,18 +250,15 @@ export class TeeBookingComponent implements OnInit {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      const booking = {
+      const booking: Booking = {
         date: this.selectedDate,
-        time: this.selectedTime,
+        time: this.selectedTime!,
         guests: this.guestCount,
         course: this.course.name,
         totalPrice: this.calculatePrice()
       };
 
       console.log('Booking details:', booking);
-      // Here you would typically make an API call to save the booking
-      
-      // Show success message or redirect
       alert('Booking successful!');
       this.resetForm();
     } catch (error) {
@@ -195,18 +269,12 @@ export class TeeBookingComponent implements OnInit {
     }
   }
 
-  private calculatePrice(): number {
-    // Simple price calculation - can be made more complex
-    const basePrice = 50; // Base price per person
-    return this.guestCount * basePrice;
-  }
-
   private resetForm(): void {
-    this.selectedDate = null;
     this.selectedTime = null;
     this.guestCount = 1;
   }
 
+  // Map and sharing functionality
   getDirections(): void {
     const query = encodeURIComponent(`${this.course.name} ${this.course.address}`);
     const url = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
@@ -224,7 +292,6 @@ export class TeeBookingComponent implements OnInit {
       if (navigator.share) {
         await navigator.share(shareData);
       } else {
-        // Fallback for browsers that don't support sharing
         this.copyToClipboard(`${shareData.title}\n${shareData.text}\n${shareData.url}`);
       }
     } catch (error) {
@@ -244,24 +311,6 @@ export class TeeBookingComponent implements OnInit {
       console.error('Failed to copy:', err);
     }
     document.body.removeChild(textarea);
-  }
-
-  // Date formatting helpers
-  formatDate(date: Date): string {
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'short', 
-      month: 'short', 
-      day: 'numeric' 
-    });
-  }
-
-  // Time formatting helpers
-  formatTime(time: string): string {
-    const [hour, minute] = time.split(':');
-    const hourNum = parseInt(hour);
-    const ampm = hourNum >= 12 ? 'PM' : 'AM';
-    const hour12 = hourNum % 12 || 12;
-    return `${hour12}:${minute} ${ampm}`;
   }
 
   // Error handling
