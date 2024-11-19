@@ -2,7 +2,36 @@ import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID } from '@angular/
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import { faClock, faUsers, faChartBar, faBox, faPhone, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faClock, 
+  faUsers,
+  faPhone,
+  faGlobe,
+  faChartSimple,
+  faCalendarAlt,
+  faMapMarkerAlt,
+  faGamepad,
+  faHotel,
+  faUtensils,
+  faCar,
+  faChalkboardTeacher,
+  faExclamationTriangle,
+  faUserFriends,
+  faGolfBallTee,
+  faStopwatch,
+  faCalendarWeek,
+  faBookOpen,
+  faBuildingColumns,
+  faPersonWalking,
+  faStar,
+  faPercent,
+  faBed,
+  faMugHot,
+  faCartPlus,
+  faFlag,
+  faRankingStar,
+  faTruckPickup
+} from '@fortawesome/free-solid-svg-icons';
 import { isPlatformBrowser } from '@angular/common';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 declare var bootstrap: any;
@@ -36,10 +65,6 @@ interface GolfCourse {
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit, AfterViewInit {
-  clockIcon = faClock;
-  usersIcon = faUsers;
-  chartIcon = faChartBar;
-  boxIcon = faBox;
   faPhone = faPhone;
   faGlobe = faGlobe;
 
@@ -58,23 +83,105 @@ export class CollectionComponent implements OnInit, AfterViewInit {
   priorityAmenities: number[] = [1, 2, 3, 4, 5, 6];
 
   amenities: GolfAmenity[] = [
-    { id: 1, title: 'No. of Tees per Day', tooltip: '2 Tees Per Day', icon: this.usersIcon },
-    { id: 2, title: 'Guest Restrictions', tooltip: 'Guests Allowed', icon: this.chartIcon },
-    { id: 3, title: 'Minimum Handicap', tooltip: 'HDP 24 and Under Only', icon: this.boxIcon },
-    { id: 4, title: 'Time Restrictions', tooltip: 'Time Restrictions Apply', icon: this.clockIcon },
-    { id: 5, title: 'Gap Between Booking', tooltip: 'Min 2 Weeks Between Play', icon: this.boxIcon },
-    { id: 6, title: 'Advance Booking (up to)', tooltip: 'Book up to 7 days in advance', icon: this.usersIcon },
-    { id: 7, title: 'Call MCG to Book', tooltip: 'DO NOT CALL COURSE - CALL MGC', icon: this.chartIcon },
-    { id: 8, title: '9 Hole Course', tooltip: '9 Hole Course', icon: this.clockIcon },
-    { id: 9, title: 'Two Courses Available', tooltip: 'Two Courses', icon: this.chartIcon },
-    { id: 10, title: 'Virtual Golf Simulator', tooltip: 'Virtual Golf Simulator', icon: this.boxIcon },
-    { id: 11, title: 'Marriott Group', tooltip: 'Marriott Hotel Group', icon: this.usersIcon },
-    { id: 12, title: 'Discounted Overnight Stays', tooltip: 'Discounted Overnight Stays', icon: this.chartIcon },
-    { id: 13, title: 'Food & Drink Discounts', tooltip: 'Food & Drink Discount', icon: this.boxIcon },
-    { id: 14, title: 'Buggy Discounts', tooltip: 'Discounted Buggies', icon: this.clockIcon },
-    { id: 15, title: 'Putting Lesson Included', tooltip: 'Inc. 20min Putting Lesson', icon: this.boxIcon },
-    { id: 16, title: 'Additional Restrictions', tooltip: 'Additional Restrictions See Course Details', icon: this.usersIcon },
+    { 
+      id: 1, 
+      title: 'No. of Tees per Day', 
+      tooltip: '2 Tees Per Day', 
+      icon: faGolfBallTee  // Golf tee specific icon
+    },
+    { 
+      id: 2, 
+      title: 'Guest Restrictions', 
+      tooltip: 'Guests Allowed', 
+      icon: faUserFriends  // Multiple users icon
+    },
+    { 
+      id: 3, 
+      title: 'Minimum Handicap', 
+      tooltip: 'HDP 24 and Under Only', 
+      icon: faChartSimple      // Golf ball for handicap 
+    },
+    { 
+      id: 4, 
+      title: 'Time Restrictions', 
+      tooltip: 'Time Restrictions Apply', 
+      icon: faStopwatch  // Stopwatch for time restrictions
+    },
+    { 
+      id: 5, 
+      title: 'Gap Between Booking', 
+      tooltip: 'Min 2 Weeks Between Play', 
+      icon: faCalendarWeek  // Calendar week for booking gaps
+    },
+    { 
+      id: 6, 
+      title: 'Advance Booking (up to)', 
+      tooltip: 'Book up to 7 days in advance', 
+      icon: faBookOpen  // Book for advance booking
+    },
+    { 
+      id: 7, 
+      title: 'Call MCG to Book', 
+      tooltip: 'DO NOT CALL COURSE - CALL MGC', 
+      icon: faPhone  // Phone for booking calls
+    },
+    { 
+      id: 8, 
+      title: '9 Hole Course', 
+      tooltip: '9 Hole Course', 
+      icon: faFlag  // Flag for course holes
+    },
+    { 
+      id: 9, 
+      title: 'Two Courses Available', 
+      tooltip: 'Two Courses', 
+      icon: faMapMarkerAlt  // Map marker for multiple courses
+    },
+    { 
+      id: 10, 
+      title: 'Virtual Golf Simulator', 
+      tooltip: 'Virtual Golf Simulator', 
+      icon: faGamepad  // Gamepad for simulator
+    },
+    { 
+      id: 11, 
+      title: 'Marriott Group', 
+      tooltip: 'Marriott Hotel Group', 
+      icon: faBuildingColumns  // Building for hotel group
+    },
+    { 
+      id: 12, 
+      title: 'Discounted Overnight Stays', 
+      tooltip: 'Discounted Overnight Stays', 
+      icon: faBed  // Bed for overnight stays
+    },
+    { 
+      id: 13, 
+      title: 'Food & Drink Discounts', 
+      tooltip: 'Food & Drink Discount', 
+      icon: faMugHot  // Mug for food & drink
+    },
+    { 
+      id: 14, 
+      title: 'Buggy Discounts', 
+      tooltip: 'Discounted Buggies', 
+      icon: faTruckPickup    // Cart for buggy
+    },
+    { 
+      id: 15, 
+      title: 'Putting Lesson Included', 
+      tooltip: 'Inc. 20min Putting Lesson', 
+      icon: faChalkboardTeacher  // Teacher for lessons
+    },
+    { 
+      id: 16, 
+      title: 'Additional Restrictions', 
+      tooltip: 'Additional Restrictions See Course Details', 
+      icon: faExclamationTriangle  // Triangle for restrictions
+    },
   ];
+
+  
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 

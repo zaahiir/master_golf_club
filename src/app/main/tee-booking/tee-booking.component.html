@@ -1,3 +1,4 @@
+<!-- Booking Container -->
 <div class="booking-container">
   <!-- Hero Section (unchanged) -->
   <div class="course-hero">
@@ -17,9 +18,59 @@
     </div>
   </div>
 
-  <!-- New Row Section with Info Card and Location Details -->
+  <!-- Reordered Row Section -->
   <div class="row-section booking-info-container p-4">
-    <div class="booking-column">
+    <!-- Booking Form Column (Now on Left) -->
+    <div class="booking-column booking-form">
+      <div class="form-card p-4">
+        <h2>Book Your Tee Time</h2>
+        
+        <div class="form-section">
+          <label>Guests</label>
+          <div class="player-selector">
+            <button class="circle-btn" (click)="decrementGuests()" [disabled]="guestCount === 0">-</button>
+            <span class="player-count">{{guestCount}}</span>
+            <button class="circle-btn" (click)="incrementGuests()" [disabled]="guestCount === maxGuests">+</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>Select Date</label>
+          <div class="date-scroll">
+            <button *ngFor="let date of availableDates" 
+                    class="date-btn"
+                    [class.selected]="selectedDate === date"
+                    (click)="selectDate(date)">
+              <span class="day">{{date | date:'EEE'}}</span>
+              <span class="date">{{date | date:'d'}}</span>
+              <span class="month">{{date | date:'MMM'}}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-section" *ngIf="selectedDate">
+          <label>Available Times</label>
+          <div class="time-grid">
+            <button *ngFor="let slot of timeSlots"
+                    class="time-btn"
+                    [class.selected]="selectedTime === slot.time"
+                    [disabled]="!slot.available"
+                    (click)="selectTime(slot.time)">
+              {{slot.time}}
+            </button>
+          </div>
+        </div>
+
+        <button class="book-btn" 
+                [disabled]="!canBook()"
+                (click)="bookTeeTime()">
+          Book Now
+        </button>
+      </div>
+    </div>
+
+    <!-- Info Column (Now on Right) -->
+    <div class="booking-column info-column">
       <!-- Course Information Card -->
       <div class="info-card p-4">
         <h3>About the Course</h3>
@@ -73,69 +124,20 @@
         </div>
       </div>
     </div>
-
-    <!-- Booking Form Column -->
-    <div class="booking-column">
-      <div class="form-card p-4">
-        <h2>Book Your Tee Time</h2>
-        
-        <div class="form-section">
-          <label>Guests</label>
-          <div class="player-selector">
-            <button class="circle-btn" (click)="decrementGuests()" [disabled]="guestCount === 0">-</button>
-            <span class="player-count">{{guestCount}}</span>
-            <button class="circle-btn" (click)="incrementGuests()" [disabled]="guestCount === maxGuests">+</button>
-          </div>
-        </div>
-
-        <div class="form-section">
-          <label>Select Date</label>
-          <div class="date-scroll">
-            <button *ngFor="let date of availableDates" 
-                    class="date-btn"
-                    [class.selected]="selectedDate === date"
-                    (click)="selectDate(date)">
-              <span class="day">{{date | date:'EEE'}}</span>
-              <span class="date">{{date | date:'d'}}</span>
-              <span class="month">{{date | date:'MMM'}}</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="form-section" *ngIf="selectedDate">
-          <label>Available Times</label>
-          <div class="time-grid">
-            <button *ngFor="let slot of timeSlots"
-                    class="time-btn"
-                    [class.selected]="selectedTime === slot.time"
-                    [disabled]="!slot.available"
-                    (click)="selectTime(slot.time)">
-              {{slot.time}}
-            </button>
-          </div>
-        </div>
-
-        <button class="book-btn" 
-                [disabled]="!canBook()"
-                (click)="bookTeeTime()">
-          Book Now
-        </button>
-      </div>
-    </div>
   </div>
 
   <!-- Map Row -->
-  <div class="row-section">
+  <div class="row-section m-0 p-0">
     <div class="map-card">
       <div class="map-container">
         <iframe
           width="100%"
           height="100%"
-          style="border:0"
-          loading="lazy"
-          allowfullscreen
-          [src]="mapUrl"
-          (error)="handleMapError($event)">
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
         </iframe>
       </div>
     </div>
