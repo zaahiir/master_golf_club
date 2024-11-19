@@ -1,17 +1,19 @@
-<div class="home container-fluid p-0 d-flex flex-column align-items-center">
+<!-- rules.component.html -->
+<div class="home">
   <!-- Background Image -->
-  <div class="home-image d-flex justify-content-center align-items-center">
+  <div class="home-image p-0 m-0 d-flex justify-content-center align-items-center">
     <h1 class="welcome-text">Members Rules</h1>
   </div>
 
-  <div class="container my-5">
+  <div class="container-fluid custom-container my-5 p-4">
     <div class="row justify-content-center">
-      <div class="col-12 col-lg-10">
-        <!-- Rules Content -->
-        <div class="rules-content">
-          <div class="section mb-5">
-            <h2 class="section-title">General Club Rules</h2>
-            <div class="rule-card">
+      <div class="col-12">
+        <h2 class="section-title text-center mb-5">General Club Rules</h2>
+        
+        <!-- First Row -->
+        <div class="row mb-4">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="rule-card h-100">
               <h3 class="rule-category">1. Dress Code</h3>
               <ul class="rule-list">
                 <li>Appropriate golf attire is required at all times on the course and practice areas</li>
@@ -20,8 +22,9 @@
                 <li>Golf shoes with soft spikes or flat-soled shoes only</li>
               </ul>
             </div>
-
-            <div class="rule-card">
+          </div>
+          <div class="col-md-6">
+            <div class="rule-card h-100">
               <h3 class="rule-category">2. Tee Time Policies</h3>
               <ul class="rule-list">
                 <li>Members may book tee times up to 14 days in advance</li>
@@ -30,8 +33,13 @@
                 <li>Guest policies and fees apply as per membership category</li>
               </ul>
             </div>
+          </div>
+        </div>
 
-            <div class="rule-card">
+        <!-- Second Row -->
+        <div class="row mb-5">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="rule-card h-100">
               <h3 class="rule-category">3. Course Etiquette</h3>
               <ul class="rule-list">
                 <li>Repair all ball marks and divots</li>
@@ -40,8 +48,9 @@
                 <li>Follow cart path rules and daily usage guidelines</li>
               </ul>
             </div>
-
-            <div class="rule-card">
+          </div>
+          <div class="col-md-6">
+            <div class="rule-card h-100">
               <h3 class="rule-category">4. Practice Facility Rules</h3>
               <ul class="rule-list">
                 <li>Practice areas open from sunrise to sunset</li>
@@ -51,23 +60,41 @@
               </ul>
             </div>
           </div>
+        </div>
 
-          <div class="section mb-5">
-            <h2 class="section-title">Important Notes</h2>
+        <!-- Important Notes Section -->
+        <div class="row mb-5">
+          <div class="col-12">
+            <h2 class="section-title text-center mb-4">Important Notes</h2>
             <div class="important-notes">
-              <p>• The club reserves the right to modify rules and policies as needed</p>
-              <p>• Violation of club rules may result in disciplinary action</p>
-              <p>• Members are responsible for their guests' adherence to club rules</p>
-              <p>• Special events may have modified rules and requirements</p>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>• The club reserves the right to modify rules and policies as needed</p>
+                  <p>• Violation of club rules may result in disciplinary action</p>
+                  <p>• Violation of club rules may result in disciplinary action</p>
+                  <p>• Violation of club rules may result in disciplinary action</p>
+                </div>
+                <div class="col-md-6">
+                  <p>• Members are responsible for their guests' adherence to club rules</p>
+                  <p>• Special events may have modified rules and requirements</p>
+                  <p>• Special events may have modified rules and requirements</p>
+                  <p>• Special events may have modified rules and requirements</p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="terms-section text-center">
-            <h3 class="mb-4">Terms & Conditions</h3>
-            <p class="mb-4">For complete details about membership terms, conditions, and policies, please review our full documentation.</p>
-            <a href="assets/terms.pdf" target="_blank" class="view-terms-btn">
-              View Terms & Conditions PDF
-            </a>
+        <!-- Terms Section -->
+        <div class="row">
+          <div class="col-12">
+            <div class="terms-section text-center">
+              <h3 class="mb-4">Terms & Conditions</h3>
+              <p class="mb-4">For complete details about membership terms, conditions, and policies, please review our full documentation.</p>
+              <a href="assets/terms.pdf" target="_blank" class="view-terms-btn">
+                View Terms & Conditions PDF
+              </a>
+            </div>
           </div>
         </div>
       </div>
