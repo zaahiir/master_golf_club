@@ -1,65 +1,107 @@
-<div class="orders container mt-4">
-    <h2 class="text-center mb-4">My Orders and Bookings</h2>
+<div class="container">
+  <h1 class="page-title">My Orders and Bookings</h1>
   
-    <!-- Orders Table -->
-    <div class="table-responsive">
-      <table class="table table-striped orders-table">
-        <thead>
-          <tr>
-            <th scope="col">Order ID</th>
-            <th scope="col">Booking ID</th>
-            <th scope="col">Status</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Bill</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ORD12345</td>
-            <td>BK12345</td>
-            <td>Completed</td>
-            <td>$250.00</td>
-            <td>
-              <button class="btn btn-primary btn-sm" (click)="viewBill('ORD12345')">View</button>
-              <button class="btn btn-secondary btn-sm" (click)="downloadBill('ORD12345')">Download PDF</button>
-            </td>
-          </tr>
-          <tr>
-            <td>ORD12346</td>
-            <td>BK12346</td>
-            <td>Pending</td>
-            <td>$150.00</td>
-            <td>
-              <button class="btn btn-primary btn-sm" (click)="viewBill('ORD12346')">View</button>
-              <button class="btn btn-secondary btn-sm" (click)="downloadBill('ORD12346')">Download PDF</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="cards-container">
+    <div class="card">
+      <h2 class="card-title">Recent Orders Summary</h2>
+      <p class="card-content">Overview of your recent order activity</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">12</div>
+          <div class="stat-label">Total Orders</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$1,250</div>
+          <div class="stat-label">Total Amount</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Pending Orders</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">9</div>
+          <div class="stat-label">Completed Orders</div>
+        </div>
+      </div>
     </div>
-  
-    <!-- Bill Modal -->
-    <div *ngIf="showModal" class="modal-backdrop">
-      <div class="modal">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Bill Details for Order ID: {{ selectedOrderId }}</h5>
-            <button type="button" class="close" (click)="closeModal()">×</button>
-          </div>
-          <div class="modal-body">
-            <p>Itemized bill for order ID {{ selectedOrderId }} will be displayed here...</p>
-            <ul>
-              <li>Product A - $100.00</li>
-              <li>Product B - $50.00</li>
-              <li>Product C - $100.00</li>
-            </ul>
-            <p><strong>Total: $250.00</strong></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
-          </div>
+    
+    <div class="card">
+      <h2 class="card-title">Recent Bookings Summary</h2>
+      <p class="card-content">Overview of your recent booking activity</p>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">8</div>
+          <div class="stat-label">Total Bookings</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$850</div>
+          <div class="stat-label">Total Amount</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">2</div>
+          <div class="stat-label">Upcoming</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">6</div>
+          <div class="stat-label">Completed</div>
         </div>
       </div>
     </div>
   </div>
-  
+
+  <div class="table-responsive">
+    <table class="orders-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Booking ID</th>
+          <th>Status</th>
+          <th>Amount</th>
+          <th>Bill</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ORD12345</td>
+          <td>BK12345</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+          <td>$250.00</td>
+          <td>
+            <button class="btn btn-primary">View</button>
+            <button class="btn btn-secondary">Download PDF</button>
+          </td>
+        </tr>
+        <tr>
+          <td>ORD12346</td>
+          <td>BK12346</td>
+          <td><span class="status-badge status-pending">Pending</span></td>
+          <td>$150.00</td>
+          <td>
+            <button class="btn btn-primary">View</button>
+            <button class="btn btn-secondary">Download PDF</button>
+          </td>
+        </tr>
+        <tr>
+          <td>ORD12347</td>
+          <td>BK12347</td>
+          <td><span class="status-badge status-processing">Processing</span></td>
+          <td>$350.00</td>
+          <td>
+            <button class="btn btn-primary">View</button>
+            <button class="btn btn-secondary">Download PDF</button>
+          </td>
+        </tr>
+        <tr>
+          <td>ORD12348</td>
+          <td>BK12348</td>
+          <td><span class="status-badge status-completed">Completed</span></td>
+          <td>$200.00</td>
+          <td>
+            <button class="btn btn-primary">View</button>
+            <button class="btn btn-secondary">Download PDF</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

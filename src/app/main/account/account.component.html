@@ -1,59 +1,82 @@
-<div class="account container mt-4">
-    <!-- Member Profile Section -->
-    <section class="profile-section mb-4">
-      <h3>Member Profile</h3>
-      <div class="profile-details">
-        <div class="profile-avatar"></div>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> {{'johndoe@example.com'}}</p>
-        <p><strong>Phone:</strong> +123-456-7890</p>
-        <button class="btn btn-outline-primary mt-2">Update Profile</button>
+<!-- account.component.html -->
+<div class="account-container">
+  <div class="row">
+    <!-- Profile & Password Card -->
+    <div class="dashboard-card">
+      <div class="profile-section">
+        <div class="profile-header">
+          <div class="profile-avatar"></div>
+          <div class="profile-info">
+            <h3>John Doe</h3>
+            <p class="text-muted">Premium Member</p>
+          </div>
+        </div>
+        <div class="profile-details">
+          <div class="info-item">
+            <span class="label">Email</span>
+            <span class="value">{{'johndoe@example.com'}}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Phone</span>
+            <span class="value">+123-456-7890</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Member Since</span>
+            <span class="value">January 2024</span>
+          </div>
+        </div>
+        <button class="btn-primary">Edit Profile</button>
       </div>
-    </section>
-  
-    <!-- Password Update Section -->
-    <section class="password-section mb-4">
-      <h3>Update Password</h3>
-      <div class="password-details">
-        <label for="old-password">Old Password</label>
-        <input type="password" id="old-password" class="form-control mb-2">
-        
-        <label for="new-password">New Password</label>
-        <input type="password" id="new-password" class="form-control mb-2">
-        
-        <button class="btn btn-outline-primary mt-2">Update Password</button>
+      
+      <div class="password-section">
+        <h4>Update Password</h4>
+        <div class="password-form">
+          <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <button class="btn-secondary">Change Password</button>
+        </div>
       </div>
-    </section>
-  
-    <!-- Billing Address Section -->
-    <section class="address-section mb-4">
-      <h3>Billing Address</h3>
-      <div class="address-details">
-        <p><strong>Address:</strong> 123 Fairway Drive, Greenfield</p>
-        <p><strong>City:</strong> Greenfield</p>
-        <p><strong>Zip Code:</strong> 12345</p>
-        <button class="btn btn-outline-primary mt-2">Update Billing Address</button>
+    </div>
+
+    <!-- Address Card -->
+    <div class="dashboard-card">
+      <div class="address-section">
+        <h3>Addresses</h3>
+        <div class="address-container">
+          <div class="address-box">
+            <h4>Billing Address</h4>
+            <p>123 Fairway Drive</p>
+            <p>Greenfield, 12345</p>
+            <p>United States</p>
+            <button class="btn-outline">Edit</button>
+          </div>
+          <div class="address-box">
+            <h4>Shipping Address</h4>
+            <p>456 Golf Course Road</p>
+            <p>Greenfield, 67890</p>
+            <p>United States</p>
+            <button class="btn-outline">Edit</button>
+          </div>
+        </div>
       </div>
-    </section>
-  
-    <!-- Shipping Address Section -->
-    <section class="address-section mb-4">
-      <h3>Shipping Address</h3>
-      <div class="address-details">
-        <p><strong>Address:</strong> 456 Golf Course Road, Greenfield</p>
-        <p><strong>City:</strong> Greenfield</p>
-        <p><strong>Zip Code:</strong> 67890</p>
-        <button class="btn btn-outline-primary mt-2">Update Shipping Address</button>
+
+      <div class="payment-section">
+        <h3>Payment Methods</h3>
+        <div class="payment-card">
+          <div class="card-info">
+            <div class="card-type">VISA</div>
+            <div class="card-number">**** **** **** 1234</div>
+            <div class="card-expiry">Expires: 12/25</div>
+          </div>
+          <button class="btn-outline">Manage Cards</button>
+        </div>
       </div>
-    </section>
-  
-    <!-- Payment Methods Section -->
-    <section class="payment-section mb-4">
-      <h3>Payment Methods</h3>
-      <div class="payment-details">
-        <p><strong>Primary Card:</strong> **** **** **** 1234 (Visa)</p>
-        <p><strong>Expiry Date:</strong> 12/25</p>
-      </div>
-    </section>
+    </div>
   </div>
-  
+</div>

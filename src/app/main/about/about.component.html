@@ -1,54 +1,71 @@
-<div class="home container-fluid p-0 d-flex flex-column align-items-center">
-  <!-- Background Image -->
+<div class="home container-fluid">
+  <!-- Background Image Banner -->
   <div class="home-image d-flex justify-content-center align-items-center">
     <h1 class="welcome-text">About Master Golf Club</h1>
   </div>
-
-  <!-- About Content Section -->
-  <section class="about-content container-fluid mt-4">
-    <h2>Welcome to Master Golf Club</h2>
-    <p>
-      Master Golf Club is a prestigious destination for golf enthusiasts. Our scenic and meticulously
-      designed course offers challenges and enjoyment for players of all levels. With a rich history,
-      a beautiful setting, and a vibrant community, we strive to provide an unforgettable golfing
-      experience.
-    </p>
-    <p>
-      Our facilities include a state-of-the-art clubhouse, luxurious amenities, and various events
-      throughout the year. Whether you're a beginner or an experienced golfer, Master Golf Club
-      invites you to become a part of our community.
-    </p>
-  </section>
-
-  <!-- Contact Content Section -->
-  <section class="contact-content container mt-4">
-    <h2>Contact Us</h2>
-    <p><strong>Address:</strong> 123 Fairway Drive, Greenfield, Country</p>
-    <p><strong>Phone:</strong> +123-456-7890</p>
-    <p><strong>Email:</strong> {{"contact@mastergolfclub.com"}}</p>
-  </section>
-
-  <!-- Membership Enquiry Form -->
-  <section class="membership-form container mt-4 mb-4">
-    <h2>Membership Enquiry</h2>
-    <form>
-      <div class="form-group">
-        <label for="name">Full Name <span class="text-danger">*</span></label>
-        <input type="text" id="name" class="form-control" required>
+  
+  <!-- First Row -->
+  <div class="content-row">
+    <!-- Welcome Card -->
+    <div class="content-card">
+      <div class="card-inner">
+        <h2>Welcome to Master Golf Club</h2>
+        <p>
+          Master Golf Club is a prestigious destination for golf enthusiasts. Our scenic and meticulously
+          designed course offers challenges and enjoyment for players of all levels. With a rich history,
+          a beautiful setting, and a vibrant community, we strive to provide an unforgettable golfing
+          experience.
+        </p>
+        <p>
+          Our facilities include a state-of-the-art clubhouse, luxurious amenities, and various events
+          throughout the year. Whether you're a beginner or an experienced golfer, Master Golf Club
+          invites you to become a part of our community.
+        </p>
       </div>
-      <div class="form-group">
-        <label for="email">Email <span class="text-danger">*</span></label>
-        <input type="email" id="email" class="form-control" required>
+    </div>
+    
+    <!-- Contact Card -->
+    <div class="content-card">
+      <div class="card-inner">
+        <h2>Contact Us</h2>
+        <p><strong>Address:</strong> 123 Fairway Drive, Greenfield, Country</p>
+        <p><strong>Phone:</strong> +123-456-7890</p>
+        <p><strong>Email:</strong> {{"contact@mastergolfclub.com"}}</p>
       </div>
-      <div class="form-group">
-        <label for="phone">Phone Number <span class="text-danger">*</span></label>
-        <input type="tel" id="phone" class="form-control" required>
+    </div>
+  </div>
+  
+  <!-- Second Row -->
+  <div class="content-row">
+    <!-- Membership Form Card -->
+    <div class="content-card">
+      <div class="card-inner">
+        <h2>Membership Enquiry</h2>
+        <form>
+          <div class="form-group">
+            <label for="name">Full Name <span class="text-danger">*</span></label>
+            <input type="text" id="name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="text-danger">*</span></label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="text-danger">*</span></label>
+            <input type="tel" id="phone" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" class="form-control" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Enquiry</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" class="form-control" rows="3"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary mt-3 p-2">Submit Enquiry</button>
-    </form>
-  </section>
+    </div>
+    
+    <!-- Image Card -->
+    <div class="content-card">
+      <div class="card-inner golf-facilities-image"></div>
+    </div>
+  </div>
 </div>
