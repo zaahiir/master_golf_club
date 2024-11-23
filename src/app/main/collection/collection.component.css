@@ -122,7 +122,8 @@
   background-color: #ECFAEC;
 }
 
-.card-content .info {
+.card-content .info a{
+  padding-top: 10px;
   text-decoration: none;
   color: #17701D;
   font-size: 13px; 
@@ -229,7 +230,7 @@
 .amenities-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  border-bottom: 1px solid #849981;
 }
 
 .amenity-icon {
@@ -237,9 +238,7 @@
   height: 32px;
   display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: 50%;
-  background-color: #f8f9fa;
   transition: all 0.3s ease;
 }
 
@@ -291,6 +290,7 @@
 .date-container {
   display: flex;
   gap: 2px;
+  border-bottom: 1px solid #849981;
 }
 
 .date-icon {
