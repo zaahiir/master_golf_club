@@ -1,5 +1,6 @@
 import { Component, OnInit  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ScrollService } from './services/scroll.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'master-golf';
+  constructor(private scrollService: ScrollService) {} 
+  
 
   ngOnInit(): void {
     
