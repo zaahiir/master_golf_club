@@ -1,7 +1,7 @@
 // login.component.ts
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -10,10 +10,8 @@ interface LoginForm {
   password: string;
 }
 
-interface RegisterForm {
-  username: string;
+interface ForgotPasswordForm {
   email: string;
-  password: string;
 }
 
 @Component({
@@ -21,24 +19,26 @@ interface RegisterForm {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  registerForm!: FormGroup;
-  isRegistrationActive: boolean = false;
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  });
+
+  forgotPasswordForm: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
+
+  isForgotPasswordActive: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    // Initialize forms regardless of platform
-    this.initializeForms();
-    
-    // Only check login status in browser
     if (isPlatformBrowser(this.platformId) && this.authService.isLoggedIn()) {
       this.router.navigate(['/home']);
     }
@@ -46,26 +46,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private initializeForms(): void {
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    });
-
-    this.registerForm = this.fb.group({
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
-  }
-
-  toggleRegistration(showRegistration: boolean): void {
-    this.isRegistrationActive = showRegistration;
+  toggleForgotPassword(showForgotPassword: boolean): void {
+    this.isForgotPasswordActive = showForgotPassword;
   }
 
   onLoginSubmit(): void {
     if (this.loginForm.valid && isPlatformBrowser(this.platformId)) {
-      // For now, just login without credentials
       this.authService.login(this.loginForm.value);
       this.router.navigate(['/home']);
     } else if (!this.loginForm.valid) {
@@ -73,26 +59,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onRegisterSubmit(): void {
-    if (this.registerForm.valid && isPlatformBrowser(this.platformId)) {
-      const formData: RegisterForm = this.registerForm.value;
-      // Here you would typically call a registration service
-      // For now, just redirect
-      this.router.navigate(['/home']);
-    } else if (this.registerForm.valid) {
-      this.markFormGroupTouched(this.registerForm);
-    }
-  }
-
-  socialLogin(platform: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.router.navigate(['/home']);
-    }
-  }
-
-  socialRegister(platform: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.router.navigate(['/home']);
+  onForgotPasswordSubmit(): void {
+    if (this.forgotPasswordForm.valid && isPlatformBrowser(this.platformId)) {
+      // Here you would typically call a password reset service
+      console.log('Password reset requested for:', this.forgotPasswordForm.value.email);
+      // Add your password reset logic here
+      this.forgotPasswordForm.reset();
+      this.toggleForgotPassword(false);
+    } else {
+      this.markFormGroupTouched(this.forgotPasswordForm);
     }
   }
 

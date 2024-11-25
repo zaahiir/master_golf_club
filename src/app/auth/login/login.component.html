@@ -1,92 +1,67 @@
 <div class="login_sec d-flex justify-content-center align-items-center">
-      <div class="login_container mt-5 mb-5" [class.active]="isRegistrationActive">
-        <!-- Login Form -->
-        <div class="form-box login">
-          <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-            <h1>Login</h1>
-            <div class="input-box">
-              <input  
-                type="text" 
-                formControlName="username"
-                placeholder="Username" 
-                required>
-              <i class='bx bxs-user'></i>
-            </div>
-            <div class="input-box">
-              <input 
-                type="password" 
-                formControlName="password"
-                placeholder="Password" 
-                required>
-              <i class='bx bxs-lock-alt'></i>
-            </div>
-            <div class="forgot-link">
-              <a href="#">Forgot Password?</a>
-            </div>
-            <button type="submit" class="login-btn fw-bold" [disabled]="!loginForm.valid">
-              Login
-            </button>
-          </form>
+  <div class="login_container mt-5 mb-5" [class.active]="isForgotPasswordActive">
+    <!-- Login Form -->
+    <div class="form-box login">
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <h1>Login</h1>
+        <div class="input-box">
+          <input  
+            type="text" 
+            formControlName="username"
+            placeholder="Username" 
+            required>
+          <i class='bx bxs-user'></i>
         </div>
-
-        <!-- Registration Form -->
-        <div class="form-box register">
-          <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
-            <h1>Registration</h1>
-            <div class="input-box">
-              <input 
-                type="text" 
-                formControlName="username"
-                placeholder="Username" 
-                required>
-              <i class='bx bxs-user'></i>
-            </div>
-            <div class="input-box">
-              <input 
-                type="email" 
-                formControlName="email"
-                placeholder="Email" 
-                required>
-              <i class='bx bxs-envelope'></i>
-            </div>
-            <div class="input-box">
-              <input 
-                type="password" 
-                formControlName="password"
-                placeholder="Password" 
-                required>
-              <i class='bx bxs-lock-alt'></i>
-            </div>
-            <button type="submit" class="reg-btn fw-bold" [disabled]="!registerForm.valid">
-              Register
-            </button>
-            <p>or register with social platforms</p>
-            <div class="social-icons">
-              <a href="#" (click)="socialRegister('google')"><i class='bx bxl-google'></i></a>
-              <a href="#" (click)="socialRegister('facebook')"><i class='bx bxl-facebook'></i></a>
-              <a href="#" (click)="socialRegister('github')"><i class='bx bxl-github'></i></a>
-              <a href="#" (click)="socialRegister('linkedin')"><i class='bx bxl-linkedin'></i></a>
-            </div>
-          </form>
+        <div class="input-box">
+          <input 
+            type="password" 
+            formControlName="password"
+            placeholder="Password" 
+            required>
+          <i class='bx bxs-lock-alt'></i>
         </div>
+        <button type="submit" class="login-btn fw-bold" [disabled]="!loginForm.valid">
+          Login
+        </button>
+      </form>
+    </div>
 
-        <!-- Toggle Panels -->
-        <div class="toggle-box">
-          <div class="toggle-panel toggle-left">
-            <h1>Hello, Welcome!</h1>
-            <p>Don't have an account?</p>
-            <button class="btn register-btn fw-bold text-light" (click)="toggleRegistration(true)">
-              Register
-            </button>
-          </div>
-
-          <div class="toggle-panel toggle-right">
-            <h1>Welcome Back!</h1>
-            <p>Already have an account?</p>
-            <button class="btn login-Btn fw-bold text-light" (click)="toggleRegistration(false)">
-              Login
-            </button>
-          </div>
+    <!-- Forgot Password Form -->
+    <div class="form-box register">
+      <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPasswordSubmit()">
+        <h1>Reset Password</h1>
+        <div class="input-box">
+          <input 
+            type="email" 
+            formControlName="email"
+            placeholder="Enter your email" 
+            required>
+          <i class='bx bxs-envelope'></i>
         </div>
+        <button type="submit" class="reg-btn fw-bold" [disabled]="!forgotPasswordForm.valid">
+          Reset Password
+        </button>
+        <p>We'll send you a link to reset your password</p>
+      </form>
+    </div>
+
+    <!-- Toggle Panels -->
+    <div class="toggle-box">
+      <div class="toggle-panel toggle-left">
+        <h1>Hello!</h1>
+        <p>Forgot your password?</p>
+        <button class="btn register-btn fw-bold text-light" (click)="toggleForgotPassword(true)">
+          Reset Password
+        </button>
+      </div>
+
+      <div class="toggle-panel toggle-right">
+        <h1>Welcome Back!</h1>
+        <p>Remember your password?</p>
+        <button class="btn login-Btn fw-bold text-light" (click)="toggleForgotPassword(false)">
+          Login
+        </button>
       </div>
     </div>
+  </div>
+</div>
