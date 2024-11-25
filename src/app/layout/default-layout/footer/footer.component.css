@@ -60,10 +60,10 @@
 }
 
 /* Partner Images */
-.partner-1 { background-image: url('../../../assets/image.png'); }
-.partner-2 { background-image: url('../../../assets/image (1).png'); }
-.partner-3 { background-image: url('../../../assets/image (2).png'); }
-.partner-4 { background-image: url('../../../assets/image (3).png'); }
+.partner-1 { background-image: url('../../../../assets/image.png'); }
+.partner-2 { background-image: url('../../../../assets/image (1).png'); }
+.partner-3 { background-image: url('../../../../assets/image (2).png'); }
+.partner-4 { background-image: url('../../../../assets/image (3).png'); }
 
 
 
@@ -71,7 +71,7 @@
 .footer {
   width: 100%;
   background-color: #fff; /* Set the background color to white */
-  background-image: url('../../../assets/save.png'); /* Set the PNG image as the background */
+  background-image: url('../../../../assets/save.png'); /* Set the PNG image as the background */
   background-size: cover; /* Ensure the background image covers the entire area */
   background-position: 100% 100%; /* Position the image in the center */
   background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -117,9 +117,9 @@
 }
 
 /* Footer Icons */
-.email-icon { background-image: url('../../../assets/sms-tracking.png'); }
-.phone-icon { background-image: url('../../../assets/call-calling.png'); }
-.address-icon { background-image: url('../../../assets/routing.png'); }
+.email-icon { background-image: url('../../../../assets/sms-tracking.png'); }
+.phone-icon { background-image: url('../../../../assets/call-calling.png'); }
+.address-icon { background-image: url('../../../../assets/routing.png'); }
 
 .contact-box {
   background-color: #ECFAEC;
@@ -149,15 +149,12 @@
   display: inline-block;
   width: 200px;
   height: 40px;
-  background-image: url('../../../assets/smartxoft.png');
+  background-image: url('../../../../assets/smartxoft.png');
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;
 }
 
-
-
-/* More footer styles as needed... */
 
 /* Responsive Styles */
 @media (max-width: 768px) {
