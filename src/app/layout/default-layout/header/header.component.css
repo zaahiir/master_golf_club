@@ -41,6 +41,12 @@
   animation: spinPause 10s linear infinite;
 }
 
+.nav-link{
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+}
+
 /* Existing responsive styles */
 @media (max-width: 768px) {
   .header-logo {

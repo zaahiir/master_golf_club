@@ -41,6 +41,7 @@
 
 .partners-sec h2{
   color: #ECFAEC;
+  font-family: var(--font-sans);
 }
 
 .partners-logo {
@@ -98,8 +99,13 @@
 
 .contact-info h6 {
   color: #1CBA6A;
+  font-family: var(--font-sans);
   font-weight: bold;
   margin-top: 15px;
+}
+
+.contact-info a, p {
+  font-family: var(--font-poppins);
 }
 
 .footer-img {
@@ -145,6 +151,11 @@
   color: #1CBA6A;
 }
 
+.footer-bottom p{
+  font-family: var(--font-poppins);
+  color: #c6d8bb;
+}
+
 .smartxoft-logo {
   display: inline-block;
   width: 200px;
@@ -158,8 +169,9 @@
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+
   .container-max {
-    padding: 0 10px;
+    padding: 0;
   }
   
   .partners-logo {
@@ -178,7 +190,7 @@
 
 @media (max-width: 576px) {
   .container-max {
-    padding: 0 5px;
+    padding: 0;
   }
 
   .partner-image {

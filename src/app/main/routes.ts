@@ -68,11 +68,5 @@ export const mainRoutes: Routes = [
     {
       path: 'teeBooking',
       loadComponent: () => import('./tee-booking/tee-booking.component').then(m => m.TeeBookingComponent)
-    },
-    {
-      path: 'test',
-      loadComponent: () => import('./test/test.component').then(m => m.TestComponent)
     }
-
-
 ];
