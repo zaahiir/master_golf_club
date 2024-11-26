@@ -4,13 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --d: 700ms;
-  --e: cubic-bezier(0.19, 1, 0.22, 1);
-  --font-sans: 'Rubik', sans-serif;
-  --font-serif: 'Cardo', serif;
-}
-
 .container {
   max-width: 1650px;
 }
@@ -22,7 +15,6 @@
 
 .team-section {
   padding: 2rem;
-  font-family: var(--font-sans);
 }
 
 .leader-card {
@@ -98,9 +90,6 @@
 }
 
 @media (max-width: 768px) {
-  .welcome-text {
-    font-size: 2rem;
-  }
 
   .team-section {
     padding: 2rem 1rem;

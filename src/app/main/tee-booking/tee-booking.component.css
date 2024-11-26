@@ -429,10 +429,6 @@ body {
   .map-container {
     height: 300px;
   }
-  
-  .map-card {
-    margin: 1rem auto;
-  }
 }
 
 @media (max-width: 480px) {

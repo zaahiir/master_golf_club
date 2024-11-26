@@ -56,13 +56,21 @@ box-sizing: border-box;
   text-align: center;
 }
 
+h1, h2, h3, h4, h5, h6{
+  font-family: var(--font-sans);
+}
+
+a, p{
+  font-family: var(--font-poppins);
+}
+
 @media (max-width: 1200px) {
   .home-image {
     height: 300px;
   }
 
   .welcome-text {
-    font-size: 1.75rem;
+    font-size: 1.50rem;
   }
 }
 
@@ -82,16 +90,16 @@ box-sizing: border-box;
   }
 
   .welcome-text {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 }
 
 @media (max-width: 576px) {
   .home-image {
-    height: 150px;
+    height: 200px;
   }
 
   .welcome-text {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 }

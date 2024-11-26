@@ -4,13 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --d: 700ms;
-  --e: cubic-bezier(0.19, 1, 0.22, 1);
-  --font-sans: 'Rubik', sans-serif;
-  --font-serif: 'Cardo', serif;
-}
-
 .home-image {
     background-image: url('../../../assets/images/golfground\ 1.jpeg');
     background-position: 100% 78%; 
@@ -105,10 +98,9 @@
   }
 
   .golf-ball .copy {
-    font-size: 1rem;
+    font-size: 15px;
     line-height: 1.4;
     color: #2d5a40;
-    font-style: italic;
   }
 
   .golf-ball-card:hover .golf-ball {
@@ -238,25 +230,16 @@
       height: 250px;
     }
   }
-
-  @media (max-width: 992px) {
-    .welcome-text {
-      font-size: 2.5rem;
-    }
-  }
   
   @media (max-width: 768px) {
-    .home-image {
-      height: 300px;
-    }
-  
-    .welcome-text {
-      font-size: 2rem;
-    }
   
     .golf-ball {
       width: 220px;
       height: 220px;
+    }
+
+    .golf-ball-card{
+      padding: 5px 10px;
     }
     
     .golf-ball .title {
@@ -285,17 +268,14 @@
   }
   
   @media (max-width: 576px) {
-    .home-image {
-      height: 200px;
-    }
-  
-    .welcome-text {
-      font-size: 1.5rem;
-    }
   
     .golf-ball {
       width: 180px;
       height: 180px;
+    }
+
+    .golf-ball-card{
+      padding: 5px 10px;
     }
     
     .golf-ball .title {

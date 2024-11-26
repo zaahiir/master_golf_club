@@ -4,13 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --d: 700ms;
-  --e: cubic-bezier(0.19, 1, 0.22, 1);
-  --font-sans: 'Rubik', sans-serif;
-  --font-serif: 'Cardo', serif;
-}
-
 .home {
   width: 100%;
   max-width: 1650px;
@@ -78,7 +71,6 @@
 }
 
 .event-content h3 {
-  font-family: var(--font-sans);
   color: #2c3e50;
   margin-bottom: 1rem;
   font-size: 1.8rem;
@@ -92,8 +84,6 @@
 
 .event-details p {
   color: #666;
-  font-family: var(--font-serif);
-  font-style: italic;
   margin: 0;
 }
 
@@ -105,7 +95,6 @@
 .description {
   color: #666;
   line-height: 1.6;
-  font-family: var(--font-sans);
   margin-bottom: 1rem;
 }
 
@@ -121,7 +110,6 @@
   border-radius: 20px;
   font-size: 0.9rem;
   color: #2c3e50;
-  font-family: var(--font-sans);
 }
 
 @media (max-width: 992px) {
