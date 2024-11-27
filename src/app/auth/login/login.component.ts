@@ -5,15 +5,6 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } 
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
-interface LoginForm {
-  username: string;
-  password: string;
-}
-
-interface ForgotPasswordForm {
-  email: string;
-}
-
 @Component({
   selector: 'app-login',
   standalone: true,
