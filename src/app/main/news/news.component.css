@@ -11,7 +11,7 @@
 }
 
 .home-image {
-  background-image: url('../../../assets/images/3872.jpg');
+  background-image: url('../../../assets/images/3872.webp');
 }
 
 .article-header {
@@ -50,7 +50,7 @@
 .main-article-image {
   width: 100%;
   height: 100%;
-  background-image: url('../../../assets/images/3872.jpg');
+  background-image: url('../../../assets/images/3872.webp');
   background-size: cover;
   background-position: center;
   transition: transform 0.3s ease;
@@ -86,11 +86,11 @@
 }
 
 .image-1 {
-  background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg');
+  background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.webp');
 }
 
 .image-2 {
-  background-image: url('../../../assets/images/gettyimages-171362434-612x612.jpg');
+  background-image: url('../../../assets/images/gettyimages-171362434-612x612.webp');
 }
 
 .image-caption {

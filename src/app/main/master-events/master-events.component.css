@@ -5,7 +5,7 @@
 }
 
 .home-image {
-  background-image: url('../../../assets/images/3872.jpg');
+  background-image: url('../../../assets/images/3872.webp');
 }
 
 .content-wrapper {
@@ -78,7 +78,7 @@
 
 .history-image {
   height: 400px;
-  background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg');
+  background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.webp');
   background-size: cover;
   background-position: center;
   margin: 2rem 0;
@@ -103,7 +103,7 @@
 
 .course-image {
   height: 400px;
-  background-image: url('../../../assets/images/gettyimages-171362434-612x612.jpg');
+  background-image: url('../../../assets/images/gettyimages-171362434-612x612.webp');
   background-size: cover;
   background-position: center;
   margin: 2rem 0;
@@ -161,15 +161,15 @@
 }
 
 .champion-2023 {
-  background-image: url('../../../assets/images/3872.jpg');
+  background-image: url('../../../assets/images/3872.webp');
 }
 
 .champion-2022 {
-  background-image: url('../../../assets/images/3859.jpg');
+  background-image: url('../../../assets/images/3859.webp');
 }
 
 .champion-2021 {
-  background-image: url('../../../assets/images/3872.jpg');
+  background-image: url('../../../assets/images/3872.webp');
 }
 
 h2 {

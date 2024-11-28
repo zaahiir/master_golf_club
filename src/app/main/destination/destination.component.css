@@ -5,7 +5,7 @@
 }
 
 .home-image {
-    background-image: url('../../../assets/images/3872.jpg');
+    background-image: url('../../../assets/images/3872.webp');
   }
 
 /* Page Content Section */
@@ -17,7 +17,7 @@
 /* Background Card */
 .background-card {
     width: 70%;
-    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg'); /* Replace with your image URL */
+    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.webp'); /* Replace with your image URL */
     background-size: cover; /* Ensures the image covers the entire container */
     background-position: center; /* Centers the image within the container */
     padding: 2rem;
@@ -146,7 +146,7 @@
   .modal-image {
     width: 100%;
     height: 300px;
-    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.jpg');
+    background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.webp');
     background-size: cover;
     background-position: center;
     border-radius: 8px;

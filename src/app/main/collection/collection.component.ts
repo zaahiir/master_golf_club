@@ -196,7 +196,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -208,7 +208,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -220,7 +220,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -232,7 +232,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -244,7 +244,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -256,7 +256,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -268,7 +268,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -280,7 +280,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -292,7 +292,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -304,7 +304,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -316,7 +316,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -328,7 +328,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
       { 
@@ -340,7 +340,7 @@ export class CollectionComponent implements OnInit, AfterViewInit {
         timing: 'Weekends from 11am', 
         phone: '01923 853929', 
         website: 'https://www.aldenhamgolfclub.co.uk',
-        imageUrl: 'assets/images/gettyimages-171362434-612x612.jpg',
+        imageUrl: 'assets/images/gettyimages-171362434-612x612.webp',
         amenities: [1, 2, 4]
       },
     ];

@@ -12,12 +12,12 @@ import { RouterLink, Router  } from '@angular/router';
 
 export class CollectionPlusComponent {
   cards = [
-    { country: 'Canada', backgroundImage: 'url(assets/images/3859.jpg)' },
-    { country: 'USA', backgroundImage: 'url(assets/images/3859.jpg)' },
-    { country: 'Europe', backgroundImage: 'url(assets/images/3859.jpg)' },
-    { country: 'Australia', backgroundImage: 'url(assets/images/3859.jpg)' },
-    { country: 'India', backgroundImage: 'url(assets/images/3859.jpg)' },
-    { country: 'Japan', backgroundImage: 'url(assets/images/3859.jpg)' },
+    { country: 'Canada', backgroundImage: 'url(assets/images/3859.webp)' },
+    { country: 'USA', backgroundImage: 'url(assets/images/3859.webp)' },
+    { country: 'Europe', backgroundImage: 'url(assets/images/3859.webp)' },
+    { country: 'Australia', backgroundImage: 'url(assets/images/3859.webp)' },
+    { country: 'India', backgroundImage: 'url(assets/images/3859.webp)' },
+    { country: 'Japan', backgroundImage: 'url(assets/images/3859.webp)' },
   ];
 
   constructor(private router: Router) {}
