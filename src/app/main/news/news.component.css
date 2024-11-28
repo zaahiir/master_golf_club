@@ -11,7 +11,7 @@
 }
 
 .home-image {
-  background-image: url('../../../assets/3872.jpg');
+  background-image: url('../../../assets/images/3872.jpg');
   background-position: center;
   width: 100%;
   height: 400px;
@@ -53,7 +53,7 @@
 .main-article-image {
   width: 100%;
   height: 100%;
-  background-image: url('../../../assets/3872.jpg');
+  background-image: url('../../../assets/images/3872.jpg');
   background-size: cover;
   background-position: center;
   transition: transform 0.3s ease;

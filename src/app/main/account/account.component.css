@@ -34,7 +34,7 @@
   height: 100px;
   border-radius: 50%;
   background-color: #e0e0e0;
-  background-image: url('../../../assets/member-avatar.jpg');
+  background-image: url('../../../assets/images/member-avatar.jpg');
   background-size: cover;
   background-position: center;
 }

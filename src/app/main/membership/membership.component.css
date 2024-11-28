@@ -53,10 +53,10 @@
   border-radius: 50%;
 }
 
-.access-icon { background-image: url('../../../assets/access-icon.png'); }
-.events-icon { background-image: url('../../../assets/access-icon.png'); }
-.training-icon { background-image: url('../../../assets/access-icon.png'); }
-.discount-icon { background-image: url('../../../assets/access-icon.png'); }
+.access-icon { background-image: url('../../../assets/images/access-icon.png'); }
+.events-icon { background-image: url('../../../assets/images/access-icon.png'); }
+.training-icon { background-image: url('../../../assets/images/access-icon.png'); }
+.discount-icon { background-image: url('../../../assets/images/access-icon.png'); }
 
 .benefit-card h3 {
   color: #2c3e50;
