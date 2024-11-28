@@ -34,14 +34,14 @@ export class MembersNewsComponent implements OnInit {
         title: 'Annual Golf Tournament Announcement',
         date: 'March 15, 2024',
         description: 'Join us for our prestigious annual golf tournament featuring top players from across the region. Early bird registration now open.',
-        imageUrl: 'assets/3872.jpg'
+        imageUrl: 'assets/images/3872.jpg'
       },
       {
         id: 2,
         title: 'New Golf Course Facilities Opening',
         date: 'March 12, 2024',
         description: 'We are excited to announce the opening of our new state-of-the-art practice facilities, including a driving range and putting green.',
-        imageUrl: 'assets/3859.jpg'
+        imageUrl: 'assets/images/3859.jpg'
       },
       {
         id: 3,
