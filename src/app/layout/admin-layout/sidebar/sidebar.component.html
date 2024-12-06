@@ -1,16 +1,17 @@
-<aside id="sidebar-wrapper">
-    <div class="sidebar-brand">
-      <h2>Logo</h2>
-    </div>
-    <ul class="sidebar-nav">
-      <li class="active">
-        <a href="#"><i class="fa fa-home"></i>Home</a>
-      </li>
-      <li>
-        <a href="#"><i class="fa fa-plug"></i>Plugins</a>
-      </li>
-      <li>
-        <a href="#"><i class="fa fa-user"></i>Users</a>
-      </li>
-    </ul>
+<!-- sidebar.component.html -->
+<aside class="admin-sidebar">
+  <div class="sidebar-brand">
+    <h2>Admin Panel</h2>
+  </div>
+  <ul class="sidebar-nav">
+    <li *ngFor="let item of menuItems">
+      <a 
+        [routerLink]="item.route" 
+        routerLinkActive="active"
+      >
+        <i class="fa {{ item.icon }}"></i> 
+        {{ item.label }}
+      </a>
+    </li>
+  </ul>
 </aside>

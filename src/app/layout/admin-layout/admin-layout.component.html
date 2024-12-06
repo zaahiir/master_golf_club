@@ -1,10 +1,11 @@
-<div id="wrapper">
-<app-sidebar></app-sidebar>
-<section>
-<app-header></app-header>
+<!-- admin-layout.component.html -->
+<div id="wrapper" [class.toggled]="isSidebarToggled">
+  <app-sidebar></app-sidebar>
+  <section>
+    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
     <main>
       <router-outlet></router-outlet>
     </main>
-<app-footer></app-footer>
-</section>
+    <app-footer></app-footer>
+  </section>
 </div>

@@ -1,17 +1,24 @@
-#wrapper {
-    padding-left: 0;
-    transition: all 0.5s ease;
-    position: relative;
-  }  
+/* admin-layout.component.css */
 
-section{    
+#wrapper {
   display: flex;
-  flex-direction: column  ;
-  background: white;
-  width: 80vw;
-  right:0;
   height: 100vh;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled app-sidebar {
+  width: 0;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
   background: white;
-  content: "";
-  padding: 0%;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
 }

@@ -12,5 +12,9 @@ import { FooterComponent } from './footer/footer.component';
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent {
+  isSidebarToggled = false;
 
+  toggleSidebar() {
+    this.isSidebarToggled = !this.isSidebarToggled;
+  }
 }

@@ -1,9 +1,17 @@
-<div id="navbar-wrapper">
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a href="#" class="navbar-brand" id="sidebar-toggle"><i class="fa fa-bars"></i></a>
-        </div>
-      </div>
-    </nav>
-</div>
+<!-- header.component.html -->
+<nav class="admin-header">
+  <button (click)="onToggleSidebar()" class="sidebar-toggle">
+    <i class="fa fa-bars"></i>
+  </button>
+  <div class="header-title">
+    Admin Dashboard
+  </div>
+  <div class="header-actions">
+    <button class="notification-btn">
+      <i class="fa fa-bell"></i>
+    </button>
+    <button class="profile-btn">
+      <i class="fa fa-user"></i>
+    </button>
+  </div>
+</nav>
