@@ -1,18 +1,18 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
+import { AdminFooterComponent } from './admin-footer/admin-footer.component';
+import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 
 @Component({
-  selector: 'app-admin-layout',
+  selector: 'app-admin-layout-template',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, SidebarComponent, FooterComponent ],
-  templateUrl: './admin-layout.component.html',
-  styleUrl: './admin-layout.component.css'
+  imports: [RouterOutlet, AdminHeaderComponent, AdminFooterComponent, AdminSidebarComponent],
+  templateUrl: './admin-layout-template.component.html',
+  styleUrl: './admin-layout-template.component.css'
 })
-export class AdminLayoutComponent implements OnInit, OnDestroy {
+export class AdminLayoutTemplateComponent implements OnInit, OnDestroy {
   isSidebarToggled = false;
   isMobileView = false;
   private resizeListener: (() => void) | null = null;

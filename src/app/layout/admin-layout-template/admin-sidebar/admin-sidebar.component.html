@@ -1,0 +1,16 @@
+<!-- sidebar.component.html -->
+<aside class="sidebar" [class.collapsed]="!isToggled">
+    <div class="sidebar-header">
+      <img src="assets/logo.png" alt="Logo" class="logo" />
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li *ngFor="let item of menuItems">
+          <a [routerLink]="item.path" routerLinkActive="active">
+            <fa-icon [icon]="item.icon"></fa-icon>
+            <span *ngIf="isToggled">{{ item.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>

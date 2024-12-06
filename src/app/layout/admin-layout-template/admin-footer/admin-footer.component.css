@@ -1,0 +1,56 @@
+.admin-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    padding: 15px 0;
+    position: sticky;
+    bottom: 0;
+    z-index: 999;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1650px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .copyright {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .heart-icon {
+    color: #e74c3c;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-links a {
+    color: #666;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .footer-links a:hover {
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 10px;
+      text-align: center;
+    }
+  
+    .footer-links {
+      justify-content: center;
+    }
+  }

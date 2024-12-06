@@ -3,7 +3,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
 import { AuthGuard } from './auth/auth.guard';
-import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { AdminLayoutTemplateComponent } from './layout/admin-layout-template/admin-layout-template.component';
+
 
 export const routes: Routes = [
   {
@@ -32,7 +33,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminLayoutComponent,
+    component: AdminLayoutTemplateComponent,
     children: [
       {
         path: '',

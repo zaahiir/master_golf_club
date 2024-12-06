@@ -1,0 +1,24 @@
+<!-- header.component.html -->
+<nav class="admin-header">
+    <div class="header-left">
+      <button (click)="onToggleSidebar()" class="sidebar-toggle">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </button>
+      <div class="header-title">Admin Dashboard</div>
+      <div class="search-bar">
+        <fa-icon [icon]="faSearch"></fa-icon>
+        <input type="text" placeholder="Search...">
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="notification-btn">
+        <fa-icon [icon]="faBell"></fa-icon>
+        <span class="badge">3</span>
+      </button>
+      <div class="profile-section">
+        <img src="assets/avatar.png" alt="Profile" class="avatar">
+        <span class="username">John Doe</span>
+        <fa-icon [icon]="faUser"></fa-icon>
+      </div>
+    </div>
+  </nav>
