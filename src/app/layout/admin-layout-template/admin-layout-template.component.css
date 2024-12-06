@@ -15,18 +15,46 @@
   transition: margin-left 0.3s ease;
 }
 
-.main-content.expanded {
-  margin-left: -250px;
-}
-
 .content-area {
   flex-grow: 1;
   overflow-y: auto;
   background-color: #f4f4f4;
 }
 
+/* Desktop styles */
+@media (min-width: 769px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .main-content.expanded {
+    margin-left: -250px;
+  }
+}
+
+/* Mobile styles */
 @media (max-width: 768px) {
   .admin-layout {
-    flex-direction: column;
+    position: relative;
+  }
+  
+  .main-content {
+    margin-left: 60px; /* Fixed 60px margin for mobile */
+    width: calc(100% - 60px); /* Adjust width to account for sidebar */
+  }
+  
+  .main-content.expanded {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  /* Add this class to your sidebar component */
+  :host ::ng-deep .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    z-index: 1000;
   }
 }
