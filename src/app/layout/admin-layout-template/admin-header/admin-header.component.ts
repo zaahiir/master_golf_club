@@ -4,7 +4,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { 
   faBars, 
   faBell,
-  faUser
+  faUser,
+  faCaretDown,
+  faCaretUp
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,8 +23,16 @@ export class AdminHeaderComponent {
   faBars = faBars;
   faBell = faBell;
   faUser = faUser;
+  faCaretDown = faCaretDown;
+  faCaretUp = faCaretUp;
+
+  isUserDropdownOpen = false;
 
   onToggleSidebar() {
     this.toggleSidebar.emit();
+  }
+
+  toggleUserDropdown() {
+    this.isUserDropdownOpen = !this.isUserDropdownOpen;
   }
 }

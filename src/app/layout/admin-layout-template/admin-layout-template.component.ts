@@ -13,7 +13,7 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
   styleUrl: './admin-layout-template.component.css'
 })
 export class AdminLayoutTemplateComponent implements OnInit, OnDestroy {
-  isSidebarToggled = false;
+  isSidebarToggled = true;
   isMobileView = false;
   private resizeListener: (() => void) | null = null;
 

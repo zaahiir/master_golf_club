@@ -6,3 +6,24 @@
   font-size: 0.75rem;
   padding: 0.25em 0.4em;
 }
+
+.sidebar-toggle:hover {
+  color: #ddb283 !important;
+}
+
+.notification-btn:hover {
+  color: #ddb283;
+}
+
+.profile-section .dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+.dropdown-menu.show {
+  display: block;
+}

@@ -2,9 +2,9 @@
 <nav class="admin-header bg-white shadow-sm d-flex align-items-center justify-content-between">
   <div class="header-left d-flex align-items-center">
     <button 
-      class="btn btn-outline-success sidebar-toggle" 
+      class="btn sidebar-toggle" 
       (click)="onToggleSidebar()"
-      [style.color]="'#104e39'"
+      style="color: #104e39;"
     >
       <fa-icon [icon]="faBars"></fa-icon>
     </button>
@@ -14,10 +14,24 @@
       <fa-icon [icon]="faBell"></fa-icon>
       <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">3</span>
     </button>
-    <div class="profile-section d-flex align-items-center gap-2">
-      <img src="assets/avatar.png" alt="Profile" class="avatar rounded-circle">
-      <span class="username d-none d-md-inline">John Doe</span>
-      <fa-icon [icon]="faUser"></fa-icon>
+    <div class="profile-section dropdown">
+      <div 
+        class="d-flex align-items-center gap-2 dropdown-toggle" 
+        (click)="toggleUserDropdown()"
+      >
+        <img src="../../../../assets/images/member-avatar.jpg" alt="Profile" class="avatar rounded-circle">
+        <span class="username d-none d-md-inline">John Doe</span>
+        <fa-icon [icon]="isUserDropdownOpen ? faCaretUp : faCaretDown"></fa-icon>
+      </div>
+      <ul 
+        class="dropdown-menu" 
+        [ngClass]="{'show': isUserDropdownOpen}"
+      >
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Logout</a></li>
+      </ul>
     </div>
   </div>
 </nav>
