@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { 
   faBars, 
-  faBell
+  faBell,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -19,6 +20,7 @@ export class AdminHeaderComponent {
 
   faBars = faBars;
   faBell = faBell;
+  faUser = faUser;
 
   onToggleSidebar() {
     this.toggleSidebar.emit();

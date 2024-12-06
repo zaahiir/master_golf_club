@@ -1,9 +1,8 @@
-.navbar {
+.admin-header {
   height: 60px;
-  padding: 0 20px;
 }
 
 .badge {
-  font-size: 0.6rem;
-  padding: 0.2em 0.4em;
+  font-size: 0.75rem;
+  padding: 0.25em 0.4em;
 }
