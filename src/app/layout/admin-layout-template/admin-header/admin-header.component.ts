@@ -1,12 +1,11 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { 
-  faBars, 
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faBars,
   faBell,
-  faUser,
-  faCaretDown,
-  faCaretUp
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -20,11 +19,10 @@ export class AdminHeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
   @Input() isSidebarToggled = false;
 
-  faBars = faBars;
-  faBell = faBell;
-  faUser = faUser;
-  faCaretDown = faCaretDown;
-  faCaretUp = faCaretUp;
+  // Explicitly type the icons
+  faBars: IconDefinition = faBars;
+  faBell: IconDefinition = faBell;
+  faUser: IconDefinition = faUser;
 
   isUserDropdownOpen = false;
 
@@ -34,5 +32,13 @@ export class AdminHeaderComponent {
 
   toggleUserDropdown() {
     this.isUserDropdownOpen = !this.isUserDropdownOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: MouseEvent) {
+    const profileSection = document.querySelector('.profile-section');
+    if (profileSection && !profileSection.contains(event.target as Node)) {
+      this.isUserDropdownOpen = false;
+    }
   }
 }

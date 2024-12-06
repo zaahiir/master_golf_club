@@ -21,7 +21,7 @@ import {
   styleUrl: './admin-sidebar.component.css'
 })
 export class AdminSidebarComponent {
-  @Input() isToggled = false;
+  @Input() isToggled = true;
   @Input() isMobileView = false;
 
   faSignOut = faSignOut;
