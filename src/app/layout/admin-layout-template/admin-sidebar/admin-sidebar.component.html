@@ -1,16 +1,24 @@
 <!-- sidebar.component.html -->
-<aside class="sidebar" [class.collapsed]="!isToggled">
-    <div class="sidebar-header justify-content-center">
-      <img src="../../../../assets/images/mgc_logo-03.png" alt="Logo" class="logo" />
-    </div>
-    <nav class="sidebar-nav">
-      <ul>
-        <li *ngFor="let item of menuItems">
-          <a [routerLink]="item.path" routerLinkActive="active">
-            <fa-icon [icon]="item.icon"></fa-icon>
-            <span *ngIf="isToggled">{{ item.label }}</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
+<aside class="sidebar" [ngClass]="{'collapsed': !isToggled}">
+  <div class="sidebar-header justify-content-center">
+    <img 
+      [src]="'../../../../assets/images/mgc_logo-03.png'" 
+      alt="Logo" 
+      [ngClass]="{'logo-full': isToggled, 'logo-collapsed': !isToggled}"
+    />
+  </div>
+  <nav class="sidebar-nav">
+    <ul class="list-unstyled">
+      <li *ngFor="let item of menuItems">
+        <a 
+          [routerLink]="item.path" 
+          routerLinkActive="active" 
+          class="d-flex align-items-center"
+        >
+          <fa-icon [icon]="item.icon" class="me-2"></fa-icon>
+          <span *ngIf="isToggled">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>

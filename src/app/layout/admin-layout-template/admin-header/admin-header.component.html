@@ -1,19 +1,48 @@
 <!-- header.component.html -->
-<nav class="admin-header">
-    <div class="header-left">
-      <button (click)="onToggleSidebar()" class="sidebar-toggle">
-        <fa-icon [icon]="faBars"></fa-icon>
-      </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container-fluid">
+    <button 
+      class="navbar-toggler me-2" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNav" 
+      aria-controls="navbarNav" 
+      aria-expanded="false" 
+      aria-label="Toggle navigation"
+      (click)="onToggleSidebar()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item me-3">
+          <button class="btn btn-link nav-link position-relative">
+            <fa-icon [icon]="faBell"></fa-icon>
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">3</span>
+          </button>
+        </li>
+        <li class="nav-item dropdown">
+          <a 
+            class="nav-link dropdown-toggle" 
+            href="#" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <svg width="24" height="24" fill="green" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+            </svg>
+            <span class="ms-2">John Doe</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-    <div class="header-actions">
-      <button class="notification-btn">
-        <fa-icon [icon]="faBell"></fa-icon>
-        <span class="badge">3</span>
-      </button>
-      <div class="profile-section">
-        <img src="assets/avatar.png" alt="Profile" class="avatar">
-        <span class="username">John Doe</span>
-        <fa-icon [icon]="faUser"></fa-icon>
-      </div>
-    </div>
-  </nav>
+  </div>
+</nav>

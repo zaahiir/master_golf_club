@@ -1,61 +1,9 @@
-.admin-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff;
-    height: 60px;
-    padding: 0 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .notification-btn {
-    position: relative;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #e74c3c;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 10px;
-  }
-  
-  .profile-section {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-  
-  .avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-  }
-  
-  @media (max-width: 768px) {
-    .search-bar, .username {
-      display: none;
-    }
-  }
+.navbar {
+  height: 60px;
+  padding: 0 20px;
+}
+
+.badge {
+  font-size: 0.6rem;
+  padding: 0.2em 0.4em;
+}
