@@ -6,15 +6,16 @@
   background: #f5f5f5;
 }
 
-p{
+p {
   font-size: 14px;
+  margin: 0;
 }
 
 .smartxoft-logo {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url('../../../../assets/images/smartxoft\ icon.png');
+  background-image: url('../../../../assets/images/smartxoft icon.png');
   background-size: contain;
   background-repeat: no-repeat;
   vertical-align: middle;

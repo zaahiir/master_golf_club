@@ -37,11 +37,11 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./main/routes').then(m => m.mainRoutes)
+        loadChildren: () => import('./admin-view/routes').then(m => m.adminViewRoutes)
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       }
     ]

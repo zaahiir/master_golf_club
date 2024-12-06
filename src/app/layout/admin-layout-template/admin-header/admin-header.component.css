@@ -17,6 +17,10 @@
   color: #ddb283; 
 } 
  
+.notification-btn { 
+  color: #104e39; 
+} 
+ 
 .profile-section .dropdown-toggle { 
   cursor: pointer; 
 } 
