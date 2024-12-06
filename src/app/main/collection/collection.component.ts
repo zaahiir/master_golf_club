@@ -3,17 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { 
-  faClock, 
-  faUsers,
   faPhone,
   faGlobe,
   faChartSimple,
-  faCalendarAlt,
   faMapMarkerAlt,
   faGamepad,
-  faHotel,
-  faUtensils,
-  faCar,
   faChalkboardTeacher,
   faExclamationTriangle,
   faUserFriends,
@@ -22,14 +16,9 @@ import {
   faCalendarWeek,
   faBookOpen,
   faBuildingColumns,
-  faPersonWalking,
-  faStar,
-  faPercent,
   faBed,
   faMugHot,
-  faCartPlus,
   faFlag,
-  faRankingStar,
   faTruckPickup
 } from '@fortawesome/free-solid-svg-icons';
 import { isPlatformBrowser } from '@angular/common';

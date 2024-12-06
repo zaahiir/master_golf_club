@@ -2,18 +2,23 @@
 .admin-sidebar {
   width: 250px;
   height: 100%;
-  background-color: #27ae60;
+  background-color: #00008a;
   color: white;
-  transition: width 0.5s ease;
+  transition: width 0.3s ease;
   overflow-x: hidden;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 1000;
+}
+
+.admin-sidebar.toggled {
+  width: 80px;
 }
 
 .sidebar-brand {
   text-align: center;
   padding: 20px 0;
-  background-color: #2ecc71;
+  background-color: #00005a;
 }
 
 .sidebar-brand h2 {
@@ -28,20 +33,43 @@
 }
 
 .sidebar-nav li a {
-  display: block;
+  display: flex;
+  align-items: center;
   color: white;
   padding: 15px;
   text-decoration: none;
   transition: background-color 0.3s;
 }
 
-.sidebar-nav li a:hover, 
-.sidebar-nav li a.active {
-  background-color: #2ecc71;
-}
-
 .sidebar-nav li a i {
   margin-right: 10px;
   width: 20px;
   text-align: center;
+}
+
+.sidebar-nav li a.icon-only {
+  justify-content: center;
+}
+
+.sidebar-nav li a.icon-only span {
+  display: none;
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a.active {
+  background-color: #4169e1;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .admin-sidebar.mobile-view.toggled {
+    transform: translateX(-100%);
+  }
 }

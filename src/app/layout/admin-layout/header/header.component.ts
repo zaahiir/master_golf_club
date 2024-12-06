@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent {
   @Output() toggleSidebar = new EventEmitter<void>();
+  @Input() isSidebarToggled = false;
 
   onToggleSidebar() {
     this.toggleSidebar.emit();

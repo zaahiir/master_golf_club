@@ -1,6 +1,10 @@
 <!-- sidebar.component.html -->
-<aside class="admin-sidebar">
-  <div class="sidebar-brand">
+<aside 
+  class="admin-sidebar" 
+  [class.toggled]="isToggled" 
+  [class.mobile-view]="isMobileView"
+>
+  <div class="sidebar-brand" *ngIf="!isToggled">
     <h2>Admin Panel</h2>
   </div>
   <ul class="sidebar-nav">
@@ -8,9 +12,10 @@
       <a 
         [routerLink]="item.route" 
         routerLinkActive="active"
+        [class.icon-only]="isToggled"
       >
-        <i class="fa {{ item.icon }}"></i> 
-        {{ item.label }}
+        <i class="{{ item.icon }}"></i>
+        <span *ngIf="!isToggled">{{ item.label }}</span>
       </a>
     </li>
   </ul>

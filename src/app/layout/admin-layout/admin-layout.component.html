@@ -1,11 +1,17 @@
 <!-- admin-layout.component.html -->
-<div id="wrapper" [class.toggled]="isSidebarToggled">
-  <app-sidebar></app-sidebar>
-  <section>
-    <app-header (toggleSidebar)="toggleSidebar()"></app-header>
-    <main>
+<div class="admin-layout">
+  <app-sidebar 
+    [isToggled]="isSidebarToggled" 
+    [isMobileView]="isMobileView"
+  ></app-sidebar>
+  <div class="main-content" [class.expanded]="isSidebarToggled && isMobileView">
+    <app-header 
+      (toggleSidebar)="toggleSidebar()"
+      [isSidebarToggled]="isSidebarToggled"
+    ></app-header>
+    <main class="content-area">
       <router-outlet></router-outlet>
     </main>
     <app-footer></app-footer>
-  </section>
+  </div>
 </div>
