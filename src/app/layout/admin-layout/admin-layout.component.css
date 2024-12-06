@@ -1,0 +1,17 @@
+#wrapper {
+    padding-left: 0;
+    transition: all 0.5s ease;
+    position: relative;
+  }  
+
+section{    
+  display: flex;
+  flex-direction: column  ;
+  background: white;
+  width: 80vw;
+  right:0;
+  height: 100vh;
+  background: white;
+  content: "";
+  padding: 0%;
+}

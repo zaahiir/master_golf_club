@@ -1,0 +1,48 @@
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  
+  .sidebar-brand {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .sidebar-brand h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  .sidebar-nav {
+    position: absolute;
+    top: 75px;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .sidebar-nav > li {
+    text-indent: 10px;
+    line-height: 42px;
+  }
+  .sidebar-nav > li a {
+    display: block;
+    text-decoration: none;
+    color: #757575;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .sidebar-nav > li > a:hover,
+  .sidebar-nav > li.active > a {
+    text-decoration: none;
+    color: #fff;
+    background: #F8BE12;
+  }
+  .sidebar-nav > li > a i.fa {
+    font-size: 24px;
+    width: 60px;
+  }

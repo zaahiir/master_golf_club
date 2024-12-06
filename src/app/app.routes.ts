@@ -3,6 +3,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,21 @@ export const routes: Routes = [
     path: '',
     component: DefaultLayoutComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./main/routes').then(m => m.mainRoutes)
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
     children: [
       {
         path: '',
