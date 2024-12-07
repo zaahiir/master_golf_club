@@ -24,7 +24,7 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() isMobileView = false;
 
   menuItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: faDashboard, tooltip: 'Dashboard Overview' },
+    { path: '/admin/dashboard', label: 'Dashboard', icon: faDashboard, tooltip: 'Dashboard Overview' },
     { path: '/users', label: 'Users', icon: faUsers, tooltip: 'Manage Users' },
     { path: '/golf-courses', label: 'Golf Courses', icon: faGolfBall, tooltip: 'Manage Golf Courses' },
     { path: '/bookings', label: 'Bookings', icon: faCalendar, tooltip: 'View Bookings' },
