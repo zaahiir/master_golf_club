@@ -90,11 +90,11 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  getTooltipPlacement(): 'top' | 'right' {
-    if (this.isMobileView || !this.isToggled) {
-      return 'right';
+  getTooltipPlacement(): 'top' | 'right' | null {
+    if (this.isToggled) {
+      return null; // No tooltip when sidebar is fully extended
     }
-    return 'top';
+    return this.isMobileView ? 'right' : 'right';
   }
 
   private initializeTooltips() {
@@ -105,14 +105,16 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
           console.warn('Bootstrap not available for tooltips');
           return;
         }
-
+  
         const tooltipTriggerList = this.el.nativeElement.querySelectorAll('[data-bs-toggle="tooltip"]');
-        this.tooltips = Array.from(tooltipTriggerList).map(tooltipTriggerEl => 
-          new bootstrap.Tooltip(tooltipTriggerEl, {
-            trigger: 'hover',
-            placement: this.getTooltipPlacement()
-          })
-        );
+        this.tooltips = Array.from(tooltipTriggerList)
+          .filter(tooltipTriggerEl => !this.isToggled) // Only create tooltips when not toggled
+          .map(tooltipTriggerEl => 
+            new bootstrap.Tooltip(tooltipTriggerEl, {
+              trigger: 'hover',
+              placement: this.getTooltipPlacement()
+            })
+          );
       } catch (error) {
         console.error('Error initializing tooltips:', error);
       }
