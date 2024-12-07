@@ -1,28 +1,30 @@
 <!-- sidebar.component.html -->
-<aside class="sidebar d-flex flex-column vh-100" [ngClass]="{'collapsed': !isToggled}">
-  <div class="sidebar-header justify-content-start pt-2 px-4" [ngClass]="{
-    'pt-3 pb-1 px-4': isToggled,
-    'pt-2 px-2': !isToggled
-  }">
-
-    <img 
-      [src]="'../../../../assets/images/mgc_logo-03.png'" 
-      alt="Logo" 
-      [ngClass]="{'logo-full': isToggled, 'logo-collapsed': !isToggled}"
-    />
-  </div>
-  <nav class="sidebar-nav">
-    <ul class="list-unstyled">
-      <li *ngFor="let item of menuItems">
-        <a 
-          [routerLink]="item.path" 
-          routerLinkActive="active" 
-          class="d-flex align-items-center"
-        >
-          <fa-icon [icon]="item.icon" class="me-2"></fa-icon>
-          <span *ngIf="isToggled">{{ item.label }}</span>
-        </a>
+<aside class="sidebar d-flex flex-column vh-100" [ngClass]="{'collapsed': !isToggled}"> 
+  <div class="sidebar-header justify-content-start pt-2 px-4" [ngClass]="{ 
+    'pt-3 pb-1 px-4': isToggled, 
+    'pt-2 px-2': !isToggled 
+  }"> 
+    <img  
+      [src]="'../../../../assets/images/mgc_logo-03.png'"  
+      alt="Logo"  
+      [ngClass]="{'logo-full': isToggled, 'logo-collapsed': !isToggled}" 
+    /> 
+  </div> 
+  <nav class="sidebar-nav"> 
+    <ul class="list-unstyled"> 
+      <li *ngFor="let item of menuItems"> 
+        <a  
+          [routerLink]="item.path"  
+          routerLinkActive="active"  
+          class="d-flex align-items-center" 
+          [attr.data-bs-toggle]="!isToggled ? 'tooltip' : null"
+          [attr.data-bs-placement]="'right'"
+          [attr.title]="item.tooltip"
+        > 
+          <fa-icon [icon]="item.icon" class="me-2"></fa-icon> 
+          <span *ngIf="isToggled">{{ item.label }}</span> 
+        </a> 
       </li>
-    </ul>
-  </nav>
+    </ul> 
+  </nav> 
 </aside>
