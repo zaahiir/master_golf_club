@@ -15,15 +15,12 @@
         <a  
           [routerLink]="item.path"  
           routerLinkActive="active"  
-          class="d-flex align-items-center" 
-          [attr.data-bs-toggle]="!isToggled ? 'tooltip' : null"
-          [attr.data-bs-placement]="getTooltipPlacement()"
-          [attr.title]="!isToggled ? item.tooltip : null"
+          class="d-flex align-items-center"
         > 
           <fa-icon [icon]="item.icon" class="me-2"></fa-icon> 
           <span *ngIf="isToggled">{{ item.label }}</span> 
-        </a>
-      </li>
+        </a> 
+      </li> 
     </ul> 
   </nav> 
 </aside>
