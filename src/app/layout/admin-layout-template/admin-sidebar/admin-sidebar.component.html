@@ -17,12 +17,12 @@
           routerLinkActive="active"  
           class="d-flex align-items-center" 
           data-bs-toggle="tooltip"
-          [attr.data-bs-placement]="isToggled ? 'top' : 'right'"
+          [attr.data-bs-placement]="getTooltipPlacement()"
           [attr.title]="item.tooltip"
         > 
           <fa-icon [icon]="item.icon" class="me-2"></fa-icon> 
           <span *ngIf="isToggled">{{ item.label }}</span> 
-        </a> 
+        </a>
       </li>
     </ul> 
   </nav> 

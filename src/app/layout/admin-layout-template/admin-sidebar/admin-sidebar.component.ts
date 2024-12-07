@@ -79,15 +79,6 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.isBrowser && changes['isToggled'] && !changes['isToggled'].firstChange) {
-      this.destroyTooltips();
-      if ((window as any).bootstrap) {
-        this.initializeTooltips();
-      }
-    }
-  }
-
   private destroyTooltips() {
     if (this.tooltips.length > 0) {
       this.tooltips.forEach(tooltip => {
@@ -97,6 +88,13 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
       });
       this.tooltips = [];
     }
+  }
+
+  getTooltipPlacement(): 'top' | 'right' {
+    if (this.isMobileView || !this.isToggled) {
+      return 'right';
+    }
+    return 'top';
   }
 
   private initializeTooltips() {
@@ -112,13 +110,25 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
         this.tooltips = Array.from(tooltipTriggerList).map(tooltipTriggerEl => 
           new bootstrap.Tooltip(tooltipTriggerEl, {
             trigger: 'hover',
-            placement: this.isToggled ? 'top' : 'right'
+            placement: this.getTooltipPlacement()
           })
         );
       } catch (error) {
         console.error('Error initializing tooltips:', error);
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.isBrowser && (
+      (changes['isToggled'] && !changes['isToggled'].firstChange) ||
+      (changes['isMobileView'] && !changes['isMobileView'].firstChange)
+    )) {
+      this.destroyTooltips();
+      if ((window as any).bootstrap) {
+        this.initializeTooltips();
+      }
+    }
   }
 
   ngOnDestroy() {
