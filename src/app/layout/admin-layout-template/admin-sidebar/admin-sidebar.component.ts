@@ -1,3 +1,4 @@
+// admin-sidebar.component.ts
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';

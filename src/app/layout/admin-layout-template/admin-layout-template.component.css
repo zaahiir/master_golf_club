@@ -1,4 +1,4 @@
-/* admin-layout.component.css */
+/* admin-layout-template.component.css */
 .admin-layout {
   display: flex;
   max-width: 1650px;
@@ -39,22 +39,12 @@
   }
   
   .main-content {
-    margin-left: 60px; /* Fixed 60px margin for mobile */
-    width: calc(100% - 60px); /* Adjust width to account for sidebar */
+    margin-left: 60px;
+    width: calc(100% - 60px);
   }
   
   .main-content.expanded {
     margin-left: 0;
     width: 100%;
-  }
-  
-  /* Add this class to your sidebar component */
-  :host ::ng-deep .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 60px;
-    z-index: 1000;
   }
 }

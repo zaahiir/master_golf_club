@@ -1,10 +1,16 @@
-<aside class="sidebar d-flex flex-column vh-100" [ngClass]="{'collapsed': !isToggled}"> 
-  <div class="sidebar-header justify-content-start pt-2 px-4" [ngClass]="{ 
-    'pt-3 pb-1 px-4': isToggled, 
-    'py-2 px-2': !isToggled 
-  }"> 
+<!-- admin-sidebar.component.html -->
+<aside 
+  class="sidebar d-flex flex-column vh-100" 
+  [ngClass]="{'collapsed': !isToggled, 'mobile-sidebar': isMobileView}"
+> 
+  <div 
+    class="sidebar-header justify-content-start pt-2 px-4" 
+    [ngClass]="{ 
+      'pt-3 pb-1 px-4': isToggled, 
+      'py-2 px-2': !isToggled 
+    }"> 
     <img  
-      [src]="'../../../../assets/images/mgc_logo-03.png'"  
+      [src]="'assets/images/mgc_logo-03.png'"  
       alt="Logo"  
       [ngClass]="{'logo-full': isToggled, 'logo-collapsed': !isToggled}" 
     /> 
