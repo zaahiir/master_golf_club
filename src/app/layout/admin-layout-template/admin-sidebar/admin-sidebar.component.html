@@ -1,4 +1,3 @@
-<!-- sidebar.component.html -->
 <aside class="sidebar d-flex flex-column vh-100" [ngClass]="{'collapsed': !isToggled}"> 
   <div class="sidebar-header justify-content-start pt-2 px-4" [ngClass]="{ 
     'pt-3 pb-1 px-4': isToggled, 
@@ -17,8 +16,8 @@
           [routerLink]="item.path"  
           routerLinkActive="active"  
           class="d-flex align-items-center" 
-          [attr.data-bs-toggle]="!isToggled ? 'tooltip' : null"
-          [attr.data-bs-placement]="'right'"
+          data-bs-toggle="tooltip"
+          [attr.data-bs-placement]="isToggled ? 'top' : 'right'"
           [attr.title]="item.tooltip"
         > 
           <fa-icon [icon]="item.icon" class="me-2"></fa-icon> 

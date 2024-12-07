@@ -59,15 +59,13 @@ export class AdminSidebarComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private initializeTooltips() {
-    // Only create tooltips when sidebar is collapsed
-    if (!this.isToggled) {
-      const tooltipTriggerList = this.el.nativeElement.querySelectorAll('[data-bs-toggle="tooltip"]');
-      this.tooltips = [...tooltipTriggerList].map(tooltipTriggerEl => 
-        new bootstrap.Tooltip(tooltipTriggerEl, {
-          trigger: 'hover',
-          placement: 'right'
-        })
-      );
-    }
+    // Always initialize tooltips, but with different placement based on sidebar state
+    const tooltipTriggerList = this.el.nativeElement.querySelectorAll('[data-bs-toggle="tooltip"]');
+    this.tooltips = [...tooltipTriggerList].map(tooltipTriggerEl => 
+      new bootstrap.Tooltip(tooltipTriggerEl, {
+        trigger: 'hover',
+        placement: this.isToggled ? 'top' : 'right'
+      })
+    );
   }
 }
