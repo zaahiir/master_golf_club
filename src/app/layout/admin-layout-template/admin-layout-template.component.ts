@@ -1,5 +1,5 @@
 // admin-layout-template.component.ts
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, HostListener } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
@@ -45,5 +45,21 @@ export class AdminLayoutTemplateComponent implements OnInit, OnDestroy {
 
   toggleSidebar() {
     this.isSidebarToggled = !this.isSidebarToggled;
+  }
+
+  // Host listener to handle clicks outside the sidebar
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    if (this.isMobileView && this.isSidebarToggled) {
+      const sidebarElement = document.querySelector('app-admin-sidebar');
+      const headerElement = document.querySelector('app-admin-header');
+      
+      // Check if the click is outside sidebar and header
+      if (sidebarElement && headerElement &&
+          !sidebarElement.contains(event.target as Node) &&
+          !headerElement.contains(event.target as Node)) {
+        this.isSidebarToggled = false;
+      }
+    }
   }
 }

@@ -3,10 +3,15 @@ import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
 import { AuthGuard } from './auth/auth.guard';
+
+// Admin imports
+import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
+import { AdminLogoutComponent } from './auth/admin-logout/admin-logout.component';
+import { AdminAuthGuard } from './auth/admin-auth.guard';
 import { AdminLayoutTemplateComponent } from './layout/admin-layout-template/admin-layout-template.component';
 
-
 export const routes: Routes = [
+  // User Routes
   {
     path: 'login',
     component: LoginComponent
@@ -31,9 +36,20 @@ export const routes: Routes = [
       }
     ]
   },
+  
+  // Admin Routes
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent
+  },
+  {
+    path: 'admin/logout',
+    component: AdminLogoutComponent
+  },
   {
     path: 'admin',
     component: AdminLayoutTemplateComponent,
+    canActivate: [AdminAuthGuard],
     children: [
       {
         path: '',
@@ -46,6 +62,8 @@ export const routes: Routes = [
       }
     ]
   },
+  
+  // Catch-all route
   { 
     path: '**', 
     redirectTo: '' 

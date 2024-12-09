@@ -22,6 +22,7 @@
           [routerLink]="item.path"  
           routerLinkActive="active"  
           class="d-flex align-items-center"
+          (click)="onMenuItemClick()"
         > 
           <fa-icon [icon]="item.icon" class="me-2"></fa-icon> 
           <span *ngIf="isToggled">{{ item.label }}</span> 

@@ -1,5 +1,5 @@
 // admin-sidebar.component.ts
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -33,4 +33,12 @@ export class AdminSidebarComponent {
     { path: '/courses', label: 'Courses', icon: faBook },
     { path: '/settings', label: 'Settings', icon: faCog }
   ];
+
+  // Optional: Method to handle menu item click in mobile view
+  onMenuItemClick() {
+    // If you want to automatically close sidebar when a menu item is clicked in mobile view
+    if (this.isMobileView) {
+      this.isToggled = false;
+    }
+  }
 }
