@@ -3,14 +3,17 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faDashboard,
-  faUsers,
-  faGolfBall,
-  faCalendar,
-  faCog,
-  faChartBar,
-  faBook
+import {  
+  faTachometerAlt,     // Dashboard
+  faUsers,             // Members
+  faGolfBall,          // Plan (keep the existing icon)
+  faCalendarAlt,       // Courses
+  faChartLine,         // Tee (changed from faChartBar)
+  faCalendarWeek ,    // Events
+  faTrophy,            // Tournament (changed from faCog)
+  faBlog,              
+  faTicketAlt,         
+  faChartPie  
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -25,13 +28,16 @@ export class AdminSidebarComponent {
   @Input() isMobileView = false;
 
   menuItems = [
-    { path: '/admin/dashboard', label: 'Dashboard', icon: faDashboard },
-    { path: '/users', label: 'Users', icon: faUsers },
-    { path: '/golf-courses', label: 'Golf Courses', icon: faGolfBall },
-    { path: '/bookings', label: 'Bookings', icon: faCalendar },
-    { path: '/reports', label: 'Reports', icon: faChartBar },
-    { path: '/courses', label: 'Courses', icon: faBook },
-    { path: '/settings', label: 'Settings', icon: faCog }
+    { path: '/admin/dashboard', label: 'Dashboard', icon: faTachometerAlt },
+    { path: '/admin/members', label: 'Members', icon: faUsers },
+    { path: '/admin/plan', label: 'Plan', icon: faGolfBall },
+    { path: '/admin/courses', label: 'Courses', icon: faCalendarAlt },
+    { path: '/admin/tee', label: 'Tee', icon: faChartLine },
+    { path: '/admin/events', label: 'Events', icon: faCalendarWeek  },
+    { path: '/admin/scoreBoard', label: 'Tournament', icon: faTrophy },
+    { path: '/admin/blog', label: 'Blog', icon: faBlog },
+    { path: '/admin/coupon', label: 'Coupon', icon: faTicketAlt },
+    { path: '/admin/reports', label: 'Report', icon: faChartPie },
   ];
 
   // Optional: Method to handle menu item click in mobile view
