@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -11,7 +12,7 @@ import {
 @Component({
   selector: 'app-admin-header',
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, RouterModule],
   templateUrl: './admin-header.component.html',
   styleUrl: './admin-header.component.css'
 })
