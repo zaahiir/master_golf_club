@@ -11,8 +11,18 @@ import { AdminAuthGuard } from './auth/admin-auth.guard';
 import { AdminLayoutTemplateComponent } from './layout/admin-layout-template/admin-layout-template.component';
 import { AuthRedirectResolver } from './auth/auth-redirect.resolver';
 import { AdminAuthRedirectResolver } from './auth/admin-auth-redirect.resolver';
+import { RootRedirectResolver } from './auth/RootRedirectResolver';
 
 export const routes: Routes = [
+  // Root Redirect
+  {
+    path: '',
+    resolve: {
+      rootRedirect: RootRedirectResolver
+    },
+    component: DefaultLayoutComponent
+  },
+  
   // Member Routes
   {
     path: 'login',
@@ -52,6 +62,9 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminLayoutTemplateComponent,
     canActivate: [AdminAuthGuard],
+    resolve: {
+      adminRedirect: AdminAuthRedirectResolver
+    },
     children: [
       {
         path: '',
@@ -65,21 +78,12 @@ export const routes: Routes = [
     ]
   },
   
-   // Member Catch-All Route (Unauthenticated)
-   {
+  // Member Catch-All Route (Unauthenticated)
+  {
     path: '**',
     component: DefaultLayoutComponent,
     resolve: {
       authRedirect: AuthRedirectResolver
-    }
-  },
-  
-  // Admin Catch-All Route (Unauthenticated)
-  {
-    path: 'admin/**',
-    component: AdminLayoutTemplateComponent,
-    resolve: {
-      authRedirect: AdminAuthRedirectResolver
     }
   }
 ];
