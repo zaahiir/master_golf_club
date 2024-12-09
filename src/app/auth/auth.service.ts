@@ -20,7 +20,7 @@ export class AuthService {
     if (this.inBrowser) {
       sessionStorage.setItem('isLoggedIn', 'true');
       sessionStorage.setItem('user', JSON.stringify({ username: credentials.username }));
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home']); // Redirect to home page
     }
   }
 
@@ -28,7 +28,7 @@ export class AuthService {
     if (this.inBrowser) {
       sessionStorage.removeItem('isLoggedIn');
       sessionStorage.removeItem('user');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']); // Redirect to login page
     }
   }
 
@@ -39,3 +39,4 @@ export class AuthService {
     return false;
   }
 }
+

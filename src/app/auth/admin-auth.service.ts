@@ -36,7 +36,6 @@ export class AdminAuthService {
   }
 
   login(credentials: { username: string; password: string }): boolean {
-    // Validate credentials against predefined admin users
     const validAdmin = this.adminUsers.find(
       user => 
         user.username === credentials.username && 
@@ -44,13 +43,12 @@ export class AdminAuthService {
     );
 
     if (validAdmin && this.inBrowser) {
-      // Store admin user information securely
       sessionStorage.setItem('isAdminLoggedIn', 'true');
       sessionStorage.setItem('adminUser', JSON.stringify({ 
         username: validAdmin.username,
         email: validAdmin.email
       }));
-      this.router.navigate(['/admin/dashboard']);
+      this.router.navigate(['/admin/dashboard']); // Redirect to admin dashboard
       return true;
     }
     return false;
@@ -58,10 +56,9 @@ export class AdminAuthService {
 
   logout(): void {
     if (this.inBrowser) {
-      // Clear admin session data
       sessionStorage.removeItem('isAdminLoggedIn');
       sessionStorage.removeItem('adminUser');
-      this.router.navigate(['/admin/login']);
+      this.router.navigate(['/admin/login']); // Redirect to admin login
     }
   }
 
@@ -70,14 +67,5 @@ export class AdminAuthService {
       return sessionStorage.getItem('isAdminLoggedIn') === 'true';
     }
     return false;
-  }
-
-  // Optional: Method to get current logged-in admin user
-  getCurrentAdmin(): { username: string; email: string } | null {
-    if (this.inBrowser && this.isLoggedIn()) {
-      const adminUser = sessionStorage.getItem('adminUser');
-      return adminUser ? JSON.parse(adminUser) : null;
-    }
-    return null;
   }
 }

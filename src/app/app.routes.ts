@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes } from '@angular/router'; 
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
@@ -9,9 +9,11 @@ import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
 import { AdminLogoutComponent } from './auth/admin-logout/admin-logout.component';
 import { AdminAuthGuard } from './auth/admin-auth.guard';
 import { AdminLayoutTemplateComponent } from './layout/admin-layout-template/admin-layout-template.component';
+import { AuthRedirectResolver } from './auth/auth-redirect.resolver';
+import { AdminAuthRedirectResolver } from './auth/admin-auth-redirect.resolver';
 
 export const routes: Routes = [
-  // User Routes
+  // Member Routes
   {
     path: 'login',
     component: LoginComponent
@@ -63,9 +65,21 @@ export const routes: Routes = [
     ]
   },
   
-  // Catch-all route
-  { 
-    path: '**', 
-    redirectTo: '' 
+   // Member Catch-All Route (Unauthenticated)
+   {
+    path: '**',
+    component: DefaultLayoutComponent,
+    resolve: {
+      authRedirect: AuthRedirectResolver
+    }
+  },
+  
+  // Admin Catch-All Route (Unauthenticated)
+  {
+    path: 'admin/**',
+    component: AdminLayoutTemplateComponent,
+    resolve: {
+      authRedirect: AdminAuthRedirectResolver
+    }
   }
 ];
