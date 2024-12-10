@@ -1,6 +1,5 @@
 .home {
   width: 100%;
-  max-width: 1650px;
   overflow: hidden;
 }
 
@@ -9,7 +8,6 @@
 }
 
 .content-wrapper {
-  max-width: 1650px;
   margin: 0 auto;
 }
 

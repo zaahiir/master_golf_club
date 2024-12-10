@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-.home {
-  max-width: 1650px;
-}
-
 .home-image {
   background-image: url('../../../assets/images/3872.webp');
 }

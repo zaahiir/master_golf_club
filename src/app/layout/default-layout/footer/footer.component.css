@@ -2,12 +2,11 @@
 .container {
   position: relative;
   z-index: 1;  /* Set z-index for the entire container */
-  max-width: 1650px;
+  width: 100%;
 }
 
 .container-max {
   width: 100%;
-  max-width: 1650px;
   margin: 0 auto;
   padding: 0;
 }
