@@ -60,6 +60,9 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
+    data: {
+      title: 'Home'
+    },
     component: AdminLayoutTemplateComponent,
     canActivate: [AdminAuthGuard],
     resolve: {
