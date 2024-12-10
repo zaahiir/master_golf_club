@@ -5,12 +5,7 @@ import { DefaultLayoutComponent } from './layout/default-layout/default-layout.c
 import { AuthGuard } from './auth/auth.guard';
 
 // Admin imports
-import { AdminLoginComponent } from './auth/admin-login/admin-login.component';
-import { AdminLogoutComponent } from './auth/admin-logout/admin-logout.component';
-import { AdminAuthGuard } from './auth/admin-auth.guard';
-import { AdminLayoutTemplateComponent } from './layout/admin-layout-template/admin-layout-template.component';
 import { AuthRedirectResolver } from './auth/auth-redirect.resolver';
-import { AdminAuthRedirectResolver } from './auth/admin-auth-redirect.resolver';
 import { RootRedirectResolver } from './auth/RootRedirectResolver';
 
 export const routes: Routes = [
@@ -44,38 +39,6 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
-      }
-    ]
-  },
-  
-  // Admin Routes
-  {
-    path: 'admin/login',
-    component: AdminLoginComponent
-  },
-  {
-    path: 'admin/logout',
-    component: AdminLogoutComponent
-  },
-  {
-    path: 'admin',
-    data: {
-      title: 'Home'
-    },
-    component: AdminLayoutTemplateComponent,
-    canActivate: [AdminAuthGuard],
-    resolve: {
-      adminRedirect: AdminAuthRedirectResolver
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./admin-view/routes').then(m => m.adminViewRoutes)
-      },
-      {
-        path: '',
-        redirectTo: 'dashboard',
         pathMatch: 'full'
       }
     ]
