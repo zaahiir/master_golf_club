@@ -1,0 +1,145 @@
+<div class="home container-fluid p-0 d-flex flex-column align-items-center">
+  <!-- Page Title Section -->
+  <section class="page-title d-flex justify-content-center align-items-center text-center">
+    <div class="bg-layer"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>Welcome to Our Destination</h1>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center bg-transparent m-0">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Welcome</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Service Section -->
+  <section class="service-section text-center py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center mb-5">
+          <h2 class="section-title">Our Services</h2>
+        </div>
+        <div *ngFor="let card of cards" class="col-lg-4 col-md-6 mb-4">
+          <div class="service-block-one">
+            <div class="inner-box">
+              <div class="image-box position-relative">
+                <figure class="image rounded-circle overflow-hidden mb-0 position-relative" style="z-index: 1;">
+                  <img [src]="card.imageSrc || 'assets/images/service/service-1.jpg'" [alt]="card.title" class="img-fluid">
+                </figure>
+              </div>
+              <div class="lower-content position-relative">
+                <h3><a [routerLink]="[card.route]">{{ card.title }}</a></h3>
+                <p>{{ card.description }}</p>
+                <div class="link"><a [routerLink]="[card.route]">→</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- News Section -->
+  <section class="news-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h2 class="section-title">News from MGC</h2>
+        </div>
+      </div>
+      
+      <div class="row">
+        <!-- Featured News Card (50% width) -->
+        <div class="col-md-6 mb-4">
+          <div class="card featured-news-card border-0 h-100">
+            <div class="news-image-container featured-image">
+              <a [routerLink]="['/news']">
+                <img src="assets/images/news/news-1.jpg" alt="Golf Gadgets">
+              </a>
+              <span class="post-date">31 DEC</span>
+            </div>
+            <div>
+              <span class="category">Featured</span>
+              <h3 class="news-title"><a [routerLink]="['/news']">Key Golf Gadgets for the Determined Golfer</a></h3>
+              <p>Lorem ipsum dolor sit amet consectetur. Aliquet amet elementum. Nulla facilisi. Maecenas et feugiat purus.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Grid News Cards (50% width, containing 2x2 grid) -->
+        <div class="col-md-6">
+          <div class="row">
+            <!-- Small News Card 1 -->
+            <div class="col-6 mb-4">
+              <div class="card small-news-card border-0 h-100">
+                <div class="news-image-container small-image">
+                  <a [routerLink]="['/news']">
+                    <img src="assets/images/news/news-6.jpg" alt="Golf Tournament">
+                  </a>
+                  <span class="post-date">28 OCT</span>
+                </div>
+                <div>
+                  <span class="category small">Tournaments</span>
+                  <h4 class="news-title small"><a [routerLink]="['/news']">Spring Championship</a></h4>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Small News Card 2 -->
+            <div class="col-6 mb-4">
+              <div class="card small-news-card border-0 h-100">
+                <div class="news-image-container small-image">
+                  <a [routerLink]="['/news']">
+                    <img src="assets/images/news/news-2.jpg" alt="Golf Lesson">
+                  </a>
+                  <span class="post-date">28 OCT</span>
+                </div>
+                <div>
+                  <span class="category small">Coaching</span>
+                  <h4 class="news-title small"><a [routerLink]="['/news']">Perfect Your Swing</a></h4>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Small News Card 3 -->
+            <div class="col-6 mb-4">
+              <div class="card small-news-card border-0 h-100">
+                <div class="news-image-container small-image">
+                  <a [routerLink]="['/news']">
+                    <img src="assets/images/news/news-3.jpg" alt="Equipment">
+                  </a>
+                  <span class="post-date">28 OCT</span>
+                </div>
+                <div>
+                  <span class="category small">Equipment</span>
+                  <h4 class="news-title small"><a [routerLink]="['/news']">New Pro Clubs</a></h4>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Small News Card 4 -->
+            <div class="col-6 mb-4">
+              <div class="card small-news-card border-0 h-100">
+                <div class="news-image-container small-image">
+                  <a [routerLink]="['/news']">
+                    <img src="assets/images/news/news-7.jpg" alt="Tournament">
+                  </a>
+                  <span class="post-date">28 OCT</span>
+                </div>
+                <div>
+                  <span class="category small">Events</span>
+                  <h4 class="news-title small"><a [routerLink]="['/news']">Charity Golf Day</a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,476 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f3f4f6;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.booking-container {
+  max-width: 1650px;
+}
+
+/* Page Title Section Styles */
+.page-title {
+  position: relative;
+  padding-top: 190px;
+  padding-bottom: 190px;
+  width: 100%;
+}
+
+.page-title .bg-layer {
+  background-image: url('../../../assets/images/banner/banner-5.jpg');
+}
+
+/* Hero Section */
+.course-hero {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  background-image: url('../../../assets/images/3859.webp');
+  background-size: cover;
+  background-position: 100% 70%;
+}
+
+.course-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+}
+
+.course-info {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: white;
+}
+
+.course-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.course-meta {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.course-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Row Sections */
+.row-section {
+  width: 100%;
+}
+
+.booking-info-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 1650px;
+}
+
+.booking-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Cards */
+.info-card, 
+.form-card, 
+.location-details-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+}
+
+/* Course Info Card */
+.info-card h3 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.info-card p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.amenities {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.amenities span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+/* Booking Form Styles */
+.form-card h2 {
+  font-size: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: #374151;
+}
+
+/* Guest Selector */
+.player-selector {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  background: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-btn:hover:not(:disabled) {
+  background: #f3f4f6;
+  border-color: #047857;
+}
+
+.circle-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.player-count {
+  font-size: 1.25rem;
+  font-weight: 500;
+  min-width: 2ch;
+  text-align: center;
+}
+
+/* Date Selector */
+.date-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.date-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.date-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+  min-width: 80px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.date-btn.selected {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.date-btn:hover:not(.selected) {
+  border-color: #047857;
+}
+
+.date-btn .day {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.date-btn .date {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.date-btn .month {
+  font-size: 0.875rem;
+}
+
+/* Time Grid */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+}
+
+.time-btn {
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.875rem;
+}
+
+.time-btn.selected {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.booking-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+.time-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f3f4f6;
+}
+
+.time-btn:hover:not(:disabled):not(.selected) {
+  border-color: #047857;
+}
+
+/* Book Button */
+.book-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #047857;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.book-btn:hover:not(:disabled) {
+  background: #065f46;
+}
+
+.book-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Location Details */
+.location-details {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.detail-item i {
+  color: #047857;
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.detail-item h4 {
+  color: #4b5563;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.detail-item p {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* Direction Buttons */
+.direction-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.direction-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  flex: 1;
+}
+
+.direction-btn:not(.secondary) {
+  background: #047857;
+  color: white;
+}
+
+.direction-btn:not(.secondary):hover {
+  background: #065f46;
+}
+
+.direction-btn.secondary {
+  background: white;
+  border: 2px solid #e5e7eb;
+  color: #4b5563;
+}
+
+.direction-btn.secondary:hover {
+  border-color: #d1d5db;
+  background: #f9fafb;
+}
+
+/* Map Section */
+.map-card {
+  background: white;
+  overflow: hidden;
+  margin: 0 0;
+  max-width: 1650px;
+}
+
+.map-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Responsive Designs */
+@media (max-width: 1024px) {
+  .booking-container {
+    padding: 1rem;
+  }
+  
+  .booking-info-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .booking-column {
+    width: 100%;
+  }
+
+  .direction-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .course-hero {
+    height: 300px;
+  }
+
+  .course-info {
+    left: 1rem;
+    bottom: 1.5rem;
+  }
+
+  .course-info h1 {
+    font-size: 2rem;
+  }
+
+  .course-meta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .info-card, .form-card {
+    padding: 1.5rem;
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .map-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-container {
+    padding: 0; 
+  }
+
+  .amenities {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .time-grid {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+
+  .date-btn {
+    min-width: 70px;
+    padding: 0.5rem;
+  }
+
+  .player-selector {
+    gap: 1rem;
+  }
+
+  .circle-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .map-container {
+    height: 250px;
+  }
+}

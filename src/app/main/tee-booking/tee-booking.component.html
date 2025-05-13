@@ -1,0 +1,154 @@
+<!-- Booking Container -->
+<div class="booking-container">
+  <!-- Hero Section (unchanged) -->
+  <section class="page-title d-flex justify-content-center align-items-center">
+    <div class="bg-layer"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{course.name}}</h1>
+          <nav aria-label="breadcrumb">
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+              {{course.lane}}, {{course.address}}
+            </span>
+            <span>
+              <i class="fas fa-clock"></i>
+              {{course.timing}}
+            </span>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reordered Row Section -->
+  <div class="row-section booking-info-container p-4">
+    <!-- Booking Form Column (Now on Left) -->
+    <div class="booking-column booking-form">
+      <div class="form-card p-4">
+        <h2>Book Your Tee Time</h2>
+        
+        <div class="form-section">
+          <label>Guests</label>
+          <div class="player-selector">
+            <button class="circle-btn" (click)="decrementGuests()" [disabled]="guestCount === 0">-</button>
+            <span class="player-count">{{guestCount}}</span>
+            <button class="circle-btn" (click)="incrementGuests()" [disabled]="guestCount === maxGuests">+</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>Select Date</label>
+          <div class="date-scroll">
+            <button *ngFor="let date of availableDates" 
+                    class="date-btn"
+                    [class.selected]="isDateSelected(date)"
+                    (click)="selectDate(date)">
+              <span class="day">{{date | date:'EEE'}}</span>
+              <span class="date">{{date | date:'d'}}</span>
+              <span class="month">{{date | date:'MMM'}}</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label>Available Times</label>
+          <div class="time-grid">
+            <button *ngFor="let slot of currentTimeSlots"
+                    class="time-btn"
+                    [class.selected]="selectedTime === slot.time"
+                    [disabled]="!slot.available"
+                    (click)="selectTime(slot.time)">
+              {{formatTime(slot.time)}}
+            </button>
+          </div>
+        </div>
+
+        <button class="book-btn" 
+                [disabled]="!canBook()"
+                [class.loading]="isLoading"
+                (click)="bookTeeTime()">
+          {{isLoading ? 'Booking...' : 'Book Now'}}
+        </button>
+
+        <div class="error-message" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Column (Now on Right) -->
+    <div class="booking-column info-column">
+      <!-- Course Information Card -->
+      <div class="info-card p-4">
+        <h3>About the Course</h3>
+        <p>Aldenham Golf Club is renowned for the quality of the course, particularly our immaculate greens and exceptional condition of the fairways and surrounding areas. The Church Course opened in 1975 and has matured well over the years with many different tree species and lovely views over the neighboring countryside. The 13th is their signature hole and was, for many years, the longest hole in Europe at 621 yards.</p>
+        <p>Their team of expert groundsmen led by Course Manager Marc Winnan has some of the best equipment available to maintain this course to its reputation.</p>
+        <p>Members will get the benefits of the course throughout the whole year even in the depths of winter. The club prides itself on maintaining the greens all year round so there is no need for temporary greens.</p>
+        
+        <div class="amenities">
+          <span><i class="fas fa-wifi"></i> Free WiFi</span>
+          <span><i class="fas fa-parking"></i> Free Parking</span>
+          <span><i class="fas fa-utensils"></i> Restaurant</span>
+          <span><i class="fas fa-shopping-bag"></i> Pro Shop</span>
+        </div>
+      </div>
+
+      <!-- Location & Directions Card -->
+      <div class="form-card location-details-card p-4">
+        <h2>Location & Directions</h2>
+        <div class="location-details">
+          <div class="detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h4>Address</h4>
+              <p>{{course.lane}}, {{course.address}}, {{course.code}}</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-phone-alt"></i>
+            <div>
+              <h4>Contact</h4>
+              <p>{{course.phone}}</p>
+            </div>
+          </div>
+          <div class="detail-item">
+            <i class="fas fa-clock"></i>
+            <div>
+              <h4>Hours</h4>
+              <p>{{course.timing}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="direction-actions mt-4">
+          <button class="direction-btn" (click)="getDirections()">
+            <i class="fas fa-directions"></i>
+            Get Directions
+          </button>
+          <button class="direction-btn secondary" (click)="shareLocation()">
+            <i class="fas fa-share-alt"></i>
+            Share Location
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map Row -->
+  <div class="row-section m-0 p-0">
+    <div class="map-card">
+      <div class="map-container">
+        <iframe
+          width="100%"
+          height="100%"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>

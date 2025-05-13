@@ -1,0 +1,71 @@
+<header class="main-header header-style-three">
+  <!-- Header Lower -->
+  <div class="header-lower">
+    <div class="outer-container">
+      <div class="left-column">
+        <!-- Logo Box -->
+        <div class="logo-box">
+          <a routerLink="/home">
+            <div class="header-logo"></div>
+          </a>
+        </div>
+        
+        <!-- Menu Area -->
+        <div class="menu-area">
+          <!-- Mobile Navigation Toggler -->
+          <div class="mobile-nav-toggler d-lg-none">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </div>
+          
+          <!-- Main Menu -->
+          <nav class="main-menu navbar-expand-lg">
+            <div class="navbar-collapse show clearfix" id="navbarSupportedContent">
+              <ul class="navigation clearfix">
+                <li><a routerLink="/home">Home</a></li>
+                <li><a routerLink="/collection">Collection</a></li>
+                <li><a routerLink="/collectionPlus">Collection Plus</a></li>
+                <li class="dropdown">
+                  <a href="#" data-bs-toggle="dropdown">Information</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" routerLink="/membersNews">News</a></li>
+                    <li><a class="dropdown-item" routerLink="/membersRules">Rules</a></li>
+                    <li><a class="dropdown-item" routerLink="/membersTeam">Team Leader</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" data-bs-toggle="dropdown">Events</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" routerLink="/membersEvents">MasterEvents</a></li>
+                    <li><a class="dropdown-item" routerLink="/events">Events</a></li>
+                    <li><a class="dropdown-item" routerLink="/membersTournaments">Tournaments</a></li>
+                  </ul>
+                </li>
+                <li><a routerLink="/about">Contact</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Right Menu Content -->
+      <div class="menu-right-content">
+        <div class="user-profile-dropdown">
+          <a href="#">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <path class="user-icon" fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="/profile">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/account">Account</a></li>
+            <li><a class="dropdown-item" routerLink="/membership">Memberships</a></li>
+            <li><a class="dropdown-item" routerLink="/orders">Orders</a></li>
+            <li><a class="dropdown-item" routerLink="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,138 @@
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+.home {
+  width: 100%;
+  max-width: 1650px;
+}
+
+/* Page Title Section Styles */
+.page-title {
+  position: relative;
+  padding-top: 190px;
+  padding-bottom: 190px;
+  width: 100%;
+}
+
+.page-title .bg-layer {
+  background-image: url('../../../assets/images/banner/banner-4.jpg');
+}
+
+.article-header {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 1.5rem;
+}
+
+.article-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.article-meta {
+  color: #666;
+  font-size: 1rem;
+}
+
+.article-meta .date {
+  margin-right: 1.5rem;
+}
+
+.article-meta .category {
+  padding-left: 1.5rem;
+  border-left: 2px solid #ddd;
+}
+
+.article-image-container {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.main-article-image {
+  width: 100%;
+  height: 100%;
+  background-image: url('../../../assets/images/3872.webp');
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.main-article-image:hover {
+  transform: scale(1.02);
+}
+
+.article-content {
+  line-height: 1.8;
+  color: #444;
+}
+
+.article-content .lead {
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.content-image {
+  width: 100%;
+  height: 300px;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.content-image:hover {
+  transform: scale(1.02);
+}
+
+.image-1 {
+  background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.webp');
+}
+
+.image-2 {
+  background-image: url('../../../assets/images/gettyimages-171362434-612x612.webp');
+}
+
+.image-caption {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
+.article-footer {
+  border-top: 2px solid #f0f0f0;
+  padding-top: 1.5rem;
+}
+
+.contact-info {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+h3 {
+  color: #333;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 2rem;
+  }
+  
+  .article-image-container {
+    height: 300px;
+  }
+  
+  .content-image {
+    height: 200px;
+  }
+}

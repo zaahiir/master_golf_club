@@ -1,0 +1,82 @@
+<!-- account.component.html -->
+<div class="account-container">
+  <div class="row">
+    <!-- Profile & Password Card -->
+    <div class="dashboard-card">
+      <div class="profile-section">
+        <div class="profile-header">
+          <div class="profile-avatar"></div>
+          <div class="profile-info">
+            <h3>John Doe</h3>
+            <p class="text-muted">Premium Member</p>
+          </div>
+        </div>
+        <div class="profile-details">
+          <div class="info-item">
+            <span class="label">Email</span>
+            <span class="value">{{'johndoe@example.com'}}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Phone</span>
+            <span class="value">+123-456-7890</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Member Since</span>
+            <span class="value">January 2024</span>
+          </div>
+        </div>
+        <button class="btn-primary">Edit Profile</button>
+      </div>
+      
+      <div class="password-section">
+        <h4>Update Password</h4>
+        <div class="password-form">
+          <div class="form-group">
+            <label>Current Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>New Password</label>
+            <input type="password" class="form-control">
+          </div>
+          <button class="btn-secondary">Change Password</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Address Card -->
+    <div class="dashboard-card">
+      <div class="address-section">
+        <h3>Addresses</h3>
+        <div class="address-container">
+          <div class="address-box">
+            <h4>Billing Address</h4>
+            <p>123 Fairway Drive</p>
+            <p>Greenfield, 12345</p>
+            <p>United States</p>
+            <button class="btn-outline">Edit</button>
+          </div>
+          <div class="address-box">
+            <h4>Shipping Address</h4>
+            <p>456 Golf Course Road</p>
+            <p>Greenfield, 67890</p>
+            <p>United States</p>
+            <button class="btn-outline">Edit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-section">
+        <h3>Payment Methods</h3>
+        <div class="payment-card">
+          <div class="card-info">
+            <div class="card-type">VISA</div>
+            <div class="card-number">**** **** **** 1234</div>
+            <div class="card-expiry">Expires: 12/25</div>
+          </div>
+          <button class="btn-outline">Manage Cards</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

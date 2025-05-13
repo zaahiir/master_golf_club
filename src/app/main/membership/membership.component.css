@@ -1,0 +1,165 @@
+/* membership.component.css */
+.membership-container {
+  max-width: 1650px;
+  margin: 0 auto;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(50% - 2rem), 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.benefit-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 1.5rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.access-icon { background-image: url('../../../assets/images/access-icon.png'); }
+.events-icon { background-image: url('../../../assets/images/access-icon.png'); }
+.training-icon { background-image: url('../../../assets/images/access-icon.png'); }
+.discount-icon { background-image: url('../../../assets/images/access-icon.png'); }
+
+.benefit-card h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-list li {
+  padding: 0.5rem 0;
+  color: #555;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.feature-list li::before {
+  content: "✓";
+  color: #28a745;
+  position: absolute;
+  left: 0;
+}
+
+.membership-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.membership-table th,
+.membership-table td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.membership-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.expired {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.btn-renew {
+  background: #2196f3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-renew:hover:not(.disabled) {
+  background: #1976d2;
+}
+
+.btn-renew.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .membership-table {
+    font-size: 0.875rem;
+  }
+
+  .btn-renew {
+    padding: 0.4rem 1rem;
+    font-size: 0.875rem;
+  }
+}

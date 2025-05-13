@@ -1,0 +1,124 @@
+:root {
+    --theme-color: #77A96A;
+    --secondary-color: #1C403D;
+    --text-color: #1C3D40;
+  }
+  
+  .login-section {
+    padding: 80px 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+  }
+  
+  .logo-container {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 10px;
+  }
+  
+  .logo {
+    max-height: 80px;
+    max-width: 180px;
+    height: auto;
+    display: inline-block;
+  }
+  
+  .card {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .card.active {
+    transform: translateY(-5px);
+  }
+  
+  .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    text-align: center;
+    padding-top: 10px;
+  }
+  
+  .card-header h2 {
+    font-family: 'Marcellus', serif;
+    font-size: 32px;
+    color: var(--text-color);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: var(--text-color);
+  }
+  
+  .form-label span {
+    color: var(--theme-color);
+  }
+  
+  .form-control {
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 1px solid #e5e5e5;
+  }
+  
+  .form-control:focus {
+    border-color: var(--theme-color);
+    box-shadow: 0 0 0 0.25rem rgba(119, 169, 106, 0.25);
+  }
+  
+  .btn-primary {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    border-radius: 10px;
+    padding: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+  
+  .btn-primary:disabled {
+    background-color: #a9c7a1;
+    border-color: #a9c7a1;
+  }
+  
+  .forgot-password, .back-to-login {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .forgot-password:hover, .back-to-login:hover {
+    color: var(--theme-color);
+    text-decoration: underline;
+  }
+  
+  .form-check-input:checked {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+  }
+  
+  .text-danger small {
+    font-size: 12px;
+  }
+  
+  @media (max-width: 768px) {
+    .login-section {
+      padding: 40px 0;
+    }
+    
+    .card-header h2 {
+      font-size: 28px;
+    }
+  }
