@@ -44,9 +44,9 @@ ul, li {
 
 .main-header .outer-container .left-column .logo-box {
   background: #fff;
-  padding: 0 63px;
+  padding: 0 40px;
   position: relative;
-  margin-right: 50px;
+  margin-right: 40px;
 }
 
 .main-header .outer-container .left-column .logo-box:after {
@@ -246,7 +246,7 @@ ul, li {
 
 /* Preserve the original logo styling */
 .header-logo {
-  background-image: url('../../../../assets/images/mgc_golf.png');
+  background-image: url('../../../../assets/mgc_logo-03.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 70px;

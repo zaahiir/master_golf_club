@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +12,17 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  isLoggedIn: boolean = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    // Check if user is logged in
+    this.isLoggedIn = this.authService.isLoggedIn();
+
     // Bootstrap dropdowns and toggler
     document.addEventListener('DOMContentLoaded', () => {
       const mobileToggler = document.querySelector('.mobile-nav-toggler');
@@ -35,5 +45,18 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
-  
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: () => {
+        // Navigate to login page after successful logout
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        console.error('Logout failed:', error);
+        // Even if the server request fails, we should still navigate to login page
+        this.router.navigate(['/login']);
+      }
+    });
+  }
 }
