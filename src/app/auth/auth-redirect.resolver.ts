@@ -5,17 +5,17 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthRedirectResolver implements Resolve<void> {
+export class AuthRedirectResolver implements Resolve<boolean> {
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
-  resolve(): void {
-    if (this.authService.isLoggedIn()) {
+  resolve(): boolean {
+    if (this.authService.isAuthenticated()) {
       this.router.navigate(['/home']);
-    } else {
-      this.router.navigate(['/login']);
+      return false;
     }
+    return true;
   }
 }

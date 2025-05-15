@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
 
   isForgotPasswordActive: boolean = false;
   rememberMe: boolean = false;
+  errorMessage: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -31,13 +33,14 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    if (isPlatformBrowser(this.platformId) && this.authService.isLoggedIn()) {
+    // Redirect to home if already logged in
+    if (isPlatformBrowser(this.platformId) && this.authService.isAuthenticated()) {
       this.router.navigate(['/home']);
     }
   }
 
   ngOnInit(): void {
-    // Initialize forms with FormBuilder for better readability
+    // Initialize forms with FormBuilder
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -50,17 +53,47 @@ export class LoginComponent implements OnInit {
 
   toggleForgotPassword(showForgotPassword: boolean): void {
     this.isForgotPasswordActive = showForgotPassword;
+    this.errorMessage = ''; // Clear any error messages when switching forms
   }
 
   onLoginSubmit(): void {
     if (this.loginForm.valid && isPlatformBrowser(this.platformId)) {
-      const loginData = {
-        ...this.loginForm.value,
-        rememberMe: this.rememberMe
-      };
+      this.isLoading = true;
+      this.errorMessage = '';
       
-      this.authService.login(loginData);
-      this.router.navigate(['/home']);
+      const username = this.loginForm.value.username;
+      const password = this.loginForm.value.password;
+      
+      this.authService.login(username, password).subscribe({
+        next: (response) => {
+          // Store tokens and user info in localStorage
+          localStorage.setItem('access_token', response.access);
+          localStorage.setItem('refresh_token', response.refresh);
+          localStorage.setItem('user_type', response.user_type);
+          localStorage.setItem('user_id', response.user_id.toString());
+          localStorage.setItem('username', response.username);
+          localStorage.setItem('email', response.email);
+          
+          // Handle "Remember me" functionality
+          if (!this.rememberMe) {
+            // If remember me is not checked, set session storage instead
+            // which will be cleared when the browser is closed
+            sessionStorage.setItem('session_type', 'temporary');
+          }
+          
+          this.isLoading = false;
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          this.isLoading = false;
+          if (error.status === 401) {
+            this.errorMessage = 'Invalid username or password';
+          } else {
+            this.errorMessage = 'Login failed. Please try again later.';
+          }
+          console.error('Login error', error);
+        }
+      });
     } else if (!this.loginForm.valid) {
       this.markFormGroupTouched(this.loginForm);
     }
@@ -68,15 +101,28 @@ export class LoginComponent implements OnInit {
 
   onForgotPasswordSubmit(): void {
     if (this.forgotPasswordForm.valid && isPlatformBrowser(this.platformId)) {
-      // Here you would typically call a password reset service
-      console.log('Password reset requested for:', this.forgotPasswordForm.value.email);
-      // Add your password reset logic here
+      this.isLoading = true;
+      this.errorMessage = '';
+      const email = this.forgotPasswordForm.value.email;
       
-      // Show success message (in a real app, you might want to show a toast/notification)
-      alert('Password reset link has been sent to your email.');
-      
-      this.forgotPasswordForm.reset();
-      this.toggleForgotPassword(false);
+      this.authService.requestPasswordReset(email).subscribe({
+        next: (response) => {
+          this.isLoading = false;
+          // Show success message
+          alert('Password reset link has been sent to your email.');
+          this.forgotPasswordForm.reset();
+          this.toggleForgotPassword(false);
+        },
+        error: (error) => {
+          this.isLoading = false;
+          if (error.status === 404) {
+            this.errorMessage = 'Email not found in our records';
+          } else {
+            this.errorMessage = 'Password reset request failed. Please try again later.';
+          }
+          console.error('Password reset error', error);
+        }
+      });
     } else {
       this.markFormGroupTouched(this.forgotPasswordForm);
     }

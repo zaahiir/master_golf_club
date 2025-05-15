@@ -5,20 +5,18 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RootRedirectResolver implements Resolve<void> {
+export class RootRedirectResolver implements Resolve<boolean> {
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
-  resolve(): void {    
-    // Check if regular user is logged in
-    if (this.authService.isLoggedIn()) {
+  resolve(): boolean {
+    if (this.authService.isAuthenticated()) {
       this.router.navigate(['/home']);
-      return;
+    } else {
+      this.router.navigate(['/login']);
     }
-    
-    // If no one is logged in, redirect to login
-    this.router.navigate(['/login']);
+    return true;
   }
 }
