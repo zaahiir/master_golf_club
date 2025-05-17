@@ -34,18 +34,30 @@
         <div class="card border-0 h-100">
           <div class="news-image-container">
             <a [routerLink]="['/news', item.id]">
-              <img [src]="item.imageUrl" [alt]="item.title">
+              <img [src]="item.imageUrl" [alt]="item.title" (error)="handleImageError($event)">
             </a>
             <span class="post-date">{{ item.date | date:'dd MMM' }}</span>
           </div>
           <div class="news-content">
-            <span class="category">Golf News</span>
+            <span class="category">{{ item.category }}</span>
             <h3 class="news-title">
               <a [routerLink]="['/news', item.id]">{{ item.title }}</a>
             </h3>
-            <p class="news-description">{{ item.description }}</p>
+            <p class="news-description" [innerHTML]="item.description"></p>
           </div>
         </div>
+      </div>
+    </div>
+    
+    <!-- Loading indicator or message when all items are loaded -->
+    <div class="row" *ngIf="newsItems.length === 0">
+      <div class="col-12 text-center mt-4">
+        <p>Loading news...</p>
+      </div>
+    </div>
+    <div class="row" *ngIf="allItemsLoaded && newsItems.length > 0">
+      <div class="col-12 text-center mt-4">
+        <p>No more news to load</p>
       </div>
     </div>
   </div>
