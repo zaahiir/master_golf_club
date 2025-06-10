@@ -233,12 +233,6 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loadCourses(true);
   }
 
-  clearFilters(): void {
-    this.searchQuery = '';
-    this.locationQuery = '';
-    this.loadCourses(true);
-  }
-
   loadMoreCourses(): void {
     if (!this.isLoading && this.hasMoreCourses) {
       this.loadCourses(false);

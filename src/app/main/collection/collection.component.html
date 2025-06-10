@@ -24,33 +24,39 @@
 
     <!-- Search and Filter Section -->
     <div class="row mb-4">
-      <div class="col-md-6">
+      <div class="col-md-3 ms-auto">
         <div class="input-group">
           <input
             type="text"
             class="form-control"
             placeholder="Search courses..."
-            [(ngModel)]="searchQuery"
             (keyup.enter)="searchCourses()">
           <button class="btn btn-outline-secondary" type="button" (click)="searchCourses()">
             <fa-icon [icon]="faSearch"></fa-icon>
           </button>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="input-group">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Location..."
-            [(ngModel)]="locationQuery"
-            (keyup.enter)="searchCourses()">
-          <button class="btn btn-outline-secondary" type="button" (click)="clearFilters()">
-            Clear
-          </button>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-3 ms-auto">
+        <div class="search-container-compact">
+          <div class="search-wrapper-compact">
+              <i class="fas fa-search search-icon-compact"></i>
+              <input
+                  type="text"
+                  class="search-input-compact"
+                  placeholder="Search courses..."
+                  onkeyup="handleSearch(event)">
+              <button class="search-btn-compact" onclick="performSearch()">
+                  <i class="fas fa-search"></i>
+              </button>
+          </div>
         </div>
       </div>
     </div>
+
+
 
     <!-- Loading Indicator -->
     <div *ngIf="isLoading" class="text-center py-5">
@@ -191,51 +197,3 @@
     </div>
   </div>
 </div>
-
-<style>
-/* Additional styles for amenity icons */
-.amenity-icon {
-  width: 20px;
-  height: 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.amenity-icon svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
-}
-
-.amenity-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  margin: 2px;
-  font-size: 12px;
-  background-color: #f8f9fa;
-  transition: all 0.3s ease;
-}
-
-.amenity-badge.active {
-  background-color: #e3f2fd;
-  border-color: #2196f3;
-  color: #1976d2;
-}
-
-.amenity-badge:hover {
-  background-color: #e3f2fd;
-  border-color: #2196f3;
-  transform: translateY(-1px);
-}
-
-.amenities-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-</style>
