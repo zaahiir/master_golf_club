@@ -220,7 +220,8 @@
 
 .amenity-badge.active:hover .amenity-icon-alt,
 .amenity-badge:hover .amenity-icon-alt {
-  --icon-color: #1c403d;
+  /* --icon-color: #1c403d; */
+  --icon-color: --var(--secondary-color);
 }
 
 .amenity-text {
