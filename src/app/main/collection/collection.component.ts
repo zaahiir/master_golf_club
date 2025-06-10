@@ -15,6 +15,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CollectionService } from '../common-service/collection/collection.service';
 import { Subject } from 'rxjs';
 import { takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 declare var bootstrap: any;
 
@@ -93,7 +94,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private collectionService: CollectionService
+    private collectionService: CollectionService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -225,8 +227,8 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  searchCourses(): void {
-    this.searchSubject.next(this.searchQuery + '|' + this.locationQuery);
+  onSearchInput(): void {
+  this.searchSubject.next(this.searchQuery + '|' + this.locationQuery);
   }
 
   private performSearch(): void {
@@ -272,9 +274,10 @@ export class CollectionComponent implements OnInit, AfterViewInit, OnDestroy {
     return [...matchedAmenities, ...otherAmenities].slice(0, 6);
   }
 
-  getAmenityIcon(amenityId: number): string {
-    const amenity = this.amenities.find(a => a.id === amenityId);
-    return amenity?.icon_svg || '';
+  getAmenityIcon(amenityId: number): SafeHtml {
+  const amenity = this.amenities.find(a => a.id === amenityId);
+  const svgContent = amenity?.icon_svg || '';
+  return this.sanitizer.bypassSecurityTrustHtml(svgContent);
   }
 
   getAmenityIconPath(amenityId: number): string {

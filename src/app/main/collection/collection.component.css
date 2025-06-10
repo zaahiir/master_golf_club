@@ -1,8 +1,8 @@
-/* Collection Component Styles */  
+/* Collection Component Styles */
 
 .page-title .bg-layer {
   background-image: url('../../../assets/images/banner/banner-8.jpg');
-} 
+}
 
 /* Event Card Styles */
 .event-card {
@@ -161,6 +161,41 @@
 
 .amenity-badge:hover {
   transform: scale(1.1);
+  background-color: #d4e6d4;
+}
+
+.amenity-text {
+  display: none;
+}
+
+
+.amenity-icon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amenity-icon svg {
+  width: 80%;
+  height: 80%;
+  transition: fill 0.3s ease; /* Add smooth transition */
+}
+
+/* Active state - show icons in green */
+.amenity-badge.active .amenity-icon svg {
+  fill: #77a96a;
+}
+
+/* Hover state - change to darker green */
+.amenity-badge.active:hover .amenity-icon svg {
+  fill: #1c403d;
+}
+
+/* Alternative approach if you want all amenity icons to change color on hover */
+.amenity-badge:hover .amenity-icon svg {
+  fill: #1c403d;
 }
 
 .amenity-text {
@@ -350,6 +385,58 @@
   background-color: var(--secondary-color);
 }
 
+
+.search-wrapper-compact {
+  max-width: 400px;
+  margin-left: auto; /* This pushes the search to the right */
+  margin-right: 0;
+  position: relative;
+  width: 100%;
+}
+
+.search-input-compact {
+  width: 100%;
+  padding: 0.8rem 1.2rem 0.8rem 3rem;
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  background-color: white;
+  font-size: 0.95rem;
+  color: #5d5d5d;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.08);
+}
+
+.search-input-compact:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 3px 12px rgba(76, 175, 80, 0.2);
+  transform: translateY(-1px);
+}
+
+.search-input-compact::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.search-icon-compact {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2e7d32;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-wrapper-compact {
+    max-width: 100%;
+    margin: 0; /* Center on mobile */
+  }
+
+}
+
 /* Responsive Adjustments */
 @media (max-width: 991px) {
   .event-image-container {
@@ -361,17 +448,17 @@
   .course-title {
     font-size: 20px;
   }
-  
+
   .amenity-badge {
     width: 32px;
     height: 32px;
   }
-  
+
   .event-location {
     font-size: 12px;
     padding: 10px 20px 10px 40px;
   }
-  
+
   .location-icon {
     left: 15px;
   }
@@ -382,7 +469,7 @@
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .contact-links {
     display: flex;
     justify-content: center;

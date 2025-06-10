@@ -20,38 +20,20 @@
 
   <!-- Main Content -->
   <div class="container py-5">
-    <h3 class="text-center mb-5 section-title">Premium Golf Courses</h3>
+    <h3 class="text-center section-title">Premium Golf Courses</h3>
 
-    <!-- Search and Filter Section -->
     <div class="row mb-4">
       <div class="col-md-3 ms-auto">
-        <div class="input-group">
+        <div class="search-wrapper-compact">
+          <i class="search-icon-compact">
+            <fa-icon [icon]="faSearch"></fa-icon>
+          </i>
           <input
             type="text"
-            class="form-control"
+            class="search-input-compact"
             placeholder="Search courses..."
-            (keyup.enter)="searchCourses()">
-          <button class="btn btn-outline-secondary" type="button" (click)="searchCourses()">
-            <fa-icon [icon]="faSearch"></fa-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="row mb-4">
-      <div class="col-md-3 ms-auto">
-        <div class="search-container-compact">
-          <div class="search-wrapper-compact">
-              <i class="fas fa-search search-icon-compact"></i>
-              <input
-                  type="text"
-                  class="search-input-compact"
-                  placeholder="Search courses..."
-                  onkeyup="handleSearch(event)">
-              <button class="search-btn-compact" onclick="performSearch()">
-                  <i class="fas fa-search"></i>
-              </button>
-          </div>
+            [(ngModel)]="searchQuery"
+            (input)="onSearchInput()">
         </div>
       </div>
     </div>
@@ -114,11 +96,11 @@
             <!-- Amenities Icons (Using Backend SVG) -->
             <div class="amenities-row mb-4" *ngIf="course.amenities && course.amenities.length > 0">
               <div *ngFor="let amenityId of getDisplayedAmenityIds(course)"
-                   class="amenity-badge active"
-                   [attr.title]="getAmenityTooltip(amenityId)"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="top">
-                <!-- Use SVG from backend -->
+                  class="amenity-badge active"
+                  [attr.title]="getAmenityTooltip(amenityId)"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top">
+                <!-- Use SVG from backend with proper innerHTML binding -->
                 <div class="amenity-icon" [innerHTML]="getAmenityIcon(amenityId)"></div>
                 <span class="amenity-text">{{ getAmenityTitle(amenityId) }}</span>
               </div>
