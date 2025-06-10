@@ -142,6 +142,7 @@
   padding-bottom: 15px;
 }
 
+/* Updated Amenity Badge Styles with CSS Filters */
 .amenity-badge {
   display: flex;
   align-items: center;
@@ -160,46 +161,92 @@
 }
 
 .amenity-badge:hover {
-  transform: scale(1.1);
   background-color: #d4e6d4;
 }
 
-.amenity-text {
-  display: none;
-}
-
-
 .amenity-icon {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: filter 0.3s ease;
 }
 
 .amenity-icon svg {
   width: 80%;
   height: 80%;
-  transition: fill 0.3s ease; /* Add smooth transition */
 }
 
-/* Active state - show icons in green */
-.amenity-badge.active .amenity-icon svg {
-  fill: #77a96a;
+/* Default state - gray icons */
+.amenity-badge .amenity-icon {
+  filter: brightness(0) saturate(100%) invert(60%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(60%) contrast(100%);
 }
 
-/* Hover state - change to darker green */
-.amenity-badge.active:hover .amenity-icon svg {
-  fill: #1c403d;
+/* Active state - green #77a96a */
+.amenity-badge.active .amenity-icon {
+  filter: brightness(0) saturate(100%) invert(55%) sepia(26%) saturate(457%) hue-rotate(67deg) brightness(90%) contrast(89%);
 }
 
-/* Alternative approach if you want all amenity icons to change color on hover */
-.amenity-badge:hover .amenity-icon svg {
-  fill: #1c403d;
+/* Hover state - dark green #1c403d */
+.amenity-badge.active:hover .amenity-icon,
+.amenity-badge:hover .amenity-icon {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(25%) saturate(1157%) hue-rotate(124deg) brightness(95%) contrast(90%);
+}
+
+/* Alternative approach using CSS custom properties */
+.amenity-icon-alt {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --icon-color: #999;
+  transition: all 0.3s ease;
+}
+
+.amenity-icon-alt svg {
+  width: 80%;
+  height: 80%;
+}
+
+.amenity-icon-alt svg * {
+  fill: var(--icon-color) !important;
+}
+
+.amenity-badge.active .amenity-icon-alt {
+  --icon-color: #77a96a;
+}
+
+.amenity-badge.active:hover .amenity-icon-alt,
+.amenity-badge:hover .amenity-icon-alt {
+  --icon-color: #1c403d;
 }
 
 .amenity-text {
   display: none;
+}
+
+/* If the above methods don't work, try this JavaScript-based approach */
+/* Add this class to trigger color change via JavaScript */
+.amenity-hover-trigger {
+  cursor: pointer;
+}
+
+/* Utility classes for manual color control */
+.icon-green svg,
+.icon-green svg * {
+  fill: #77a96a !important;
+}
+
+.icon-dark-green svg,
+.icon-dark-green svg * {
+  fill: #1c403d !important;
+}
+
+.icon-gray svg,
+.icon-gray svg * {
+  fill: #999 !important;
 }
 
 /* Date Container Styles */
