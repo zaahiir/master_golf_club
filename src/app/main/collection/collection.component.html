@@ -21,49 +21,103 @@
   <!-- Main Content -->
   <div class="container py-5">
     <h3 class="text-center mb-5 section-title">Premium Golf Courses</h3>
-    
+
+    <!-- Search and Filter Section -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search courses..."
+            [(ngModel)]="searchQuery"
+            (keyup.enter)="searchCourses()">
+          <button class="btn btn-outline-secondary" type="button" (click)="searchCourses()">
+            <fa-icon [icon]="faSearch"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Location..."
+            [(ngModel)]="locationQuery"
+            (keyup.enter)="searchCourses()">
+          <button class="btn btn-outline-secondary" type="button" (click)="clearFilters()">
+            Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading courses...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <!-- No Results Message -->
+    <div *ngIf="!isLoading && displayedCourses.length === 0 && !errorMessage" class="text-center py-5">
+      <h4>No courses found</h4>
+      <p>Try adjusting your search criteria or check back later.</p>
+    </div>
+
     <!-- Course Cards -->
     <div class="row"
          infiniteScroll
          (scrolled)="loadMoreCourses()"
          [infiniteScrollDistance]="1"
-         [infiniteScrollThrottle]="300">
-      
-      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let course of displayedCourses">
+         [infiniteScrollThrottle]="300"
+         [infiniteScrollDisabled]="isLoading || !hasMoreCourses">
+
+      <div class="col-md-6 col-lg-4 mb-4" *ngFor="let course of displayedCourses; trackBy: trackByCourseId">
         <div class="event-card h-100">
           <!-- Course Image -->
           <div class="event-image-container">
-            <img [src]="course.imageUrl" [alt]="course.name" class="event-image">
-            <span class="event-location">
+            <img
+              [src]="course.imageUrl"
+              [alt]="course.name"
+              class="event-image"
+              (error)="onImageError($event)">
+            <span class="event-location" *ngIf="course.address">
               <i class="location-icon"><fa-icon [icon]="faMapMarkerAlt"></fa-icon></i>
               {{ course.address }}
             </span>
           </div>
-          
+
           <!-- Course Content -->
           <div class="course-content">
-            <span class="post-date">
+            <span class="post-date" *ngIf="course.timing">
               <i class="date-icon"><fa-icon [icon]="faCalendarWeek"></fa-icon></i>
               {{ course.timing }}
             </span>
-            
+
             <h3 class="course-title mt-2 mb-3">
-              <a href="#">{{ course.name }}</a>
+              <a href="#" (click)="viewCourseDetails(course.id, $event)">{{ course.name }}</a>
             </h3>
-            
-            <!-- Amenities Icons -->
-            <div class="amenities-row mb-4">
-              <div *ngFor="let amenity of getDisplayedAmenities(course)" 
-                   class="amenity-badge"
-                   [class.active]="hasAmenity(course, amenity.id)"
-                   [attr.title]="amenity.tooltip"
+
+            <!-- Amenities Icons (Using Backend SVG) -->
+            <div class="amenities-row mb-4" *ngIf="course.amenities && course.amenities.length > 0">
+              <div *ngFor="let amenityId of getDisplayedAmenityIds(course)"
+                   class="amenity-badge active"
+                   [attr.title]="getAmenityTooltip(amenityId)"
                    data-bs-toggle="tooltip"
                    data-bs-placement="top">
-                <fa-icon [icon]="amenity.icon"></fa-icon>
-                <span class="amenity-text">{{ amenity.title }}</span>
+                <!-- Use SVG from backend -->
+                <div class="amenity-icon" [innerHTML]="getAmenityIcon(amenityId)"></div>
+                <span class="amenity-text">{{ getAmenityTitle(amenityId) }}</span>
               </div>
             </div>
-            
+
             <!-- Booking Dates -->
             <div class="date-container d-flex justify-content-between mb-4">
               <div
@@ -74,19 +128,23 @@
                 <div class="date-day">{{ date | date: 'EEE' }}</div>
               </div>
             </div>
-            
+
             <!-- Action Buttons -->
             <div class="action-buttons d-flex justify-content-between">
-              <a [routerLink]="'/teeBooking'" class="btn btn-theme px-4 py-2">Book a Tee</a>
+              <a [routerLink]="'/teeBooking'"
+                 [queryParams]="{ courseId: course.id }"
+                 class="btn btn-theme px-4 py-2">Book a Tee</a>
               <div class="contact-links">
-                <a href="tel:{{ course.phone }}" 
+                <a *ngIf="course.phone"
+                   href="tel:{{ course.phone }}"
                    class="btn btn-outline me-2"
                    [attr.title]="'Call ' + course.phone"
                    data-bs-toggle="tooltip">
                   <fa-icon [icon]="faPhone"></fa-icon>
                 </a>
-                <a [href]="course.website" 
-                   target="_blank" 
+                <a *ngIf="course.website"
+                   [href]="course.website"
+                   target="_blank"
                    rel="noopener noreferrer"
                    class="btn btn-outline"
                    [attr.title]="'Visit ' + course.name + ' website'"
@@ -99,8 +157,15 @@
         </div>
       </div>
     </div>
+
+    <!-- Load More Button (fallback for infinite scroll) -->
+    <div class="text-center mt-4" *ngIf="hasMoreCourses && !isLoading">
+      <button class="btn btn-outline-primary" (click)="loadMoreCourses()">
+        Load More Courses
+      </button>
+    </div>
   </div>
-  
+
   <!-- Modal -->
   <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal()">
     <div class="modal-content lg-modal" (click)="$event.stopPropagation()">
@@ -116,11 +181,61 @@
           <li>Proof of handicap may be required upon arrival</li>
         </ul>
         <p class="mt-3">
-          Please note that guest policies may vary during tournaments and special events. 
+          Please note that guest policies may vary during tournaments and special events.
           Contact the club directly for specific event restrictions and current guest rates.
         </p>
       </div>
-      <button class="go-to-website" (click)="goToWebsite()">Visit Course Website</button>
+      <button *ngIf="selectedCourse?.website"
+              class="go-to-website"
+              (click)="goToWebsite()">Visit Course Website</button>
     </div>
   </div>
 </div>
+
+<style>
+/* Additional styles for amenity icons */
+.amenity-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amenity-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.amenity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  margin: 2px;
+  font-size: 12px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.amenity-badge.active {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  color: #1976d2;
+}
+
+.amenity-badge:hover {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  transform: translateY(-1px);
+}
+
+.amenities-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+</style>
