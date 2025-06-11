@@ -58,7 +58,7 @@ export class AuthService {
 
   logout(): Observable<any> {
     const refreshToken = this.getStorageItem('refresh_token');
-    
+
     // Send logout request to backend with proper payload
     return this.http.post(`${this.apiUrl}member_logout/`, { refresh_token: refreshToken })
       .pipe(
@@ -143,7 +143,7 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred';
-    
+
     if (error.error instanceof ErrorEvent) {
       // Client-side error
       errorMessage = `Error: ${error.error.message}`;
@@ -151,7 +151,7 @@ export class AuthService {
       // Server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    
+
     console.error(errorMessage);
     return throwError(() => error);
   }

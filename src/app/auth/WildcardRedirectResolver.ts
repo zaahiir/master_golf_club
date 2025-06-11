@@ -5,18 +5,20 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RootRedirectResolver implements Resolve<boolean> {
+export class WildcardRedirectResolver implements Resolve<boolean> {
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
   resolve(): boolean {
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/home']);
-    } else {
+    // Always redirect to login for any unknown routes when not authenticated
+    if (!this.authService.isAuthenticated()) {
       this.router.navigate(['/login']);
+    } else {
+      // If authenticated, redirect to home for unknown routes
+      this.router.navigate(['/home']);
     }
-    return true;
+    return false;
   }
 }
