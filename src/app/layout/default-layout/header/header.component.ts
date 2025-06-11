@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -16,34 +16,45 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
     // Check if user is logged in
     this.isLoggedIn = this.authService.isLoggedIn();
 
-    // Bootstrap dropdowns and toggler
-    document.addEventListener('DOMContentLoaded', () => {
+    // Only run DOM manipulation code in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      this.initializeDOMEvents();
+    }
+  }
+
+  private initializeDOMEvents(): void {
+    // Use setTimeout to ensure DOM is ready
+    setTimeout(() => {
+      // Bootstrap dropdowns and toggler
       const mobileToggler = document.querySelector('.mobile-nav-toggler');
       const navbarCollapse = document.querySelector('.navbar-collapse');
-  
+
       if (mobileToggler && navbarCollapse) {
         mobileToggler.addEventListener('click', () => {
           navbarCollapse.classList.toggle('show');
         });
       }
-    });
-  
-    // Sticky effect on scroll
-    window.addEventListener('scroll', () => {
-      const header = document.querySelector('.main-header');
-      if (window.scrollY > 50) {
-        header?.classList.add('scrolled');
-      } else {
-        header?.classList.remove('scrolled');
-      }
-    });
+
+      // Sticky effect on scroll
+      const handleScroll = () => {
+        const header = document.querySelector('.main-header');
+        if (window.scrollY > 50) {
+          header?.classList.add('scrolled');
+        } else {
+          header?.classList.remove('scrolled');
+        }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+    }, 0);
   }
 
   logout(): void {

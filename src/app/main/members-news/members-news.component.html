@@ -18,26 +18,40 @@
   </section>
 
   <!-- News Section -->
-  <div class="container-fluid px-md-5 px-3 py-5">
+  <div class="container px-md-5 px-3 py-5">
     <div class="row">
       <div class="col-12 text-center mb-5">
         <h2 class="section-title">News from MGC</h2>
       </div>
     </div>
-    
+
+    <!-- News Content - Only show when not loading and has content -->
     <div class="row"
-       infiniteScroll
-       (scrolled)="loadMoreNews()"
-       [infiniteScrollDistance]="1"
-       [infiniteScrollThrottle]="300">
+         *ngIf="!isLoading && displayedNews.length > 0"
+         infiniteScroll
+         (scrolled)="loadMoreNews()"
+         [infiniteScrollDistance]="1"
+         [infiniteScrollThrottle]="300">
       <div class="col-md-6 col-lg-4 mb-4" *ngFor="let item of displayedNews">
         <div class="card border-0 h-100">
-          <div class="news-image-container">
+          <!-- Image Display with Error Handling -->
+          <div class="news-image-container" *ngIf="item.hasImage && item.imageUrl">
             <a [routerLink]="['/news', item.id]">
-              <img [src]="item.imageUrl" [alt]="item.title" (error)="handleImageError($event)">
+              <img [src]="item.imageUrl"
+                   [alt]="item.title"
+                   (error)="onImageError($event)"
+                   loading="lazy">
             </a>
             <span class="post-date">{{ item.date | date:'dd MMM' }}</span>
           </div>
+
+          <!-- No Image Container - maintains layout consistency -->
+          <div class="news-image-container no-image" *ngIf="!item.hasImage || !item.imageUrl">
+            <div class="no-image-placeholder">
+              <span class="post-date">{{ item.date | date:'dd MMM' }}</span>
+            </div>
+          </div>
+
           <div class="news-content">
             <span class="category">{{ item.category }}</span>
             <h3 class="news-title">
@@ -48,16 +62,11 @@
         </div>
       </div>
     </div>
-    
-    <!-- Loading indicator or message when all items are loaded -->
-    <div class="row" *ngIf="newsItems.length === 0">
+
+    <!-- Empty state when no news available (after loading completes) -->
+    <div class="row" *ngIf="!isLoading && displayedNews.length === 0">
       <div class="col-12 text-center mt-4">
-        <p>Loading news...</p>
-      </div>
-    </div>
-    <div class="row" *ngIf="allItemsLoaded && newsItems.length > 0">
-      <div class="col-12 text-center mt-4">
-        <p>No more news to load</p>
+        <p>No news available at the moment.</p>
       </div>
     </div>
   </div>

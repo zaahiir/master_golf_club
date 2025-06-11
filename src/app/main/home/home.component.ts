@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       imageSrc: 'assets/images/service/service-4.jpg'
     }
   ];
-  
+
   // Default news data in case API fails
   featuredNews = {
     id: 0,
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     imageSrc: 'assets/images/news/news-1.jpg',
     route: '/news/0'
   };
-  
+
   smallNewsArticles = [
     {
       id: 0,
@@ -81,20 +81,20 @@ export class HomeComponent implements OnInit {
       route: '/news/0'
     }
   ];
-  
+
   isLoading = true;
   error = false;
-  
+
   constructor(private newsService: NewsService) {}
-  
+
   ngOnInit(): void {
     this.loadLatestNews();
   }
-  
+
   loadLatestNews(): void {
     this.isLoading = true;
     this.error = false;
-    
+
     // Use the latest news endpoint
     this.newsService.listBlog().pipe(
       catchError(error => {
@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
       })
     ).subscribe(response => {
       this.isLoading = false;
-      
+
       if (response && response.code === 1 && response.data && response.data.length > 0) {
         this.updateNewsDisplay(response.data);
       } else {
@@ -116,18 +116,21 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  
+
   updateNewsDisplay(blogPosts: BlogPost[]): void {
     if (blogPosts.length > 0) {
       // Sort blog posts by date (newest first)
-      const sortedPosts = [...blogPosts].sort((a, b) => 
+      const sortedPosts = [...blogPosts].sort((a, b) =>
         new Date(b.blogDate).getTime() - new Date(a.blogDate).getTime()
       );
-      
+
       // Set featured news (first item)
       const featured = sortedPosts[0];
       const truncatedDesc = this.truncateDescription(featured.blogDescription, 200);
-      
+
+      // FIXED: Use formatImageUrl method from newsService to get correct backend image URL
+      const featuredImageUrl = this.newsService.formatImageUrl(featured.blogImage);
+
       this.featuredNews = {
         id: featured.id,
         title: featured.blogTitle,
@@ -136,56 +139,74 @@ export class HomeComponent implements OnInit {
         truncatedDescription: truncatedDesc.text,
         showReadMore: truncatedDesc.truncated,
         date: this.newsService.formatDate(featured.blogDate),
-        imageSrc: featured.blogImage || 'assets/images/news/news-1.jpg',
+        imageSrc: featuredImageUrl || 'assets/images/news/news-1.jpg', // Use formatted URL or fallback
         route: `/news/${featured.id}`
       };
-      
+
       // Set small news articles (remaining items)
       const remainingArticles = Math.min(sortedPosts.length - 1, 4);
       for (let i = 0; i < remainingArticles; i++) {
         const blog = sortedPosts[i + 1];
+
+        // FIXED: Use formatImageUrl method from newsService for each small article
+        const articleImageUrl = this.newsService.formatImageUrl(blog.blogImage);
+
         this.smallNewsArticles[i] = {
           id: blog.id,
           title: blog.blogTitle,
           highlight: blog.blogHighlight || 'News',
           date: this.newsService.formatDate(blog.blogDate),
-          imageSrc: blog.blogImage || `assets/images/news/news-${(i % 4) + 2}.jpg`,
+          imageSrc: articleImageUrl || `assets/images/news/news-${(i % 4) + 2}.jpg`, // Use formatted URL or fallback
           route: `/news/${blog.id}`
         };
       }
-      
+
       // Fill remaining slots with default data if needed
       for (let i = remainingArticles; i < 4; i++) {
         // Keep the default data for these slots
       }
     }
   }
-  
+
   truncateDescription(html: string, wordLimit: number): { text: string, truncated: boolean } {
     // Remove HTML tags
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = html;
     const text = tempDiv.textContent || tempDiv.innerText || '';
-    
+
     // Split into words and count
     const words = text.split(/\s+/);
-    
+
     if (words.length <= wordLimit) {
       return { text: text, truncated: false };
     }
-    
+
     // Join the first 'wordLimit' words back together
     const truncated = words.slice(0, wordLimit).join(' ') + '...';
     return { text: truncated, truncated: true };
   }
-  
-  // Function to handle image errors
+
+  // ENHANCED: Function to handle image errors with better fallback logic
   onImageError(event: Event, index?: number): void {
     const element = event.target as HTMLImageElement;
+    console.log('Image failed to load:', element.src);
+
+    // Try fallback images based on context
     if (index !== undefined && index >= 0 && index < 4) {
+      // For small news articles
       element.src = `assets/images/news/news-${index + 2}.jpg`;
     } else {
+      // For featured news
       element.src = 'assets/images/news/news-1.jpg';
     }
+
+    // If even the fallback fails, hide the image
+    element.onerror = () => {
+      element.style.display = 'none';
+      const container = element.closest('.news-image-container');
+      if (container) {
+        container.classList.add('no-image');
+      }
+    };
   }
 }
