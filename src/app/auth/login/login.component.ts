@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   });
 
   isForgotPasswordActive: boolean = false;
-  rememberMe: boolean = false;
   errorMessage: string = '';
   isLoading: boolean = false;
 
@@ -60,27 +59,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid && isPlatformBrowser(this.platformId)) {
       this.isLoading = true;
       this.errorMessage = '';
-      
+
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      
+
       this.authService.login(username, password).subscribe({
         next: (response) => {
-          // Store tokens and user info in localStorage
-          localStorage.setItem('access_token', response.access);
-          localStorage.setItem('refresh_token', response.refresh);
-          localStorage.setItem('user_type', response.user_type);
-          localStorage.setItem('user_id', response.user_id.toString());
-          localStorage.setItem('username', response.username);
-          localStorage.setItem('email', response.email);
-          
-          // Handle "Remember me" functionality
-          if (!this.rememberMe) {
-            // If remember me is not checked, set session storage instead
-            // which will be cleared when the browser is closed
-            sessionStorage.setItem('session_type', 'temporary');
-          }
-          
           this.isLoading = false;
           this.router.navigate(['/home']);
         },
@@ -104,7 +88,7 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.errorMessage = '';
       const email = this.forgotPasswordForm.value.email;
-      
+
       this.authService.requestPasswordReset(email).subscribe({
         next: (response) => {
           this.isLoading = false;
@@ -126,10 +110,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.markFormGroupTouched(this.forgotPasswordForm);
     }
-  }
-
-  toggleRememberMe(event: any): void {
-    this.rememberMe = event.target.checked;
   }
 
   private markFormGroupTouched(formGroup: FormGroup): void {
