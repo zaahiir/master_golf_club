@@ -1,99 +1,278 @@
-<div class="profile-container">
+<div class="profile-container" *ngIf="memberProfile && !loadingError">
   <!-- Profile Header -->
   <div class="profile-header">
+    <div class="header-background"></div>
     <div class="header-content">
       <div class="avatar-section">
-        <div class="profile-avatar"></div>
+        <div class="profile-avatar-container">
+          <img
+            [src]="'assets/images/default-avatar.png'"
+            [alt]="getFullName()"
+            class="profile-avatar"
+            (error)="onImageError($event)">
+          <div class="avatar-badge" *ngIf="memberProfile.plan">
+            <fa-icon [icon]="faCrown"></fa-icon>
+          </div>
+        </div>
         <div class="profile-info">
-          <h2>John Doe</h2>
-          <p class="member-id">Member ID: 123456</p>
-          <span class="status-badge active">Active</span>
+          <h1 class="member-name">{{ getFullName() }}</h1>
+          <p class="member-id">
+            <fa-icon [icon]="faIdCard" class="me-2"></fa-icon>
+            Member ID: {{ memberProfile.golfClubId || memberProfile.id }}
+          </p>
+          <div class="member-badges">
+            <span class="status-badge" [class]="getMembershipStatusClass()">
+              <fa-icon [icon]="faUserCheck" class="me-1"></fa-icon>
+              {{ getMembershipStatus() }}
+            </span>
+            <span class="plan-badge" *ngIf="memberProfile.plan">
+              {{ memberProfile.plan }}
+            </span>
+          </div>
+          <div class="membership-expiry" *ngIf="memberProfile.membershipEndDate">
+            <small class="text-muted">
+              Expires: {{ formatDate(memberProfile.membershipEndDate) }}
+              <span class="days-left" *ngIf="getDaysUntilExpiry() > 0">
+                ({{ getDaysUntilExpiry() }} days left)
+              </span>
+            </small>
+          </div>
         </div>
       </div>
-      <button class="update-btn">Update Profile</button>
     </div>
   </div>
 
   <!-- Main Content Grid -->
-  <div class="cards-grid">
-    <!-- Membership Card -->
-    <div class="profile-card">
-      <h3>Membership Details</h3>
-      <div class="card-content">
-        <div class="info-row">
-          <span class="label">Membership Type:</span>
-          <span class="value">Platinum</span>
+  <div class="profile-content">
+    <div class="cards-grid">
+      <!-- Personal Information Card -->
+      <div class="profile-card">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faUser" class="me-2"></fa-icon>
+            Personal Information
+          </h3>
         </div>
-        <div class="info-row">
-          <span class="label">Join Date:</span>
-          <span class="value">January 15, 2022</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Expiry Date:</span>
-          <span class="value">January 15, 2025</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Status:</span>
-          <span class="value status-active">Active</span>
+        <div class="card-content">
+          <div class="info-row">
+            <span class="label">Full Name:</span>
+            <span class="value">{{ getFullName() }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.dateOfBirth">
+            <span class="label">Date of Birth:</span>
+            <span class="value">{{ formatDate(memberProfile.dateOfBirth) }} ({{ calculateAge() }} years)</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.gender">
+            <span class="label">Gender:</span>
+            <span class="value">{{ memberProfile.gender }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.nationality">
+            <span class="label">Nationality:</span>
+            <span class="value">{{ memberProfile.nationality }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.handicap !== undefined">
+            <span class="label">Handicap:</span>
+            <span class="value">{{ memberProfile.handicap ? 'Yes' : 'No' }}</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Contact Information Card -->
-    <div class="profile-card">
-      <h3>Contact Information</h3>
-      <div class="card-content">
-        <div class="info-row">
-          <span class="label">Email:</span>
-          <span class="value">{{'johndoe@example.com'}}</span>
+      <!-- Contact Information Card -->
+      <div class="profile-card">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
+            Contact Information
+          </h3>
         </div>
-        <div class="info-row">
-          <span class="label">Phone:</span>
-          <span class="value">+123-456-7890</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Address:</span>
-          <span class="value">123 Fairway Drive, Greenfield</span>
+        <div class="card-content">
+          <div class="info-row">
+            <span class="label">
+              <fa-icon [icon]="faEnvelope" class="me-1"></fa-icon>
+              Email:
+            </span>
+            <span class="value">{{ memberProfile.email }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">
+              <fa-icon [icon]="faPhone" class="me-1"></fa-icon>
+              Phone:
+            </span>
+            <span class="value">{{ memberProfile.phoneNumber }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.alternatePhoneNumber">
+            <span class="label">Alternate Phone:</span>
+            <span class="value">{{ memberProfile.alternatePhoneNumber }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.address">
+            <span class="label">
+              <fa-icon [icon]="faMapMarkerAlt" class="me-1"></fa-icon>
+              Address:
+            </span>
+            <span class="value">{{ memberProfile.address }}</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Activity Summary Card -->
-    <div class="profile-card">
-      <h3>Activity Summary</h3>
-      <div class="card-content">
-        <div class="info-row">
-          <span class="label">Last Visit:</span>
-          <span class="value">March 15, 2024</span>
+      <!-- Emergency Contact Card -->
+      <div class="profile-card" *ngIf="memberProfile.emergencyContactName || memberProfile.emergencyContactPhone">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
+            Emergency Contact
+          </h3>
         </div>
-        <div class="info-row">
-          <span class="label">Total Visits:</span>
-          <span class="value">47</span>
-        </div>
-        <div class="info-row">
-          <span class="label">Membership Level:</span>
-          <span class="value">Gold</span>
+        <div class="card-content">
+          <div class="info-row" *ngIf="memberProfile.emergencyContactName">
+            <span class="label">Contact Name:</span>
+            <span class="value">{{ memberProfile.emergencyContactName }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.emergencyContactPhone">
+            <span class="label">Contact Phone:</span>
+            <span class="value">{{ memberProfile.emergencyContactPhone }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.emergencyContactRelation">
+            <span class="label">Relationship:</span>
+            <span class="value">{{ memberProfile.emergencyContactRelation }}</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Preferences Card -->
-    <div class="profile-card">
-      <h3>Preferences</h3>
-      <div class="card-content">
-        <div class="info-row">
-          <span class="label">Newsletter:</span>
-          <span class="value">Subscribed</span>
+      <!-- Membership Details Card -->
+      <div class="profile-card membership-card">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faCrown" class="me-2"></fa-icon>
+            Membership Details
+          </h3>
         </div>
-        <div class="info-row">
-          <span class="label">Language:</span>
-          <span class="value">English</span>
+        <div class="card-content">
+          <div class="info-row" *ngIf="memberProfile.plan">
+            <span class="label">Membership Type:</span>
+            <span class="value highlight">{{ memberProfile.plan }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.membershipStartDate">
+            <span class="label">Join Date:</span>
+            <span class="value">{{ formatDate(memberProfile.membershipStartDate) }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.membershipEndDate">
+            <span class="label">Expiry Date:</span>
+            <span class="value">{{ formatDate(memberProfile.membershipEndDate) }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.paymentStatus">
+            <span class="label">Payment Status:</span>
+            <span class="value" [class]="getMembershipStatusClass()">{{ memberProfile.paymentStatus }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.paymentMethod">
+            <span class="label">Payment Method:</span>
+            <span class="value">{{ memberProfile.paymentMethod }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.membershipLevel">
+            <span class="label">Membership Level:</span>
+            <span class="value highlight">{{ memberProfile.membershipLevel }}</span>
+          </div>
         </div>
-        <div class="info-row">
-          <span class="label">Notifications:</span>
-          <span class="value">Enabled</span>
+      </div>
+
+      <!-- Activity Summary Card -->
+      <div class="profile-card">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>
+            Activity Summary
+          </h3>
+        </div>
+        <div class="card-content">
+          <div class="info-row" *ngIf="memberProfile.lastVisit">
+            <span class="label">Last Visit:</span>
+            <span class="value">{{ formatDate(memberProfile.lastVisit) }}</span>
+          </div>
+          <div class="info-row" *ngIf="memberProfile.totalVisits">
+            <span class="label">Total Visits:</span>
+            <span class="value highlight">{{ memberProfile.totalVisits }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">Member Since:</span>
+            <span class="value">{{ formatDate(memberProfile.membershipStartDate) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferences Card -->
+      <div class="profile-card" *ngIf="memberProfile.preferences">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faBell" class="me-2"></fa-icon>
+            Preferences & Settings
+          </h3>
+        </div>
+        <div class="card-content">
+          <div class="info-row">
+            <span class="label">
+              <fa-icon [icon]="faNewspaper" class="me-1"></fa-icon>
+              Newsletter:
+            </span>
+            <span class="value" [class]="memberProfile.preferences.newsletter ? 'status-active' : 'status-inactive'">
+              {{ memberProfile.preferences.newsletter ? 'Subscribed' : 'Unsubscribed' }}
+            </span>
+          </div>
+          <div class="info-row">
+            <span class="label">
+              <fa-icon [icon]="faLanguage" class="me-1"></fa-icon>
+              Language:
+            </span>
+            <span class="value">{{ memberProfile.preferences.language }}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">
+              <fa-icon [icon]="faBell" class="me-1"></fa-icon>
+              Notifications:
+            </span>
+            <span class="value" [class]="memberProfile.preferences.notifications ? 'status-active' : 'status-inactive'">
+              {{ memberProfile.preferences.notifications ? 'Enabled' : 'Disabled' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions Card -->
+      <div class="profile-card quick-actions-card">
+        <div class="card-header">
+          <h3>
+            <fa-icon [icon]="faUser" class="me-2"></fa-icon>
+            Quick Actions
+          </h3>
+        </div>
+        <div class="card-content">
+          <div class="action-buttons">
+            <button class="btn btn-theme w-100 mb-3" (click)="redirectToAccount()">
+              <fa-icon [icon]="faUser" class="me-2"></fa-icon>
+              Manage Account
+            </button>
+            <button class="btn btn-outline w-100 mb-3">
+              <fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>
+              View Bookings
+            </button>
+            <button class="btn btn-outline w-100">
+              <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
+              Contact Support
+            </button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Error State -->
+<div class="error-container" *ngIf="loadingError">
+  <div class="error-content">
+    <fa-icon [icon]="faUser" class="error-icon"></fa-icon>
+    <h3>Unable to Load Profile</h3>
+    <p>There was an error loading your profile information. Please try again.</p>
+    <button class="btn btn-theme" (click)="retryLoading()">
+      <fa-icon [icon]="faUser" class="me-2"></fa-icon>
+      Retry Loading
+    </button>
   </div>
 </div>

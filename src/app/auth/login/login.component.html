@@ -42,7 +42,7 @@
                   <a href="javascript:void(0)" class="forgot-password" (click)="toggleForgotPassword(true)">Forgot password?</a>
                 </div>
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid || isLoading">
+                  <button type="submit" class="btn btn-primary">
                     <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                     Log In
                   </button>
@@ -79,7 +79,7 @@
 
                 <p class="text-center mb-3">We'll send you a verification code to reset your password</p>
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary" [disabled]="!forgotPasswordForm.valid || isLoading">
+                  <button type="submit" class="btn btn-primary">
                     <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                     Send Verification Code
                   </button>
@@ -156,7 +156,7 @@
 
                 <p class="text-center mb-3">Enter the verification code sent to your email and set your new password</p>
                 <div class="d-grid gap-2">
-                  <button type="submit" class="btn btn-primary" [disabled]="!setNewPasswordForm.valid || isLoading">
+                  <button type="submit" class="btn btn-primary">
                     <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                     Set New Password
                   </button>
