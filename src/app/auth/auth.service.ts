@@ -18,6 +18,18 @@ export interface PasswordResetRequest {
   email: string;
 }
 
+export interface PasswordResetResponse {
+  code: number;
+  message: string;
+  verification_code?: string; // For development/testing purposes
+}
+
+export interface SetNewPasswordRequest {
+  verification_code: string;
+  new_password: string;
+  confirm_password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -75,8 +87,24 @@ export class AuthService {
       );
   }
 
-  requestPasswordReset(email: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}password_reset/`, { email })
+  requestPasswordReset(email: string): Observable<PasswordResetResponse> {
+    return this.http.post<PasswordResetResponse>(`${this.apiUrl}password_reset/`, { email })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // New method to verify reset code and set new password
+  setNewPassword(data: SetNewPasswordRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}set_new_password/`, data)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Method to verify reset code without setting password
+  verifyResetCode(verification_code: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}verify_reset_code/`, { verification_code })
       .pipe(
         catchError(this.handleError)
       );

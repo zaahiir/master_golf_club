@@ -1,10 +1,8 @@
-import { Routes } from '@angular/router'; 
+import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { DefaultLayoutComponent } from './layout/default-layout/default-layout.component';
 import { AuthGuard } from './auth/auth.guard';
-
-// Admin imports
 import { AuthRedirectResolver } from './auth/auth-redirect.resolver';
 import { RootRedirectResolver } from './auth/RootRedirectResolver';
 
@@ -17,7 +15,7 @@ export const routes: Routes = [
     },
     component: DefaultLayoutComponent
   },
-  
+
   // Member Routes
   {
     path: 'login',
@@ -43,7 +41,7 @@ export const routes: Routes = [
       }
     ]
   },
-  
+
   // Member Catch-All Route (Unauthenticated)
   {
     path: '**',

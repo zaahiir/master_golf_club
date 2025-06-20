@@ -4,7 +4,7 @@
       <div class="col-md-6 col-lg-5">
 
         <!-- Login Card -->
-        <div class="card" [ngClass]="{'active': isForgotPasswordActive}">
+        <div class="card" [ngClass]="{'active': isForgotPasswordActive || isSetNewPasswordActive}">
 
           <!-- Logo Container -->
           <div class="logo-container">
@@ -12,7 +12,7 @@
           </div>
 
           <!-- Login Form -->
-          <div *ngIf="!isForgotPasswordActive">
+          <div *ngIf="!isForgotPasswordActive && !isSetNewPasswordActive">
             <div class="card-header">
               <h2>Member Login</h2>
             </div>
@@ -52,7 +52,7 @@
           </div>
 
           <!-- Forgot Password Form -->
-          <div *ngIf="isForgotPasswordActive">
+          <div *ngIf="isForgotPasswordActive && !isSetNewPasswordActive">
             <div class="card-header">
               <h2>Reset Password</h2>
             </div>
@@ -72,15 +72,83 @@
                   {{ errorMessage }}
                 </div>
 
-                <p class="text-center mb-3">We'll send you a link to reset your password</p>
+                <!-- Success message display -->
+                <div *ngIf="successMessage" class="alert alert-success mb-3">
+                  {{ successMessage }}
+                </div>
+
+                <p class="text-center mb-3">We'll send you a verification code to reset your password</p>
                 <div class="d-grid gap-2">
                   <button type="submit" class="btn btn-primary" [disabled]="!forgotPasswordForm.valid || isLoading">
                     <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                    Reset Password
+                    Send Verification Code
                   </button>
                 </div>
                 <div class="text-center mt-3">
-                  <a href="javascript:void(0)" class="back-to-login" (click)="toggleForgotPassword(false)">Back to Login</a>
+                  <a href="javascript:void(0)" class="back-to-login" (click)="backToLogin()">Back to Login</a>
+                </div>
+                <div class="text-center mt-2">
+                  <a href="javascript:void(0)" class="set-new-password-link" (click)="showSetNewPasswordForm()">Already have a verification code?</a>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Set New Password Form -->
+          <div *ngIf="isSetNewPasswordActive">
+            <div class="card-header">
+              <h2>Set New Password</h2>
+            </div>
+            <div class="card-body p-4">
+              <form [formGroup]="setNewPasswordForm" (ngSubmit)="onSetNewPasswordSubmit()">
+                <div class="mb-3">
+                  <label for="verification-code" class="form-label">Verification Code <span>*</span></label>
+                  <input type="text" class="form-control" id="verification-code" formControlName="verification_code" required>
+                  <div *ngIf="setNewPasswordForm.get('verification_code')?.invalid && (setNewPasswordForm.get('verification_code')?.dirty || setNewPasswordForm.get('verification_code')?.touched)" class="text-danger">
+                    <small *ngIf="setNewPasswordForm.get('verification_code')?.errors?.['required']">Verification code is required</small>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="new-password" class="form-label">New Password <span>*</span></label>
+                  <input type="password" class="form-control" id="new-password" formControlName="new_password" required>
+                  <div *ngIf="setNewPasswordForm.get('new_password')?.invalid && (setNewPasswordForm.get('new_password')?.dirty || setNewPasswordForm.get('new_password')?.touched)" class="text-danger">
+                    <small *ngIf="setNewPasswordForm.get('new_password')?.errors?.['required']">New password is required</small>
+                    <small *ngIf="setNewPasswordForm.get('new_password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="confirm-password" class="form-label">Confirm Password <span>*</span></label>
+                  <input type="password" class="form-control" id="confirm-password" formControlName="confirm_password" required>
+                  <div *ngIf="setNewPasswordForm.get('confirm_password')?.invalid && (setNewPasswordForm.get('confirm_password')?.dirty || setNewPasswordForm.get('confirm_password')?.touched)" class="text-danger">
+                    <small *ngIf="setNewPasswordForm.get('confirm_password')?.errors?.['required']">Please confirm your password</small>
+                    <small *ngIf="setNewPasswordForm.get('confirm_password')?.errors?.['passwordMismatch']">Passwords do not match</small>
+                  </div>
+                </div>
+
+                <!-- Error message display -->
+                <div *ngIf="errorMessage" class="alert alert-danger mb-3">
+                  {{ errorMessage }}
+                </div>
+
+                <!-- Success message display -->
+                <div *ngIf="successMessage" class="alert alert-success mb-3">
+                  {{ successMessage }}
+                </div>
+
+                <p class="text-center mb-3">Enter the verification code sent to your email and set your new password</p>
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary" [disabled]="!setNewPasswordForm.valid || isLoading">
+                    <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    Set New Password
+                  </button>
+                </div>
+                <div class="text-center mt-3">
+                  <a href="javascript:void(0)" class="back-to-login" (click)="backToLogin()">Back to Login</a>
+                </div>
+                <div class="text-center mt-2">
+                  <a href="javascript:void(0)" class="forgot-password" (click)="toggleForgotPassword(true)">Resend verification code</a>
                 </div>
               </form>
             </div>

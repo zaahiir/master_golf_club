@@ -21,8 +21,16 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email])
   });
 
+  setNewPasswordForm: FormGroup = new FormGroup({
+    verification_code: new FormControl('', [Validators.required]),
+    new_password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    confirm_password: new FormControl('', [Validators.required])
+  });
+
   isForgotPasswordActive: boolean = false;
+  isSetNewPasswordActive: boolean = false;
   errorMessage: string = '';
+  successMessage: string = '';
   isLoading: boolean = false;
 
   constructor(
@@ -48,11 +56,52 @@ export class LoginComponent implements OnInit {
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
+
+    this.setNewPasswordForm = this.formBuilder.group({
+      verification_code: ['', Validators.required],
+      new_password: ['', [Validators.required, Validators.minLength(8)]],
+      confirm_password: ['', Validators.required]
+    }, { validators: this.passwordMatchValidator });
+  }
+
+  // Custom validator to check if passwords match
+  passwordMatchValidator(form: FormGroup) {
+    const password = form.get('new_password');
+    const confirmPassword = form.get('confirm_password');
+
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      confirmPassword.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    } else {
+      if (confirmPassword?.errors?.['passwordMismatch']) {
+        delete confirmPassword.errors['passwordMismatch'];
+        if (Object.keys(confirmPassword.errors).length === 0) {
+          confirmPassword.setErrors(null);
+        }
+      }
+      return null;
+    }
   }
 
   toggleForgotPassword(showForgotPassword: boolean): void {
     this.isForgotPasswordActive = showForgotPassword;
-    this.errorMessage = ''; // Clear any error messages when switching forms
+    this.isSetNewPasswordActive = false;
+    this.errorMessage = '';
+    this.successMessage = '';
+  }
+
+  showSetNewPasswordForm(): void {
+    this.isForgotPasswordActive = false;
+    this.isSetNewPasswordActive = true;
+    this.errorMessage = '';
+    this.successMessage = '';
+  }
+
+  backToLogin(): void {
+    this.isForgotPasswordActive = false;
+    this.isSetNewPasswordActive = false;
+    this.errorMessage = '';
+    this.successMessage = '';
   }
 
   onLoginSubmit(): void {
@@ -87,15 +136,20 @@ export class LoginComponent implements OnInit {
     if (this.forgotPasswordForm.valid && isPlatformBrowser(this.platformId)) {
       this.isLoading = true;
       this.errorMessage = '';
+      this.successMessage = '';
       const email = this.forgotPasswordForm.value.email;
 
       this.authService.requestPasswordReset(email).subscribe({
         next: (response) => {
           this.isLoading = false;
-          // Show success message
-          alert('Password reset link has been sent to your email.');
+          // Show success message and switch to set new password form
+          this.successMessage = 'Verification code has been sent to your email. Please check your email and use the code to set a new password.';
           this.forgotPasswordForm.reset();
-          this.toggleForgotPassword(false);
+
+          // Automatically show the set new password form after 3 seconds
+          setTimeout(() => {
+            this.showSetNewPasswordForm();
+          }, 3000);
         },
         error: (error) => {
           this.isLoading = false;
@@ -109,6 +163,41 @@ export class LoginComponent implements OnInit {
       });
     } else {
       this.markFormGroupTouched(this.forgotPasswordForm);
+    }
+  }
+
+  onSetNewPasswordSubmit(): void {
+    if (this.setNewPasswordForm.valid && isPlatformBrowser(this.platformId)) {
+      this.isLoading = true;
+      this.errorMessage = '';
+
+      const formData = this.setNewPasswordForm.value;
+
+      this.authService.setNewPassword(formData).subscribe({
+        next: (response) => {
+          this.isLoading = false;
+          this.successMessage = 'Password has been reset successfully. You can now login with your new password.';
+          this.setNewPasswordForm.reset();
+
+          // Automatically go back to login form after 3 seconds
+          setTimeout(() => {
+            this.backToLogin();
+          }, 3000);
+        },
+        error: (error) => {
+          this.isLoading = false;
+          if (error.status === 400) {
+            this.errorMessage = error.error?.message || 'Invalid verification code or password requirements not met';
+          } else if (error.status === 404) {
+            this.errorMessage = 'Invalid or expired verification code';
+          } else {
+            this.errorMessage = 'Password reset failed. Please try again later.';
+          }
+          console.error('Set new password error', error);
+        }
+      });
+    } else {
+      this.markFormGroupTouched(this.setNewPasswordForm);
     }
   }
 
