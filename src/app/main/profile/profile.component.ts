@@ -18,7 +18,6 @@ import {
   faNewspaper,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { MemberService } from '../common-service/member/member.service';
 
 interface MemberProfile {
   id: number;
@@ -80,104 +79,53 @@ export class ProfileComponent implements OnInit {
   isEditing = false;
   loadingError = false;
 
-  constructor(
-    private router: Router,
-    private memberService: MemberService
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.loadMemberProfile();
+    this.loadStaticMemberProfile();
   }
 
-  async loadMemberProfile() {
+  loadStaticMemberProfile() {
     try {
-      // Get the current logged-in member ID from token or localStorage
-      const memberId = this.getCurrentMemberId();
+      // Static member data - replace with your desired data
+      this.memberProfile = {
+        id: 12345,
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@email.com',
+        phoneNumber: '+1-555-123-4567',
+        alternatePhoneNumber: '+1-555-987-6543',
+        dateOfBirth: '1985-06-15',
+        gender: 'Male',
+        nationality: 'United States',
+        address: '123 Golf Course Lane, Fairway City, GC 12345',
+        plan: 'Premium',
+        membershipStartDate: '2020-01-15',
+        membershipEndDate: '2025-01-15',
+        paymentStatus: 'Active',
+        profilePhoto: 'assets/images/default-avatar.png',
+        golfClubId: 'GC2020001',
+        handicap: true,
+        lastVisit: '2024-06-18',
+        totalVisits: 156,
+        membershipLevel: 'Gold',
+        emergencyContactName: 'Jane Doe',
+        emergencyContactPhone: '+1-555-111-2222',
+        emergencyContactRelation: 'Spouse',
+        paymentMethod: 'Credit Card',
+        preferences: {
+          newsletter: true,
+          language: 'English',
+          notifications: true
+        }
+      };
 
-      if (!memberId) {
-        console.error('No member ID found');
-        this.router.navigate(['/login']);
-        return;
-      }
-
-      const response = await this.memberService.listMember(memberId.toString());
-
-      if (response.data && response.data.code === 1) {
-        this.memberProfile = this.mapBackendDataToProfile(response.data.data);
-        this.loadingError = false;
-      } else {
-        console.error('Failed to load member profile:', response.data?.message);
-        this.loadingError = true;
-      }
+      this.loadingError = false;
+      console.log('Static member profile loaded successfully');
     } catch (error) {
-      console.error('Error loading member profile:', error);
+      console.error('Error loading static member profile:', error);
       this.loadingError = true;
     }
-  }
-
-  private getCurrentMemberId(): number | null {
-    try {
-      // Try to get member ID from JWT token
-      const token = localStorage.getItem('access_token');
-      if (token) {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return payload.member_id || null;
-      }
-
-      // Fallback: try to get from localStorage if stored separately
-      const memberId = localStorage.getItem('member_id');
-      return memberId ? parseInt(memberId, 10) : null;
-    } catch (error) {
-      console.error('Error getting member ID from token:', error);
-      return null;
-    }
-  }
-
-  private mapBackendDataToProfile(data: any): MemberProfile {
-    return {
-      id: data.id,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      phoneNumber: data.phoneNumber,
-      alternatePhoneNumber: data.alternatePhoneNumber,
-      dateOfBirth: data.dateOfBirth,
-      gender: data.gender,
-      nationality: data.nationality,
-      address: data.address,
-      plan: data.plan,
-      membershipStartDate: data.membershipStartDate,
-      membershipEndDate: data.membershipEndDate,
-      paymentStatus: data.paymentStatus,
-      profilePhoto: data.profilePhoto,
-      golfClubId: data.golfClubId,
-      handicap: data.handicap || false,
-      emergencyContactName: data.emergencyContactName,
-      emergencyContactPhone: data.emergencyContactPhone,
-      emergencyContactRelation: data.emergencyContactRelation,
-      paymentMethod: data.paymentMethod,
-      // These might need to be calculated or fetched separately
-      lastVisit: data.lastVisit,
-      totalVisits: data.totalVisits,
-      membershipLevel: this.getMembershipLevel(data.plan),
-      // Default preferences if not provided
-      preferences: data.preferences || {
-        newsletter: true,
-        language: 'English',
-        notifications: true
-      }
-    };
-  }
-
-  private getMembershipLevel(plan: string): string {
-    // Map plan to membership level or return plan itself
-    const levelMap: { [key: string]: string } = {
-      'Basic': 'Bronze',
-      'Standard': 'Silver',
-      'Premium': 'Gold',
-      'Platinum': 'Platinum'
-    };
-    return levelMap[plan] || plan || 'Standard';
   }
 
   getFullName(): string {
@@ -235,6 +183,27 @@ export class ProfileComponent implements OnInit {
 
   retryLoading() {
     this.loadingError = false;
-    this.loadMemberProfile();
+    this.loadStaticMemberProfile();
   }
+
+  // Additional methods for demonstration
+  updateProfile() {
+    console.log('Update profile clicked - implement update logic here');
+    // You can implement profile update logic here if needed
+  }
+
+  viewBookings() {
+    console.log('View bookings clicked');
+    this.router.navigate(['/bookings']);
+  }
+
+  contactSupport() {
+    console.log('Contact support clicked');
+    // Implement contact support logic
+  }
+
+getProfileImage(): string {
+  // Return the profile photo if available, otherwise return default avatar
+  return this.memberProfile?.profilePhoto || 'assets/images/default-avatar.png';
+}
 }
