@@ -1,10 +1,19 @@
 :root {
-    --theme-color: #77A96A;
-    --secondary-color: #1C403D;
-    --text-color: #1C3D40;
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Montserrat', sans-serif;
+  --font-serif: 'Cardo', serif;
+  --font-poppins: 'Poppins', sans-serif;
+  --theme-color: #77A96A;
+  --secondary-color: #1C403D;
+  --text-color: #1C3D40;
+  --text-color-one: #fff;
+  --title-color: #1C3D40;
+  --text-font: "DM Sans", sans-serif;
+  --title-font: "Marcellus", serif;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
 }
 
 .login-section {
@@ -26,7 +35,7 @@
     max-width: 180px;
     height: auto;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform var(--d) var(--e);
 }
 
 .logo:hover {
@@ -37,7 +46,7 @@
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     border: none;
-    transition: all 0.4s ease;
+    transition: all var(--d) var(--e);
     overflow: hidden;
     backdrop-filter: blur(10px);
     background: rgba(255, 255, 255, 0.95);
@@ -50,10 +59,10 @@
 
 .card-header {
     background: linear-gradient(135deg, var(--theme-color), var(--secondary-color));
-    color: white;
+    color: var(--text-color-one);
     border-bottom: none;
+    border-radius: 0;
     text-align: center;
-    padding: 20px;
     position: relative;
     overflow: hidden;
 }
@@ -80,13 +89,14 @@
 }
 
 .card-header h2 {
-    font-family: 'Marcellus', serif;
+    font-family: var(--title-font);
     font-size: 28px;
     text-transform: uppercase;
     margin-bottom: 0;
     position: relative;
     z-index: 1;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: var(--text-color-one);
 }
 
 .card-body {
@@ -101,6 +111,7 @@
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-family: var(--text-font);
 }
 
 .form-label span {
@@ -109,12 +120,14 @@
 }
 
 .form-control {
-    border-radius: 12px;
+    border-radius: 5px;
     padding: 14px 18px;
     border: 2px solid #e5e5e5;
-    transition: all 0.3s ease;
+    transition: all var(--d) var(--e);
     font-size: 16px;
     background: #fafafa;
+    font-family: var(--text-font);
+    color: var(--text-color);
 }
 
 .form-control:focus {
@@ -122,6 +135,7 @@
     box-shadow: 0 0 0 0.25rem rgba(119, 169, 106, 0.15);
     background: white;
     transform: translateY(-1px);
+    color: var(--text-color);
 }
 
 .form-control:hover {
@@ -141,14 +155,15 @@
     width: 50px;
     height: 55px;
     border: 2px solid #e5e5e5;
-    border-radius: 12px;
+    border-radius: 5px;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
     font-family: 'Courier New', monospace;
     background: #fafafa;
-    transition: all 0.3s ease;
+    transition: all var(--d) var(--e);
     outline: none;
+    color: var(--text-color);
 }
 
 .verification-code-input:focus {
@@ -192,17 +207,20 @@ input[type="text"]#verification-code {
     display: none;
 }
 
+/* Updated Button Styling */
 .btn-primary {
-    background: linear-gradient(135deg, var(--theme-color), var(--secondary-color));
+    background: var(--theme-color);
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
     padding: 14px 24px;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
-    transition: all 0.3s ease;
+    transition: all var(--d) var(--e);
     position: relative;
     overflow: hidden;
+    color: var(--text-color-one);
+    font-family: var(--text-font);
 }
 
 .btn-primary::before {
@@ -221,25 +239,39 @@ input[type="text"]#verification-code {
 }
 
 .btn-primary:hover {
+    background: var(--secondary-color);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(119, 169, 106, 0.4);
+    box-shadow: 0 8px 25px rgba(28, 64, 61, 0.4);
+    color: var(--text-color-one);
+}
+
+.btn-primary:focus {
+    background: var(--secondary-color);
+    box-shadow: 0 0 0 0.25rem rgba(28, 64, 61, 0.25);
+    color: var(--text-color-one);
 }
 
 .btn-primary:active {
+    background: var(--secondary-color);
     transform: translateY(0);
+    color: var(--text-color-one);
 }
 
 .btn-primary:disabled {
-    background: linear-gradient(135deg, #a9c7a1, #7a9c7a);
+    background: #a9c7a1;
     cursor: not-allowed;
     transform: none;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .btn-primary:disabled:hover {
+    background: #a9c7a1;
     transform: none;
     box-shadow: none;
+    color: rgba(255, 255, 255, 0.7);
 }
 
+/* Link Styling */
 .forgot-password,
 .back-to-login,
 .set-new-password-link {
@@ -247,17 +279,33 @@ input[type="text"]#verification-code {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all var(--d) var(--e);
     position: relative;
 }
 
+.forgot-password:hover,
+.back-to-login:hover,
+.set-new-password-link:hover {
+    color: var(--theme-color);
+    text-decoration: none;
+}
+
+.forgot-password:focus,
+.back-to-login:focus,
+.set-new-password-link:focus {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+/* Alert Styling */
 .alert {
-    border-radius: 12px;
+    border-radius: 5px;
     border: none;
     padding: 12px 16px;
     margin-bottom: 20px;
     font-weight: 500;
     animation: slideIn 0.3s ease;
+    font-family: var(--text-font);
 }
 
 @keyframes slideIn {
@@ -289,6 +337,7 @@ input[type="text"]#verification-code {
     display: block;
     margin-top: 4px;
     animation: fadeIn 0.3s ease;
+    font-family: var(--text-font);
 }
 
 @keyframes fadeIn {
@@ -307,10 +356,10 @@ input[type="text"]#verification-code {
 
 /* Form transition effects */
 .card > div {
-    transition: all 0.4s ease;
+    transition: all var(--d) var(--e);
 }
 
-/* Password strength indicator could be added here */
+/* Password strength indicator */
 .password-strength {
     height: 4px;
     background: #e5e5e5;
@@ -321,7 +370,7 @@ input[type="text"]#verification-code {
 
 .password-strength-bar {
     height: 100%;
-    transition: all 0.3s ease;
+    transition: all var(--d) var(--e);
     border-radius: 2px;
 }
 
@@ -397,14 +446,6 @@ input[type="text"]#verification-code {
         height: 45px;
         font-size: 16px;
     }
-}
-
-/* Focus management for accessibility */
-.form-control:focus,
-.btn:focus,
-.verification-code-input:focus {
-    outline: 2px solid var(--theme-color);
-    outline-offset: 2px;
 }
 
 /* Loading state enhancements */
