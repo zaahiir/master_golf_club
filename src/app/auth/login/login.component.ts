@@ -1,6 +1,7 @@
-import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+// login.component.ts
+import { Component, OnInit, PLATFORM_ID, Inject, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 
@@ -12,6 +13,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChildren('codeInput') codeInputs!: QueryList<ElementRef>;
+
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -22,7 +25,7 @@ export class LoginComponent implements OnInit {
   });
 
   setNewPasswordForm: FormGroup = new FormGroup({
-    verification_code: new FormControl('', [Validators.required]),
+    verification_code: new FormArray([]),
     new_password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirm_password: new FormControl('', [Validators.required])
   });
@@ -58,10 +61,88 @@ export class LoginComponent implements OnInit {
     });
 
     this.setNewPasswordForm = this.formBuilder.group({
-      verification_code: ['', Validators.required],
+      verification_code: this.formBuilder.array([
+        this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d$/)]),
+        this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d$/)]),
+        this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d$/)]),
+        this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d$/)]),
+        this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d$/)]),
+        this.formBuilder.control('', [Validators.required, Validators.pattern(/^\d$/)])
+      ]),
       new_password: ['', [Validators.required, Validators.minLength(8)]],
       confirm_password: ['', Validators.required]
     }, { validators: this.passwordMatchValidator });
+  }
+
+  get verificationCodeArray(): FormArray {
+    return this.setNewPasswordForm.get('verification_code') as FormArray;
+  }
+
+  getVerificationCodeControls(): FormControl[] {
+    return this.verificationCodeArray.controls as FormControl[];
+  }
+
+  // Also update your onCodeInput method to properly set the form control value
+  onCodeInput(event: any, index: number): void {
+    const input = event.target;
+    const value = input.value;
+
+    // Only allow single digit
+    if (value.length > 1) {
+      input.value = value.slice(-1);
+    }
+
+    // Set the form control value
+    this.verificationCodeArray.at(index).setValue(input.value);
+
+    // Move to next input if current is filled
+    if (input.value && index < 5) {
+      const nextInput = this.codeInputs.toArray()[index + 1];
+      if (nextInput) {
+        nextInput.nativeElement.focus();
+      }
+    }
+  }
+
+  // Handle backspace in verification code
+  onCodeKeydown(event: KeyboardEvent, index: number): void {
+    const input = event.target as HTMLInputElement;
+
+    if (event.key === 'Backspace' && !input.value && index > 0) {
+      const prevInput = this.codeInputs.toArray()[index - 1];
+      if (prevInput) {
+        prevInput.nativeElement.focus();
+      }
+    }
+  }
+
+  // Handle paste in verification code
+  onCodePaste(event: ClipboardEvent, index: number): void {
+    event.preventDefault();
+    const pasteData = event.clipboardData?.getData('text') || '';
+    const digits = pasteData.replace(/\D/g, '').slice(0, 6);
+
+    if (digits.length > 0) {
+      const inputs = this.codeInputs.toArray();
+
+      for (let i = 0; i < 6 && i < digits.length; i++) {
+        this.verificationCodeArray.at(i).setValue(digits[i]);
+        if (inputs[i]) {
+          inputs[i].nativeElement.value = digits[i];
+        }
+      }
+
+      // Focus on the next empty input or the last input
+      const nextEmptyIndex = Math.min(digits.length, 5);
+      if (inputs[nextEmptyIndex]) {
+        inputs[nextEmptyIndex].nativeElement.focus();
+      }
+    }
+  }
+
+  // Get complete verification code
+  getVerificationCode(): string {
+    return this.verificationCodeArray.value.join('');
   }
 
   // Custom validator to check if passwords match
@@ -95,6 +176,9 @@ export class LoginComponent implements OnInit {
     this.isSetNewPasswordActive = true;
     this.errorMessage = '';
     this.successMessage = '';
+
+    // Clear verification code inputs
+    this.verificationCodeArray.controls.forEach(control => control.setValue(''));
   }
 
   backToLogin(): void {
@@ -142,7 +226,6 @@ export class LoginComponent implements OnInit {
       this.authService.requestPasswordReset(email).subscribe({
         next: (response) => {
           this.isLoading = false;
-          // Show success message and switch to set new password form
           this.successMessage = 'Verification code has been sent to your email. Please check your email and use the code to set a new password.';
           this.forgotPasswordForm.reset();
 
@@ -171,13 +254,18 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       this.errorMessage = '';
 
-      const formData = this.setNewPasswordForm.value;
+      const formData = {
+        verification_code: this.getVerificationCode(),
+        new_password: this.setNewPasswordForm.value.new_password,
+        confirm_password: this.setNewPasswordForm.value.confirm_password
+      };
 
       this.authService.setNewPassword(formData).subscribe({
         next: (response) => {
           this.isLoading = false;
           this.successMessage = 'Password has been reset successfully. You can now login with your new password.';
           this.setNewPasswordForm.reset();
+          this.verificationCodeArray.controls.forEach(control => control.setValue(''));
 
           // Automatically go back to login form after 3 seconds
           setTimeout(() => {
@@ -206,6 +294,11 @@ export class LoginComponent implements OnInit {
       control.markAsTouched();
       if (control instanceof FormGroup) {
         this.markFormGroupTouched(control);
+      }
+      if (control instanceof FormArray) {
+        control.controls.forEach(arrayControl => {
+          arrayControl.markAsTouched();
+        });
       }
     });
   }

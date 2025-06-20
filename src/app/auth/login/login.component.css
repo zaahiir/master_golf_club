@@ -129,6 +129,69 @@
     background: white;
 }
 
+/* 6-Digit Verification Code Styling */
+.verification-code-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.verification-code-input {
+    width: 50px;
+    height: 55px;
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    background: #fafafa;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.verification-code-input:focus {
+    border-color: var(--theme-color);
+    background: white;
+    box-shadow: 0 0 0 0.25rem rgba(119, 169, 106, 0.15);
+    transform: translateY(-2px);
+}
+
+.verification-code-input:hover {
+    border-color: var(--theme-color);
+    background: white;
+}
+
+.verification-code-input.filled {
+    background: linear-gradient(135deg, rgba(119, 169, 106, 0.1), rgba(119, 169, 106, 0.05));
+    border-color: var(--theme-color);
+    color: var(--theme-color);
+}
+
+.verification-code-input.error {
+    border-color: var(--danger-color);
+    background: rgba(220, 53, 69, 0.1);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.verification-code-input:disabled {
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
+/* Hide the original verification code input */
+input[type="text"]#verification-code {
+    display: none;
+}
+
 .btn-primary {
     background: linear-gradient(135deg, var(--theme-color), var(--secondary-color));
     border: none;
@@ -186,32 +249,6 @@
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-}
-
-.forgot-password::after,
-.back-to-login::after,
-.set-new-password-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background: var(--theme-color);
-    transition: width 0.3s ease;
-}
-
-.forgot-password:hover,
-.back-to-login:hover,
-.set-new-password-link:hover {
-    color: var(--theme-color);
-    text-decoration: none;
-}
-
-.forgot-password:hover::after,
-.back-to-login:hover::after,
-.set-new-password-link:hover::after {
-    width: 100%;
 }
 
 .alert {
@@ -273,15 +310,6 @@
     transition: all 0.4s ease;
 }
 
-/* Verification code input styling */
-input[type="text"]#verification-code {
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    font-family: 'Courier New', monospace;
-}
-
 /* Password strength indicator could be added here */
 .password-strength {
     height: 4px;
@@ -334,6 +362,16 @@ input[type="text"]#verification-code {
     .btn-primary {
         padding: 12px 20px;
     }
+
+    .verification-code-container {
+        gap: 6px;
+    }
+
+    .verification-code-input {
+        width: 45px;
+        height: 50px;
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -349,11 +387,22 @@ input[type="text"]#verification-code {
         max-height: 60px;
         max-width: 150px;
     }
+
+    .verification-code-container {
+        gap: 4px;
+    }
+
+    .verification-code-input {
+        width: 40px;
+        height: 45px;
+        font-size: 16px;
+    }
 }
 
 /* Focus management for accessibility */
 .form-control:focus,
-.btn:focus {
+.btn:focus,
+.verification-code-input:focus {
     outline: 2px solid var(--theme-color);
     outline-offset: 2px;
 }
@@ -377,4 +426,15 @@ input[type="text"]#verification-code {
     font-weight: bold;
     margin-right: 8px;
     color: var(--danger-color);
+}
+
+/* Verification code completion animation */
+.verification-complete {
+    animation: pulse 0.6s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }

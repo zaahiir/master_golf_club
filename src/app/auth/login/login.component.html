@@ -101,11 +101,28 @@
             </div>
             <div class="card-body p-4">
               <form [formGroup]="setNewPasswordForm" (ngSubmit)="onSetNewPasswordSubmit()">
+
+                <!-- 6-Digit Verification Code Input -->
                 <div class="mb-3">
-                  <label for="verification-code" class="form-label">Verification Code <span>*</span></label>
-                  <input type="text" class="form-control" id="verification-code" formControlName="verification_code" required>
-                  <div *ngIf="setNewPasswordForm.get('verification_code')?.invalid && (setNewPasswordForm.get('verification_code')?.dirty || setNewPasswordForm.get('verification_code')?.touched)" class="text-danger">
-                    <small *ngIf="setNewPasswordForm.get('verification_code')?.errors?.['required']">Verification code is required</small>
+                  <label class="form-label">Verification Code <span>*</span></label>
+                  <div class="verification-code-container">
+                    <input
+                      *ngFor="let control of getVerificationCodeControls(); let i = index"
+                      #codeInput
+                      type="text"
+                      class="verification-code-input"
+                      [class.is-invalid]="control.invalid && (control.dirty || control.touched)"
+                      [value]="control.value"
+                      (input)="onCodeInput($event, i)"
+                      (keydown)="onCodeKeydown($event, i)"
+                      (paste)="onCodePaste($event, i)"
+                      maxlength="1"
+                      autocomplete="off"
+                      inputmode="numeric"
+                      pattern="[0-9]*">
+                  </div>
+                  <div *ngIf="verificationCodeArray.invalid && (verificationCodeArray.dirty || verificationCodeArray.touched)" class="text-danger">
+                    <small>Please enter the complete 6-digit verification code</small>
                   </div>
                 </div>
 
