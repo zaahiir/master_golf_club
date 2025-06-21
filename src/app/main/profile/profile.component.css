@@ -93,7 +93,7 @@
 }
 
 .member-id {
-  color: #666;
+  color: #fff;
   margin: 0.5rem 0 1rem 0;
   font-size: 1rem;
   display: flex;
@@ -106,6 +106,7 @@
   display: flex;
   gap: 0.75rem;
   margin-bottom: 1rem;
+  padding-top: 1rem;
   flex-wrap: wrap;
 }
 

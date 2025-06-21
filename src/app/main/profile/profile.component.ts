@@ -22,7 +22,7 @@ import {
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
 
-import { MemberService } from '../common-service/member/member.service';
+import { ProfileService } from '../common-service/profile/profile.service';
 import { AuthService } from '../../auth/auth.service';
 
 interface MemberProfile {
@@ -92,11 +92,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isLoading = true;
   errorMessage = '';
 
+  // Image loading states
+  imageLoading = false;
+  imageLoadError = false;
+
   private subscriptions: Subscription[] = [];
 
   constructor(
     private router: Router,
-    private memberService: MemberService,
+    private profileService: ProfileService,
     private authService: AuthService
   ) {}
 
@@ -113,6 +117,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.loadingError = false;
     this.errorMessage = '';
+    this.imageLoadError = false; // Reset image error state
 
     try {
       // Check if user is authenticated
@@ -122,7 +127,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
 
       // Fetch current user's profile
-      const profileData = await this.memberService.getCurrentProfile();
+      const profileData = await this.profileService.getCurrentProfile();
       this.memberProfile = profileData;
 
       console.log('Profile loaded successfully:', this.memberProfile);
@@ -196,13 +201,125 @@ export class ProfileComponent implements OnInit, OnDestroy {
     return this.memberProfile?.age || 0;
   }
 
-  onImageError(event: any) {
-    event.target.src = 'assets/images/default-avatar.png';
+  // Updated getProfileImage method - only return if valid profile photo exists
+  getProfileImage(): string {
+  if (this.memberProfile?.profilePhoto &&
+      this.memberProfile.profilePhoto.trim() !== '') {
+
+    const photoPath = this.memberProfile.profilePhoto.trim();
+
+    // If it's already a full URL, return as is
+    if (photoPath.startsWith('http://') || photoPath.startsWith('https://')) {
+      return photoPath;
+    }
+
+    // If it's a relative path starting with /media/, construct full URL
+    if (photoPath.startsWith('/media/')) {
+      // Replace with your actual base URL
+      const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
+      return baseUrl + photoPath;
+    }
+
+    // If it's a relative path without leading slash, add base URL and slash
+    if (!photoPath.startsWith('/')) {
+      const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
+      return baseUrl + '/media/' + photoPath;
+    }
+
+    // For any other relative paths, construct with base URL
+    const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
+    return baseUrl + photoPath;
   }
 
-  getProfileImage(): string {
-    // Return the profile photo if available, otherwise return default avatar
-    return this.memberProfile?.profilePhoto || '../../../assets/images/team/team-1.jpg';
+  return '';
+}
+
+  // Method to validate if the image URL is valid
+  private isValidImageUrl(url: string): boolean {
+    try {
+      const urlObj = new URL(url);
+      return ['http:', 'https:', 'data:'].includes(urlObj.protocol);
+    } catch {
+      // If it's a relative path, consider it valid
+      return !url.includes('default-avatar') && !url.includes('team-1.jpg');
+    }
+  }
+
+  // Updated onImageError method
+  onImageError(event: any) {
+    console.log('Profile image failed to load:', event.target.src);
+    this.imageLoadError = true;
+    this.imageLoading = false;
+
+    // Hide the failed image
+    event.target.style.display = 'none';
+  }
+
+  // New method to handle successful image load
+  onImageLoad(event: any) {
+    console.log('Profile image loaded successfully');
+    this.imageLoading = false;
+    this.imageLoadError = false;
+  }
+
+  // Method to get user initials for avatar fallback
+  getUserInitials(): string {
+    if (!this.memberProfile) return '?';
+
+    const firstName = this.memberProfile.firstName?.charAt(0)?.toUpperCase() || '';
+    const lastName = this.memberProfile.lastName?.charAt(0)?.toUpperCase() || '';
+
+    if (firstName && lastName) {
+      return firstName + lastName;
+    } else if (firstName) {
+      return firstName;
+    } else if (lastName) {
+      return lastName;
+    }
+
+    // Fallback to email initial if no name available
+    return this.memberProfile.email?.charAt(0)?.toUpperCase() || '?';
+  }
+
+  // Method to check if profile image exists and is valid
+  hasValidProfileImage(): boolean {
+    return !this.imageLoadError &&
+           !!(this.memberProfile?.profilePhoto &&
+              this.memberProfile.profilePhoto.trim() !== '' &&
+              this.isValidImageUrl(this.memberProfile.profilePhoto));
+  }
+
+  // Optional: Method to retry image loading
+  private retryImageLoad(imgElement: HTMLImageElement, retryCount = 0) {
+    if (retryCount < 2) { // Only retry twice
+      setTimeout(() => {
+        imgElement.style.display = 'block';
+        imgElement.src = this.getProfileImage() + '?retry=' + Date.now();
+        retryCount++;
+      }, 1000 * (retryCount + 1)); // Increasing delay
+    }
+  }
+
+  // Method to handle profile image upload (if needed)
+  async uploadProfileImage(file: File) {
+    try {
+      this.imageLoading = true;
+
+      // Upload logic here - call your service
+      const uploadedImageUrl = await this.profileService.uploadProfileImage(file);
+
+      if (this.memberProfile) {
+        this.memberProfile.profilePhoto = uploadedImageUrl;
+        this.imageLoadError = false;
+      }
+
+      console.log('Profile image uploaded successfully:', uploadedImageUrl);
+    } catch (error) {
+      console.error('Error uploading profile image:', error);
+      this.imageLoadError = true;
+    } finally {
+      this.imageLoading = false;
+    }
   }
 
   async retryLoading() {
@@ -213,40 +330,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.router.navigate(['/account']);
   }
 
-  // Profile update methods
-  async updateProfile() {
-    if (!this.memberProfile) return;
-
-    console.log('Update profile clicked - implement update logic here');
-    // You can implement profile update logic here
-    // For example, navigate to edit form or open modal
-    this.isEditing = true;
-  }
-
-  async saveProfile(updatedData: Partial<MemberProfile>) {
-    if (!this.memberProfile) return;
-
-    try {
-      this.isLoading = true;
-      const updatedProfile = await this.memberService.updateProfile(updatedData);
-      this.memberProfile = { ...this.memberProfile, ...updatedProfile };
-      this.isEditing = false;
-      console.log('Profile updated successfully');
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      // Handle update error - show toast or error message
-    } finally {
-      this.isLoading = false;
-    }
-  }
-
   cancelEdit() {
     this.isEditing = false;
-  }
-
-  viewBookings() {
-    console.log('View bookings clicked');
-    this.router.navigate(['/bookings']);
   }
 
   contactSupport() {

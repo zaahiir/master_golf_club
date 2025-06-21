@@ -72,9 +72,6 @@
             <fa-icon [icon]="faUser" class="me-2"></fa-icon>
             Personal Information
           </h3>
-          <button class="btn btn-sm btn-outline-primary" (click)="updateProfile()">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </button>
         </div>
         <div class="card-content">
           <div class="info-grid">
@@ -129,9 +126,6 @@
             <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
             Contact Information
           </h3>
-          <button class="btn btn-sm btn-outline-primary" (click)="updateProfile()">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </button>
         </div>
         <div class="card-content">
           <div class="info-grid">
@@ -219,11 +213,6 @@
               <span class="value">{{ memberProfile.paymentMethod }}</span>
             </div>
 
-            <div class="info-row" *ngIf="memberProfile.membershipLevel">
-              <span class="label">Membership Level:</span>
-              <span class="value highlight-value">{{ memberProfile.membershipLevel }}</span>
-            </div>
-
             <div class="info-row" *ngIf="getDaysUntilExpiry() >= 0">
               <span class="label">Days Until Expiry:</span>
               <span class="value">
@@ -243,9 +232,6 @@
             <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
             Emergency Contact
           </h3>
-          <button class="btn btn-sm btn-outline-primary" (click)="updateProfile()">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </button>
         </div>
         <div class="card-content">
           <div class="info-grid">
@@ -280,9 +266,6 @@
             <fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>
             Activity Summary
           </h3>
-          <button class="btn btn-sm btn-outline-primary" (click)="viewBookings()">
-            View All
-          </button>
         </div>
         <div class="card-content">
           <div class="activity-stats">
@@ -313,50 +296,6 @@
                 <span class="status-badge" [class]="getMembershipStatusClass()">
                   {{ getMembershipStatus() }}
                 </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Preferences Card -->
-      <div class="profile-card" *ngIf="memberProfile.preferences">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faBell" class="me-2"></fa-icon>
-            Preferences & Settings
-          </h3>
-          <button class="btn btn-sm btn-outline-primary" (click)="updateProfile()">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </button>
-        </div>
-        <div class="card-content">
-          <div class="preferences-grid">
-            <div class="preference-item">
-              <div class="preference-header">
-                <fa-icon [icon]="faNewspaper" class="me-2"></fa-icon>
-                <span class="preference-label">Newsletter</span>
-              </div>
-              <span class="status-badge" [class]="memberProfile.preferences.newsletter ? 'status-active' : 'status-inactive'">
-                {{ memberProfile.preferences.newsletter ? 'Subscribed' : 'Unsubscribed' }}
-              </span>
-            </div>
-
-            <div class="preference-item">
-              <div class="preference-header">
-                <fa-icon [icon]="faLanguage" class="me-2"></fa-icon>
-                <span class="preference-label">Language</span>
-              </div>
-              <span class="preference-value">{{ memberProfile.preferences.language }}</span>
-            </div>
-
-            <div class="preference-item">
-              <div class="preference-header">
-                <fa-icon [icon]="faBell" class="me-2"></fa-icon>
-                <span class="preference-label">Notifications</span>
-              </div>
-              <span class="status-badge" [class]="memberProfile.preferences.notifications ? 'status-active' : 'status-inactive'">
-                {{ memberProfile.preferences.notifications ? 'Enabled' : 'Disabled' }}
               </span>
             </div>
           </div>
