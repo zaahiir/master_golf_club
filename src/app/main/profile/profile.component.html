@@ -58,22 +58,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Action Buttons -->
-      <div class="profile-actions">
-        <button class="btn btn-primary action-btn" (click)="updateProfile()" [disabled]="isLoading">
-          <fa-icon [icon]="faEdit" class="me-2"></fa-icon>
-          Edit Profile
-        </button>
-        <button class="btn btn-outline-primary action-btn" (click)="viewBookings()">
-          <fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>
-          My Bookings
-        </button>
-        <button class="btn btn-outline-secondary action-btn" (click)="logout()">
-          <fa-icon [icon]="faSignOutAlt" class="me-2"></fa-icon>
-          Logout
-        </button>
-      </div>
     </div>
   </div>
 
@@ -375,39 +359,6 @@
                 {{ memberProfile.preferences.notifications ? 'Enabled' : 'Disabled' }}
               </span>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Quick Actions Card -->
-      <div class="profile-card quick-actions-card">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faUser" class="me-2"></fa-icon>
-            Quick Actions
-          </h3>
-        </div>
-        <div class="card-content">
-          <div class="action-buttons">
-            <button class="btn btn-outline-primary action-button" (click)="updateProfile()">
-              <fa-icon [icon]="faEdit" class="me-2"></fa-icon>
-              Edit Profile
-            </button>
-
-            <button class="btn btn-outline-success action-button" (click)="viewBookings()">
-              <fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>
-              View Bookings
-            </button>
-
-            <button class="btn btn-outline-info action-button" (click)="contactSupport()">
-              <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
-              Contact Support
-            </button>
-
-            <button class="btn btn-outline-secondary action-button" (click)="refreshProfile()">
-              <fa-icon [icon]="faUser" class="me-2"></fa-icon>
-              Refresh Profile
-            </button>
           </div>
         </div>
       </div>

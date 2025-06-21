@@ -28,7 +28,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 2rem;
 }
@@ -163,10 +163,8 @@
   color: #f59e0b;
 }
 
-.header-actions {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
+.profile-actions {
+  display: none;
 }
 
 .btn {
@@ -343,10 +341,8 @@
   background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
 }
 
-.quick-actions-card .action-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.quick-actions-card {
+  display: none;
 }
 
 .btn-outline {
@@ -455,16 +451,6 @@
     font-size: 1.5rem;
   }
 
-  .header-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
   .cards-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -559,11 +545,6 @@
 
 /* Print styles */
 @media print {
-  .header-actions,
-  .quick-actions-card {
-    display: none;
-  }
-
   .profile-card {
     break-inside: avoid;
     box-shadow: none;
