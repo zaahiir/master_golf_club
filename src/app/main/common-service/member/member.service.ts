@@ -11,6 +11,7 @@ export class MemberService {
   private processing: string;
   private deletion: string;
   private profileUrl: string;
+  private currentProfileUrl: string;
   private updateProfileUrl: string;
   private gender: string;
   private nationality: string;
@@ -24,9 +25,10 @@ export class MemberService {
     this.processing = this.apiUrl + "member/0/processing/";
     this.deletion = this.apiUrl + "member/0/deletion/";
 
-    // New profile endpoints
-    this.profileUrl = this.apiUrl + "member/profile/";
-    this.updateProfileUrl = this.apiUrl + "member/update_profile/";
+    // FIXED: Updated profile endpoints to match Django URLs
+    this.profileUrl = this.apiUrl + "member/{id}/profile/";
+    this.currentProfileUrl = this.apiUrl + "member/current-profile/";
+    this.updateProfileUrl = this.apiUrl + "member/{id}/update-profile/";
 
     this.gender = this.apiUrl + "gender/";
     this.nationality = this.apiUrl + "country/";
@@ -48,8 +50,8 @@ export class MemberService {
     return axios.get(this.deletion.replace('0', id));
   }
 
-  // New profile methods
-  getCurrentMemberProfile(userId?: string) {
+  // FIXED: Get member profile by ID
+  getMemberProfile(memberId: string) {
     const config: any = {};
 
     // Add authorization headers if you have tokens
@@ -60,15 +62,32 @@ export class MemberService {
       };
     }
 
-    // Add user ID if provided
+    return axios.get(this.profileUrl.replace('{id}', memberId), config);
+  }
+
+  // FIXED: Get current authenticated user's profile
+  getCurrentMemberProfile() {
+    const config: any = {};
+
+    // Add authorization headers if you have tokens
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      config.headers = {
+        'Authorization': `Bearer ${token}`
+      };
+    }
+
+    // Add user ID as query parameter if available
+    const userId = localStorage.getItem('user_id');
     if (userId) {
       config.params = { user_id: userId };
     }
 
-    return axios.get(this.profileUrl, config);
+    return axios.get(this.currentProfileUrl, config);
   }
 
-  updateCurrentMemberProfile(data: any, userId?: string) {
+  // FIXED: Update member profile by ID
+  updateMemberProfile(data: any, memberId: string) {
     const config: any = {};
 
     // Add authorization headers if you have tokens
@@ -80,45 +99,74 @@ export class MemberService {
       };
     }
 
-    // Add user ID to data if provided
-    if (userId) {
-      data.user_id = userId;
-    }
-
-    return axios.put(this.updateProfileUrl, data, config);
+    return axios.put(this.updateProfileUrl.replace('{id}', memberId), data, config);
   }
 
-  // Helper method to get current user's profile with error handling
+  // FIXED: Helper method to get current user's profile with error handling
   async getCurrentProfile(): Promise<any> {
     try {
       const userId = localStorage.getItem('user_id');
-      const response = await this.getCurrentMemberProfile(userId || undefined);
+
+      if (!userId) {
+        throw new Error('User ID not found in localStorage');
+      }
+
+      // Option 1: Use current-profile endpoint (for authenticated users)
+      // const response = await this.getCurrentMemberProfile();
+
+      // Option 2: Use profile endpoint with user ID (simpler approach)
+      const response = await this.getMemberProfile(userId);
 
       if (response.data && response.data.code === 1) {
         return response.data.data;
       } else {
         throw new Error(response.data?.message || 'Failed to fetch profile');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error fetching current profile:', error);
-      throw error;
+
+      // Handle specific error cases
+      if (error.response?.status === 404) {
+        throw new Error('Profile not found. Please contact support.');
+      } else if (error.response?.status === 401) {
+        throw new Error('Session expired. Please log in again.');
+      } else if (error.response?.status === 400) {
+        throw new Error(error.response.data?.message || 'Invalid request.');
+      } else {
+        throw error;
+      }
     }
   }
 
-  // Helper method to update current user's profile with error handling
+  // FIXED: Helper method to update current user's profile with error handling
   async updateProfile(profileData: any): Promise<any> {
     try {
       const userId = localStorage.getItem('user_id');
-      const response = await this.updateCurrentMemberProfile(profileData, userId || undefined);
+
+      if (!userId) {
+        throw new Error('User ID not found in localStorage');
+      }
+
+      const response = await this.updateMemberProfile(profileData, userId);
 
       if (response.data && response.data.code === 1) {
         return response.data.data;
       } else {
         throw new Error(response.data?.message || 'Failed to update profile');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating profile:', error);
-      throw error;
+
+      // Handle specific error cases
+      if (error.response?.status === 404) {
+        throw new Error('Profile not found. Please contact support.');
+      } else if (error.response?.status === 401) {
+        throw new Error('Session expired. Please log in again.');
+      } else if (error.response?.status === 400) {
+        throw new Error('Invalid data provided. Please check your input.');
+      } else {
+        throw error;
+      }
     }
   }
 
