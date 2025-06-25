@@ -26,8 +26,13 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label for="password" class="form-label">Password <span>*</span></label>
-                  <input type="password" class="form-control" id="password" formControlName="password" required>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <label for="password" class="form-label">Password <span>*</span></label>
+                    <button type="button" class="btn-show-password" (click)="toggleLoginPasswordVisibility()">
+                      {{ showLoginPassword ? 'Hide' : 'Show' }}
+                    </button>
+                  </div>
+                  <input [type]="showLoginPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password" required>
                   <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="text-danger">
                     <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
                   </div>
@@ -127,8 +132,13 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="new-password" class="form-label">New Password <span>*</span></label>
-                  <input type="password" class="form-control" id="new-password" formControlName="new_password" required>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <label for="new-password" class="form-label">New Password <span>*</span></label>
+                    <button type="button" class="btn-show-password" (click)="toggleNewPasswordVisibility()">
+                      {{ showNewPassword ? 'Hide' : 'Show' }}
+                    </button>
+                  </div>
+                  <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" id="new-password" formControlName="new_password" required>
                   <div *ngIf="setNewPasswordForm.get('new_password')?.invalid && (setNewPasswordForm.get('new_password')?.dirty || setNewPasswordForm.get('new_password')?.touched)" class="text-danger">
                     <small *ngIf="setNewPasswordForm.get('new_password')?.errors?.['required']">New password is required</small>
                     <small *ngIf="setNewPasswordForm.get('new_password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
@@ -136,8 +146,13 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="confirm-password" class="form-label">Confirm Password <span>*</span></label>
-                  <input type="password" class="form-control" id="confirm-password" formControlName="confirm_password" required>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <label for="confirm-password" class="form-label">Confirm Password <span>*</span></label>
+                    <button type="button" class="btn-show-password" (click)="toggleConfirmPasswordVisibility()">
+                      {{ showConfirmPassword ? 'Hide' : 'Show' }}
+                    </button>
+                  </div>
+                  <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" id="confirm-password" formControlName="confirm_password" required>
                   <div *ngIf="setNewPasswordForm.get('confirm_password')?.invalid && (setNewPasswordForm.get('confirm_password')?.dirty || setNewPasswordForm.get('confirm_password')?.touched)" class="text-danger">
                     <small *ngIf="setNewPasswordForm.get('confirm_password')?.errors?.['required']">Please confirm your password</small>
                     <small *ngIf="setNewPasswordForm.get('confirm_password')?.errors?.['passwordMismatch']">Passwords do not match</small>
@@ -170,7 +185,6 @@
               </form>
             </div>
           </div>
-
         </div>
       </div>
     </div>

@@ -143,6 +143,38 @@
     background: white;
 }
 
+/* Show/Hide Password Button Styling */
+.btn-show-password {
+    background: none;
+    border: none;
+    color: var(--theme-color);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0;
+    cursor: pointer;
+    transition: all var(--d) var(--e);
+    font-family: var(--text-font);
+    text-decoration: none;
+    outline: none;
+}
+
+.btn-show-password:hover {
+    color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.btn-show-password:focus {
+    outline: none;
+    color: var(--secondary-color);
+    box-shadow: none;
+}
+
+.btn-show-password:active {
+    transform: scale(0.95);
+}
+
 /* 6-Digit Verification Code Styling */
 .verification-code-container {
     display: flex;
@@ -401,6 +433,10 @@ input[type="text"]#verification-code {
         height: 50px;
         font-size: 18px;
     }
+
+    .btn-show-password {
+        font-size: 11px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -425,6 +461,10 @@ input[type="text"]#verification-code {
         width: 40px;
         height: 45px;
         font-size: 16px;
+    }
+
+    .btn-show-password {
+        font-size: 10px;
     }
 }
 

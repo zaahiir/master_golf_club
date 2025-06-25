@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit {
   successMessage: string = '';
   isLoading: boolean = false;
 
+  // Password visibility properties
+  showLoginPassword: boolean = false;
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -72,6 +77,19 @@ export class LoginComponent implements OnInit {
       new_password: ['', [Validators.required, Validators.minLength(8)]],
       confirm_password: ['', Validators.required]
     }, { validators: this.passwordMatchValidator });
+  }
+
+  // Password visibility toggle methods
+  toggleLoginPasswordVisibility(): void {
+    this.showLoginPassword = !this.showLoginPassword;
+  }
+
+  toggleNewPasswordVisibility(): void {
+    this.showNewPassword = !this.showNewPassword;
+  }
+
+  toggleConfirmPasswordVisibility(): void {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   get verificationCodeArray(): FormArray {
@@ -169,6 +187,11 @@ export class LoginComponent implements OnInit {
     this.isSetNewPasswordActive = false;
     this.errorMessage = '';
     this.successMessage = '';
+
+    // Reset password visibility when switching forms
+    this.showLoginPassword = false;
+    this.showNewPassword = false;
+    this.showConfirmPassword = false;
   }
 
   showSetNewPasswordForm(): void {
@@ -179,6 +202,10 @@ export class LoginComponent implements OnInit {
 
     // Clear verification code inputs
     this.verificationCodeArray.controls.forEach(control => control.setValue(''));
+
+    // Reset password visibility
+    this.showNewPassword = false;
+    this.showConfirmPassword = false;
   }
 
   backToLogin(): void {
@@ -186,6 +213,11 @@ export class LoginComponent implements OnInit {
     this.isSetNewPasswordActive = false;
     this.errorMessage = '';
     this.successMessage = '';
+
+    // Reset all password visibility states
+    this.showLoginPassword = false;
+    this.showNewPassword = false;
+    this.showConfirmPassword = false;
   }
 
   onLoginSubmit(): void {
