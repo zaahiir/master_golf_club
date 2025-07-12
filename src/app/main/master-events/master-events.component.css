@@ -1,215 +1,332 @@
+/* Component-specific styles */
 .home {
   width: 100%;
   overflow: hidden;
 }
 
-/* Page Title Section Styles */
-.page-title {
+/* Event Section Styles */
+.event-section {
+  padding: 140px 0 110px;
   position: relative;
-  padding-top: 190px;
-  padding-bottom: 190px;
-  width: 100%;
+  background: #ffffff;
 }
 
-.page-title .bg-layer {
-  background-image: url('../../../assets/images/banner/banner-4.jpg');
-}
-
-.content-wrapper {
-  margin: 0 auto;
-}
-
-.welcome-text {
-  font-size: 3.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.event-date {
-  font-family: var(--font-poppins);
-  font-size: 1.8rem;
-  color: #fff;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  margin-top: 10px;
-  text-align: center;
-}
-
-/* Event Overview */
-.event-overview {
-  background-color: var(--masters-green);
-  color: var(--white);
-}
-
-.overview-content,
-.history-content,
-.course-content,
-.champions-content {
-  width: 100%;
-  max-width: 1650px;
-  margin: 0 auto;
-}
-
-.venue {
-  font-size: 1.25rem;
-  margin: 1rem 0 2rem;
-}
-
-.key-details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-}
-
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.label {
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--gold);
-}
-
-.value {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-/* Tournament History */
-.tournament-history {
-  background-color: var(--white);
-}
-
-.history-image {
-  height: 400px;
-  background-image: url('../../../assets/images/man-golfer-taking-out-golf-club-from-bag.webp');
-  background-size: cover;
-  background-position: center;
-  margin: 2rem 0;
-  border-radius: 8px;
-  width: 100%;
-}
-
-.traditions-list {
-  list-style-position: inside;
-  margin: 1rem 0;
-}
-
-.traditions-list li {
-  margin-bottom: 0.5rem;
-  line-height: 1.6;
-}
-
-/* Course Details */
-.course-details {
-  background-color: #f5f5f5;
-}
-
-.course-image {
-  height: 400px;
-  background-image: url('../../../assets/images/gettyimages-171362434-612x612.webp');
-  background-size: cover;
-  background-position: center;
-  margin: 2rem 0;
-  border-radius: 8px;
-  width: 100%;
-}
-
-.course-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.stat {
-  text-align: center;
-}
-
-.stat-label {
+/* Section Title Styles */
+.sec-title {
+  position: relative;
   display: block;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  color: var(--masters-green);
-  margin-bottom: 0.5rem;
-}
-
-.stat-value {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-/* Past Champions */
-.past-champions {
-  background-color: var(--white);
-}
-
-.champions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.champion {
   text-align: center;
+  margin-bottom: 55px;
 }
 
-.champion-image {
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+.sec-title .sub-title {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--theme-color);
+  padding: 0 15px;
+  margin-bottom: 11px;
+}
+
+.sec-title .sub-title:before {
+  position: absolute;
+  content: '';
+  width: 5px;
+  height: 5px;
+  top: 8px;
+  right: 0px;
+  border-radius: 50%;
+  background: var(--theme-color);
+}
+
+.sec-title .sub-title:after {
+  position: absolute;
+  content: '';
+  width: 5px;
+  height: 5px;
+  top: 8px;
+  left: 0px;
+  border-radius: 50%;
+  background: var(--theme-color);
+}
+
+.sec-title h2 {
+  position: relative;
+  display: block;
+  font-size: 50px;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-family: var(--title-font);
+  color: var(--title-color);
+  margin: 0;
+}
+
+/* Event Block Styles */
+.event-block {
+  margin-bottom: 30px;
+}
+
+.event-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #E5E5E5;
+  border-radius: 30px 30px 100px 30px;
+  padding: 30px 50px 30px 30px;
+  transition: all 500ms ease;
+  background: #fff;
+}
+
+.event-inner:hover {
+  border-color: #fff;
+  box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.07);
+}
+
+.event-image {
+  position: relative;
+  display: inline-block;
+  border-radius: 20px 20px 50px 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 180px;
+  height: 150px;
+}
+
+.event-image img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.champion-2023 {
-  background-image: url('../../../assets/images/3872.webp');
+.event-content {
+  position: relative;
+  display: block;
+  width: 370px;
+  padding: 0 20px;
 }
 
-.champion-2022 {
-  background-image: url('../../../assets/images/3859.webp');
+.event-info {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  list-style: none;
+  padding: 0;
 }
 
-.champion-2021 {
-  background-image: url('../../../assets/images/3872.webp');
+.event-info li {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 25px;
+  padding-left: 26px;
+  margin-right: 20px;
+  font-family: var(--font-poppins);
+  color: var(--text-color);
 }
 
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: var(--masters-green);
+.event-info li:last-child {
+  margin-right: 0;
 }
 
-h3 {
-  font-size: 1.75rem;
-  margin: 2rem 0 1rem;
-  color: var(--text-dark);
+.event-info li i {
+  position: absolute;
+  left: 0px;
+  top: 3px;
+  font-size: 16px;
+  color: var(--theme-color);
 }
 
-p {
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  color: var(--text-light);
+.event-content h3 {
+  font-size: 28px;
+  line-height: 34px;
+  font-family: var(--title-font);
+  margin: 0;
+}
+
+.event-content h3 a {
+  display: inline-block;
+  color: var(--title-color);
+  text-decoration: none;
+  transition: all 500ms ease;
+}
+
+.event-content h3 a:hover {
+  color: var(--theme-color);
+}
+
+.price-box {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  background: #EFF2F2;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 28px;
+  font-family: var(--title-font);
+  color: var(--title-color);
+  flex-shrink: 0;
+}
+
+.btn-box {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+/* Button Styles */
+.theme-btn {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: 500;
+  font-family: var(--text-font);
+  color: var(--text-color) !important;
+  text-align: center;
+  border-radius: 5px;
+  padding: 9px 30px;
+  text-transform: uppercase;
+  z-index: 1;
+  transition: all 0.5s ease-in-out 0.0s;
+  border: 1px solid #E5E5E5;
+  text-decoration: none;
+  background: transparent;
+}
+
+.theme-btn:before {
+  position: absolute;
+  content: '';
+  width: 0%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  transform: translateX(0);
+  transform-origin: left center;
+  z-index: -1;
+  background: var(--theme-color);
+  transition: all 500ms ease;
+}
+
+.theme-btn:after {
+  position: absolute;
+  content: '';
+  width: 0%;
+  height: 100%;
+  right: 0px;
+  top: 0px;
+  transform: translateX(0);
+  transform-origin: right center;
+  z-index: -1;
+  background: var(--theme-color);
+  transition: all 500ms ease;
+}
+
+.theme-btn:hover {
+  color: #fff !important;
+  border-color: var(--theme-color) !important;
+}
+
+.theme-btn:hover:before,
+.theme-btn:hover:after {
+  transform: translateX(1);
+  width: 51%;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .event-inner {
+    padding-right: 30px;
+  }
+
+  .event-content {
+    width: 300px;
+  }
+}
+
+@media (max-width: 991px) {
+  .event-inner {
+    display: block;
+    text-align: center;
+  }
+
+  .event-image,
+  .price-box {
+    margin-bottom: 30px;
+  }
+
+  .event-content {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .sec-title h2 {
+    font-size: 36px;
+    line-height: 46px;
+  }
+
+  .btn-box {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 768px) {
-
-  .event-date {
-    font-size: 0.75rem;
+  .event-section {
+    padding: 80px 0 60px;
   }
 
-  .key-details {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .sec-title h2 {
+    font-size: 32px;
+    line-height: 42px;
   }
 
-  .history-image,
-  .course-image,
-  .champion-image {
-    height: 300px;
+  .event-content h3 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .event-image {
+    width: 150px;
+    height: 120px;
+  }
+
+  .price-box {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .event-inner {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .event-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+  }
+
+  .event-info li {
+    font-size: 14px;
+  }
+
+  .event-content h3 {
+    font-size: 20px;
+    line-height: 26px;
   }
 }

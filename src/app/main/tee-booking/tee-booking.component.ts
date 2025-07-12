@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { 
-  faClock, 
-  faUsers, 
-  faLocationDot, 
-  faGlobe, 
-  faPhone, 
-  faDirections, 
+import {
+  faClock,
+  faUsers,
+  faLocationDot,
+  faGlobe,
+  faPhone,
+  faDirections,
   faShareAlt,
   faParking,
   faWifi,
@@ -79,7 +79,7 @@ export class TeeBookingComponent implements OnInit {
     timing: 'Weekends from 11am',
     phone: '01923 853929',
     website: '#',
-    imageUrl: 'assets/images/course-hero.jpg',
+    imageUrl: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80',
     location: {
       lat: 51.6754,
       lng: -0.3169
@@ -111,14 +111,10 @@ export class TeeBookingComponent implements OnInit {
     this.selectedDate = new Date();
     this.selectedDate.setHours(0, 0, 0, 0);
 
-    // Initialize mapUrl
-    const baseMapUrl = 'https://www.google.com/maps/embed/v1/place';
-    const apiKey = 'YOUR_API_KEY'; // Replace with actual API key
-    const query = encodeURIComponent(`${this.course.name} ${this.course.address}`);
-    
-    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `${baseMapUrl}?key=${apiKey}&q=${query}`
-    );
+    // Initialize mapUrl with OpenStreetMap
+    const osmUrl = 'https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik';
+
+    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(osmUrl);
   }
 
   ngOnInit(): void {
@@ -129,7 +125,7 @@ export class TeeBookingComponent implements OnInit {
   private generateAvailableDates(): void {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    
+
     this.availableDates = Array.from({ length: 8 }, (_, i) => {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
@@ -155,7 +151,7 @@ export class TeeBookingComponent implements OnInit {
     const isToday = this.isToday(date);
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
-    
+
     // Generate slots from 7 AM to 7 PM
     for (let hour = 7; hour < 19; hour++) {
       for (let minute = 0; minute < 60; minute += 15) {
@@ -163,7 +159,7 @@ export class TeeBookingComponent implements OnInit {
         if (isToday && (hour < currentHour || (hour === currentHour && minute <= currentMinute))) {
           continue;
         }
-        
+
         const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
         slots.push({
           time: timeString,
@@ -171,14 +167,14 @@ export class TeeBookingComponent implements OnInit {
         });
       }
     }
-    
+
     return slots;
   }
 
   private updateCurrentTimeSlots(date: Date): void {
     const dateKey = this.getDateKey(date);
     this.currentTimeSlots = this.timeSlotsByDate.get(dateKey) || [];
-    
+
     if (!this.initialLoad) {
       this.selectedTime = null; // Reset selected time when date changes, but not on initial load
     }
@@ -223,8 +219,8 @@ export class TeeBookingComponent implements OnInit {
   }
 
   canBook(): boolean {
-    return !!this.selectedTime && 
-           this.guestCount > 0 && 
+    return !!this.selectedTime &&
+           this.guestCount > 0 &&
            this.guestCount <= this.maxGuests;
   }
 
