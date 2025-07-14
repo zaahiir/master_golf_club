@@ -19,7 +19,11 @@ import {
   faNewspaper,
   faSignOutAlt,
   faSpinner,
-  faExclamationTriangle
+  faExclamationTriangle,
+  faQrcode,
+  faTools,
+  faDownload,
+  faShare
 } from '@fortawesome/free-solid-svg-icons';
 
 import { ProfileService } from '../common-service/profile/profile.service';
@@ -85,12 +89,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
   faSignOutAlt = faSignOutAlt;
   faSpinner = faSpinner;
   faExclamationTriangle = faExclamationTriangle;
+  faQrcode = faQrcode;
+  faTools = faTools;
+  faDownload = faDownload;
+  faShare = faShare;
 
   memberProfile: MemberProfile | null = null;
   isEditing = false;
   loadingError = false;
   isLoading = true;
   errorMessage = '';
+  qrCodeUrl: string = '';
 
   // Image loading states
   imageLoading = false;
@@ -106,6 +115,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadMemberProfile();
+    this.generateQRCode();
   }
 
   ngOnDestroy() {
@@ -203,36 +213,36 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   // Updated getProfileImage method - only return if valid profile photo exists
   getProfileImage(): string {
-  if (this.memberProfile?.profilePhoto &&
-      this.memberProfile.profilePhoto.trim() !== '') {
+    if (this.memberProfile?.profilePhoto &&
+        this.memberProfile.profilePhoto.trim() !== '') {
 
-    const photoPath = this.memberProfile.profilePhoto.trim();
+      const photoPath = this.memberProfile.profilePhoto.trim();
 
-    // If it's already a full URL, return as is
-    if (photoPath.startsWith('http://') || photoPath.startsWith('https://')) {
-      return photoPath;
-    }
+      // If it's already a full URL, return as is
+      if (photoPath.startsWith('http://') || photoPath.startsWith('https://')) {
+        return photoPath;
+      }
 
-    // If it's a relative path starting with /media/, construct full URL
-    if (photoPath.startsWith('/media/')) {
-      // Replace with your actual base URL
+      // If it's a relative path starting with /media/, construct full URL
+      if (photoPath.startsWith('/media/')) {
+        // Replace with your actual base URL
+        const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
+        return baseUrl + photoPath;
+      }
+
+      // If it's a relative path without leading slash, add base URL and slash
+      if (!photoPath.startsWith('/')) {
+        const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
+        return baseUrl + '/media/' + photoPath;
+      }
+
+      // For any other relative paths, construct with base URL
       const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
       return baseUrl + photoPath;
     }
 
-    // If it's a relative path without leading slash, add base URL and slash
-    if (!photoPath.startsWith('/')) {
-      const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
-      return baseUrl + '/media/' + photoPath;
-    }
-
-    // For any other relative paths, construct with base URL
-    const baseUrl = 'https://mastergolfclub.com'; // Update this to match your backend URL
-    return baseUrl + photoPath;
+    return '';
   }
-
-  return '';
-}
 
   // Method to validate if the image URL is valid
   private isValidImageUrl(url: string): boolean {
@@ -322,6 +332,65 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
+  // QR Code generation method
+  generateQRCode() {
+    if (this.memberProfile) {
+      // Generate QR code with member information
+      const qrData = {
+        memberId: this.memberProfile.golfClubId || this.memberProfile.id,
+        name: this.getFullName(),
+        email: this.memberProfile.email
+      };
+
+      // You can use a QR code library here like 'qrcode' or generate via API
+      // For now, we'll set a placeholder or use a service
+      this.qrCodeUrl = this.generateQRCodeUrl(JSON.stringify(qrData));
+    }
+  }
+
+  // Helper method to generate QR code URL (placeholder implementation)
+  private generateQRCodeUrl(data: string): string {
+    // You can use a QR code service like QR Server API
+    const encodedData = encodeURIComponent(data);
+    return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedData}`;
+  }
+
+  // Download QR Code method
+  downloadQRCode() {
+    if (this.qrCodeUrl) {
+      const link = document.createElement('a');
+      link.href = this.qrCodeUrl;
+      link.download = `${this.getFullName()}_QR_Code.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      console.warn('QR Code not available for download');
+    }
+  }
+
+  // Share Profile method
+  shareProfile() {
+    if (navigator.share) {
+      // Use native Web Share API if available
+      navigator.share({
+        title: `${this.getFullName()} - Golf Club Profile`,
+        text: `Check out ${this.getFullName()}'s golf club profile`,
+        url: window.location.href
+      }).catch(err => console.log('Error sharing:', err));
+    } else {
+      // Fallback: copy to clipboard
+      const profileUrl = window.location.href;
+      navigator.clipboard.writeText(profileUrl).then(() => {
+        alert('Profile link copied to clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy profile link:', err);
+        // Fallback: show the URL in a prompt
+        prompt('Copy this profile link:', profileUrl);
+      });
+    }
+  }
+
   async retryLoading() {
     await this.loadMemberProfile();
   }
@@ -337,6 +406,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   contactSupport() {
     console.log('Contact support clicked');
     // Implement contact support logic
+    // You can redirect to a contact form or open a modal
+    this.router.navigate(['/contact-support']);
   }
 
   logout() {

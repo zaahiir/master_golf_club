@@ -1,3 +1,5 @@
+/* header.component.css */
+
 a {
   text-decoration: none;
   transition: all 500ms ease;
@@ -10,7 +12,7 @@ a:hover {
 ul, li {
   list-style: none;
   padding: 0;
-  margin: 0; 
+  margin: 0;
 }
 
 .main-header {
@@ -111,7 +113,7 @@ ul, li {
   color: var(--theme-color);
 }
 
-/* Dropdown styles */
+/* Dropdown styles for main menu */
 .main-menu .navigation > li > .dropdown-menu {
   position: absolute;
   left: 0;
@@ -175,7 +177,7 @@ ul, li {
   margin-bottom: 0;
 }
 
-/* User dropdown */
+/* User dropdown styles */
 .menu-right-content {
   display: flex;
   align-items: center;
@@ -185,7 +187,8 @@ ul, li {
   position: relative;
 }
 
-.user-profile-dropdown > a {
+/* Clickable user icon wrapper */
+.user-profile-dropdown .user-icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -193,16 +196,25 @@ ul, li {
   padding: 25px 0;
   font-size: 16px;
   line-height: 26px;
+  transition: all 300ms ease;
+  border-radius: 4px;
+}
+
+.user-profile-dropdown .user-icon-wrapper:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .user-profile-dropdown .user-icon {
   fill: var(--theme-color);
+  transition: all 300ms ease;
 }
 
-.user-profile-dropdown:hover .user-icon {
-  fill: var(--secondary-color);
+.user-profile-dropdown .user-icon-wrapper:hover .user-icon {
+  fill: var(--theme-color);
+  transform: scale(1.1);
 }
 
+/* Click-to-show user dropdown menu */
 .user-profile-dropdown .dropdown-menu {
   position: absolute;
   right: 0;
@@ -217,34 +229,38 @@ ul, li {
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
-  transition: all 500ms ease;
+  transition: all 300ms ease;
   display: block !important;
+  z-index: 1001;
 }
 
-.user-profile-dropdown:hover .dropdown-menu {
+.user-profile-dropdown .dropdown-menu.show {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
 .user-profile-dropdown .dropdown-item {
-  padding: 5px 0;
+  padding: 8px 0;
   font-weight: 500;
   font-size: 15px;
   font-family: var(--font-poppins);
   color: var(--text-color);
   text-align: left;
   background: transparent;
-  transition: all 500ms ease;
+  transition: all 300ms ease;
+  border-radius: 4px;
+  display: block;
+  text-decoration: none;
 }
 
 .user-profile-dropdown .dropdown-item:hover {
   color: var(--theme-color);
-  letter-spacing: 1px;
-  background: transparent;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding-left: 10px;
 }
 
-/* Preserve the original logo styling */
+/* Logo styling */
 .header-logo {
   background-image: url('../../../../assets/mgc_logo-03.png');
   background-size: contain;
@@ -256,29 +272,28 @@ ul, li {
 
 /* Responsive styles */
 @media only screen and (max-width: 1200px) {
-  .main-menu,
-  .user-profile-dropdown > a:after {
+  .main-menu {
     display: none !important;
   }
 
   .mobile-nav-toggler {
     display: block;
   }
-  
+
   .user-profile-dropdown .dropdown-menu {
     right: 0;
     width: 180px;
   }
-  
+
   .main-header .outer-container {
     padding-right: 20px;
   }
-  
+
   .main-header .outer-container .left-column .logo-box {
     padding: 10px 30px;
     margin-right: 20px;
   }
-  
+
   .header-logo {
     width: 50px;
     height: 50px;
@@ -289,14 +304,24 @@ ul, li {
   .main-header .outer-container {
     padding-right: 10px;
   }
-  
+
   .main-header .outer-container .left-column .logo-box {
     padding: 10px 20px;
     margin-right: 10px;
   }
+
+  .user-profile-dropdown .dropdown-menu {
+    width: 160px;
+    padding: 10px 20px;
+  }
+
+  .user-profile-dropdown .dropdown-item {
+    font-size: 14px;
+    padding: 6px 0;
+  }
 }
 
-/* Define the spinPause animation if not defined elsewhere */
+/* Spin animation for logo */
 @keyframes spinPause {
   0% { transform: rotate(0deg); }
   10% { transform: rotate(360deg); }
@@ -304,4 +329,11 @@ ul, li {
   100% { transform: rotate(0deg); }
 }
 
+/* Additional enhancement for better UX */
+.user-profile-dropdown .user-icon-wrapper.active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 
+.user-profile-dropdown .user-icon-wrapper.active .user-icon {
+  transform: scale(1.1);
+}

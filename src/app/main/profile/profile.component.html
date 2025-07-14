@@ -1,59 +1,276 @@
-<!-- Profile Container - Success State -->
-<div class="profile-container" *ngIf="memberProfile && !loadingError">
-  <!-- Enhanced Profile Header -->
-  <div class="profile-header">
-    <div class="header-background">
-      <div class="background-pattern"></div>
-      <div class="background-overlay"></div>
-    </div>
-
-    <div class="header-content">
-      <div class="avatar-section">
-        <div class="profile-avatar-container">
-          <div class="avatar-glow"></div>
-          <img
-            [src]="getProfileImage()"
-            [alt]="getFullName()"
-            class="profile-avatar"
-            (error)="onImageError($event)">
-          <div class="avatar-badge" *ngIf="memberProfile.plan">
-            <fa-icon [icon]="faCrown"></fa-icon>
-            <div class="badge-shine"></div>
+<!-- Updated Profile Component Template -->
+<div class="profile-wrapper">
+  <!-- Profile Container - Success State -->
+  <div class="profile-container" *ngIf="memberProfile && !loadingError">
+    <!-- Profile Header Image -->
+    <div class="profile-header-image">
+      <figure class="big-image mb_70">
+        <img [src]="getProfileImage() || 'assets/images/resource/profile-banner.jpg'"
+             [alt]="getFullName()"
+             class="profile-banner-image"
+             (error)="onImageError($event)">
+        <div class="profile-overlay">
+          <div class="profile-header-content">
+            <div class="profile-info-header">
+              <div class="profile-avatar-container">
+                <img *ngIf="hasValidProfileImage()"
+                     [src]="getProfileImage()"
+                     [alt]="getFullName()"
+                     class="profile-avatar-main"
+                     (error)="onImageError($event)"
+                     (load)="onImageLoad($event)">
+                <div *ngIf="!hasValidProfileImage()" class="profile-avatar-fallback">
+                  {{ getUserInitials() }}
+                </div>
+                <div class="avatar-badge" *ngIf="memberProfile.plan">
+                  <fa-icon [icon]="faCrown"></fa-icon>
+                </div>
+              </div>
+              <div class="profile-header-text">
+                <ul class="profile-meta">
+                  <li><fa-icon [icon]="faUser"></fa-icon>{{ getFullName() }}</li>
+                  <li><fa-icon [icon]="faIdCard"></fa-icon>Member ID: {{ memberProfile.golfClubId || memberProfile.id }}</li>
+                </ul>
+                <h1 class="profile-name">{{ getFullName() }}</h1>
+                <div class="profile-badges">
+                  <span class="status-badge" [class]="getMembershipStatusClass()">
+                    <fa-icon [icon]="faUserCheck"></fa-icon>
+                    {{ getMembershipStatus() }}
+                  </span>
+                  <span class="plan-badge" *ngIf="memberProfile.plan">
+                    <fa-icon [icon]="faCrown"></fa-icon>
+                    {{ memberProfile.plan }}
+                  </span>
+                </div>
+              </div>
+              <!-- QR Code Section -->
+              <div class="profile-qr-container">
+                <div class="qr-code-wrapper">
+                  <img [src]="qrCodeUrl" alt="Member QR Code" class="qr-code-image">
+                  <div class="qr-actions">
+                    <button class="qr-btn" (click)="downloadQRCode()" title="Download QR Code">
+                      <fa-icon [icon]="faDownload"></fa-icon>
+                    </button>
+                    <button class="qr-btn" (click)="shareProfile()" title="Share Profile">
+                      <fa-icon [icon]="faShare"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </figure>
+    </div>
 
-        <div class="profile-info">
-          <div class="name-section">
-            <h1 class="member-name">{{ getFullName() }}</h1>
-            <div class="name-underline"></div>
+    <!-- Profile Content Section -->
+    <div class="profile-content-section">
+      <div class="auto-container">
+        <div class="row">
+          <!-- Main Content Area -->
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="profile-details-content mr_20">
+
+              <!-- Personal Information Section -->
+              <div class="content-section-widget">
+                <div class="widget-title">
+                  <h3><fa-icon [icon]="faUser" class="me-2"></fa-icon>Personal Information</h3>
+                </div>
+                <div class="info-grid">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="info-item">
+                        <span class="info-label">Full Name:</span>
+                        <span class="info-value">{{ getFullName() }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.dateOfBirth">
+                      <div class="info-item">
+                        <span class="info-label">Date of Birth:</span>
+                        <span class="info-value">
+                          {{ formatDate(memberProfile.dateOfBirth) }}
+                          <span class="age-badge" *ngIf="calculateAge() > 0">({{ calculateAge() }} years)</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.gender">
+                      <div class="info-item">
+                        <span class="info-label">Gender:</span>
+                        <span class="info-value">{{ memberProfile.gender }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.nationality">
+                      <div class="info-item">
+                        <span class="info-label">Nationality:</span>
+                        <span class="info-value">{{ memberProfile.nationality }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact Information Section -->
+              <div class="content-section-widget">
+                <div class="widget-title">
+                  <h3><fa-icon [icon]="faPhone" class="me-2"></fa-icon>Contact Information</h3>
+                </div>
+                <div class="info-grid">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span class="info-value email-value">{{ memberProfile.email }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-item">
+                        <span class="info-label">Phone:</span>
+                        <span class="info-value">{{ memberProfile.phoneNumber }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.alternatePhoneNumber">
+                      <div class="info-item">
+                        <span class="info-label">Alternate Phone:</span>
+                        <span class="info-value">{{ memberProfile.alternatePhoneNumber }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="memberProfile.address">
+                      <div class="info-item">
+                        <span class="info-label">Address:</span>
+                        <span class="info-value">{{ memberProfile.address }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Emergency Contact Section -->
+              <div class="content-section-widget" *ngIf="memberProfile.emergencyContactName || memberProfile.emergencyContactPhone">
+                <div class="widget-title">
+                  <h3><fa-icon [icon]="faPhone" class="me-2"></fa-icon>Emergency Contact</h3>
+                </div>
+                <div class="info-grid">
+                  <div class="row">
+                    <div class="col-md-6" *ngIf="memberProfile.emergencyContactName">
+                      <div class="info-item">
+                        <span class="info-label">Contact Name:</span>
+                        <span class="info-value">{{ memberProfile.emergencyContactName }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.emergencyContactPhone">
+                      <div class="info-item">
+                        <span class="info-label">Contact Phone:</span>
+                        <span class="info-value">{{ memberProfile.emergencyContactPhone }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.emergencyContactRelation">
+                      <div class="info-item">
+                        <span class="info-label">Relationship:</span>
+                        <span class="info-value">{{ memberProfile.emergencyContactRelation }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Activity Summary Section -->
+              <div class="content-section-widget">
+                <div class="widget-title">
+                  <h3><fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>Activity Summary</h3>
+                </div>
+                <div class="info-grid">
+                  <div class="row">
+                    <div class="col-md-6" *ngIf="memberProfile.totalVisits">
+                      <div class="info-item">
+                        <span class="info-label">Total Visits:</span>
+                        <span class="info-value">{{ memberProfile.totalVisits }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.lastVisit">
+                      <div class="info-item">
+                        <span class="info-label">Last Visit:</span>
+                        <span class="info-value">{{ formatDate(memberProfile.lastVisit) }}</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="memberProfile.handicap !== undefined">
+                      <div class="info-item">
+                        <span class="info-label">Handicap:</span>
+                        <span class="info-value">
+                          <span class="status-badge" [class]="memberProfile.handicap ? 'status-active' : 'status-inactive'">
+                            {{ memberProfile.handicap ? 'Yes' : 'No' }}
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-item">
+                        <span class="info-label">Member Since:</span>
+                        <span class="info-value">{{ formatDate(memberProfile.membershipStartDate) }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <p class="member-id">
-            <fa-icon [icon]="faIdCard" class="me-2"></fa-icon>
-            Member ID: {{ memberProfile.golfClubId || memberProfile.id }}
-          </p>
+          <!-- Sidebar -->
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="profile-sidebar">
 
-          <div class="member-badges">
-            <span class="status-badge enhanced-badge" [class]="getMembershipStatusClass()">
-              <fa-icon [icon]="faUserCheck" class="me-1"></fa-icon>
-              {{ getMembershipStatus() }}
-              <div class="badge-shimmer"></div>
-            </span>
-            <span class="plan-badge enhanced-badge" *ngIf="memberProfile.plan">
-              {{ memberProfile.plan }}
-              <div class="badge-shimmer"></div>
-            </span>
-          </div>
+              <!-- Membership Details Widget -->
+              <div class="membership-info sidebar-widget">
+                <div class="widget-title">
+                  <h3><fa-icon [icon]="faCrown" class="me-2"></fa-icon>Membership Details</h3>
+                </div>
+                <ul class="info-list">
+                  <li *ngIf="memberProfile.plan">
+                    <span>Membership Type:</span>
+                    <span class="highlight-value">{{ memberProfile.plan }}</span>
+                  </li>
+                  <li *ngIf="memberProfile.membershipStartDate">
+                    <span>Join Date:</span>{{ formatDate(memberProfile.membershipStartDate) }}
+                  </li>
+                  <li *ngIf="memberProfile.membershipEndDate">
+                    <span>Expiry Date:</span>{{ formatDate(memberProfile.membershipEndDate) }}
+                  </li>
+                  <li *ngIf="memberProfile.paymentStatus">
+                    <span>Payment Status:</span>
+                    <span class="status-badge" [class]="getMembershipStatusClass()">
+                      {{ memberProfile.paymentStatus }}
+                    </span>
+                  </li>
+                  <li *ngIf="getDaysUntilExpiry() >= 0">
+                    <span>Days Until Expiry:</span>
+                    <span class="days-counter" [class]="getDaysUntilExpiry() <= 30 ? 'warning' : 'normal'">
+                      {{ getDaysUntilExpiry() }} days
+                    </span>
+                  </li>
+                </ul>
+              </div>
 
-          <div class="membership-expiry" *ngIf="memberProfile.membershipEndDate">
-            <div class="expiry-container">
-              <fa-icon [icon]="faCalendarAlt" class="me-1"></fa-icon>
-              <small class="text-muted">
-                Expires: {{ formatDate(memberProfile.membershipEndDate) }}
-                <span class="days-left" *ngIf="getDaysUntilExpiry() > 0">
-                  ({{ getDaysUntilExpiry() }} days left)
-                </span>
-              </small>
+              <!-- Contact Form Widget -->
+              <div class="contact-form-widget">
+                <div class="widget-title">
+                  <h3><fa-icon [icon]="faEnvelope" class="me-2"></fa-icon>Update Profile</h3>
+                </div>
+                <form method="post" action="#" class="profile-form">
+                  <div class="form-group">
+                    <input type="text" name="name" [value]="getFullName()" placeholder="Full Name" readonly>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" name="phone" [value]="memberProfile.phoneNumber" placeholder="Phone" readonly>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" name="email" [value]="memberProfile.email" placeholder="Email" readonly>
+                  </div>
+                  <div class="form-group pt_20">
+                    <button type="button" class="theme-btn btn-one" (click)="redirectToAccount()">
+                      <fa-icon [icon]="faEdit" class="me-2"></fa-icon>Edit Profile
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -61,302 +278,31 @@
     </div>
   </div>
 
-  <!-- Main Content Grid -->
-  <div class="profile-content">
-    <div class="cards-grid">
-
-      <!-- Personal Information Card -->
-      <div class="profile-card">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faUser" class="me-2"></fa-icon>
-            Personal Information
-          </h3>
-        </div>
-        <div class="card-content">
-          <div class="info-grid">
-            <div class="info-row">
-              <span class="label">
-                <fa-icon [icon]="faUser" class="me-1"></fa-icon>
-                Full Name:
-              </span>
-              <span class="value">{{ getFullName() }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.dateOfBirth">
-              <span class="label">
-                <fa-icon [icon]="faCalendarAlt" class="me-1"></fa-icon>
-                Date of Birth:
-              </span>
-              <span class="value">
-                {{ formatDate(memberProfile.dateOfBirth) }}
-                <span class="age-badge" *ngIf="calculateAge() > 0">({{ calculateAge() }} years)</span>
-              </span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.gender">
-              <span class="label">Gender:</span>
-              <span class="value">{{ memberProfile.gender }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.nationality">
-              <span class="label">
-                <fa-icon [icon]="faGlobe" class="me-1"></fa-icon>
-                Nationality:
-              </span>
-              <span class="value">{{ memberProfile.nationality }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.handicap !== undefined">
-              <span class="label">Handicap:</span>
-              <span class="value">
-                <span class="status-badge" [class]="memberProfile.handicap ? 'status-active' : 'status-inactive'">
-                  {{ memberProfile.handicap ? 'Yes' : 'No' }}
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
+  <!-- Loading State -->
+  <div class="loading-container" *ngIf="isLoading && !memberProfile && !loadingError">
+    <div class="loading-content">
+      <div class="loading-spinner">
+        <fa-icon [icon]="faSpinner" class="fa-spin loading-icon"></fa-icon>
       </div>
-
-      <!-- Contact Information Card -->
-      <div class="profile-card">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
-            Contact Information
-          </h3>
-        </div>
-        <div class="card-content">
-          <div class="info-grid">
-            <div class="info-row">
-              <span class="label">
-                <fa-icon [icon]="faEnvelope" class="me-1"></fa-icon>
-                Email:
-              </span>
-              <span class="value email-value">{{ memberProfile.email }}</span>
-            </div>
-
-            <div class="info-row">
-              <span class="label">
-                <fa-icon [icon]="faPhone" class="me-1"></fa-icon>
-                Phone:
-              </span>
-              <span class="value">{{ memberProfile.phoneNumber }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.alternatePhoneNumber">
-              <span class="label">
-                <fa-icon [icon]="faPhone" class="me-1"></fa-icon>
-                Alternate Phone:
-              </span>
-              <span class="value">{{ memberProfile.alternatePhoneNumber }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.address">
-              <span class="label">
-                <fa-icon [icon]="faMapMarkerAlt" class="me-1"></fa-icon>
-                Address:
-              </span>
-              <span class="value address-value">{{ memberProfile.address }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Membership Details Card -->
-      <div class="profile-card membership-card">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faCrown" class="me-2"></fa-icon>
-            Membership Details
-          </h3>
-          <div class="membership-status-indicator" [class]="getMembershipStatusClass()"></div>
-        </div>
-        <div class="card-content">
-          <div class="info-grid">
-            <div class="info-row" *ngIf="memberProfile.plan">
-              <span class="label">Membership Type:</span>
-              <span class="value highlight-value">
-                <fa-icon [icon]="faCrown" class="me-1"></fa-icon>
-                {{ memberProfile.plan }}
-              </span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.membershipStartDate">
-              <span class="label">Join Date:</span>
-              <span class="value">{{ formatDate(memberProfile.membershipStartDate) }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.membershipEndDate">
-              <span class="label">Expiry Date:</span>
-              <span class="value">
-                {{ formatDate(memberProfile.membershipEndDate) }}
-                <span class="expiry-warning" *ngIf="getDaysUntilExpiry() <= 30 && getDaysUntilExpiry() > 0">
-                  <fa-icon [icon]="faExclamationTriangle" class="me-1"></fa-icon>
-                  Expires Soon
-                </span>
-              </span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.paymentStatus">
-              <span class="label">Payment Status:</span>
-              <span class="value">
-                <span class="status-badge" [class]="getMembershipStatusClass()">
-                  {{ memberProfile.paymentStatus }}
-                </span>
-              </span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.paymentMethod">
-              <span class="label">Payment Method:</span>
-              <span class="value">{{ memberProfile.paymentMethod }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="getDaysUntilExpiry() >= 0">
-              <span class="label">Days Until Expiry:</span>
-              <span class="value">
-                <span class="days-counter" [class]="getDaysUntilExpiry() <= 30 ? 'warning' : 'normal'">
-                  {{ getDaysUntilExpiry() }} days
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Emergency Contact Card -->
-      <div class="profile-card" *ngIf="memberProfile.emergencyContactName || memberProfile.emergencyContactPhone">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faPhone" class="me-2"></fa-icon>
-            Emergency Contact
-          </h3>
-        </div>
-        <div class="card-content">
-          <div class="info-grid">
-            <div class="info-row" *ngIf="memberProfile.emergencyContactName">
-              <span class="label">
-                <fa-icon [icon]="faUser" class="me-1"></fa-icon>
-                Contact Name:
-              </span>
-              <span class="value">{{ memberProfile.emergencyContactName }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.emergencyContactPhone">
-              <span class="label">
-                <fa-icon [icon]="faPhone" class="me-1"></fa-icon>
-                Contact Phone:
-              </span>
-              <span class="value">{{ memberProfile.emergencyContactPhone }}</span>
-            </div>
-
-            <div class="info-row" *ngIf="memberProfile.emergencyContactRelation">
-              <span class="label">Relationship:</span>
-              <span class="value">{{ memberProfile.emergencyContactRelation }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Activity Summary Card -->
-      <div class="profile-card activity-card">
-        <div class="card-header">
-          <h3>
-            <fa-icon [icon]="faCalendarAlt" class="me-2"></fa-icon>
-            Activity Summary
-          </h3>
-        </div>
-        <div class="card-content">
-          <div class="activity-stats">
-            <div class="stat-item" *ngIf="memberProfile.totalVisits">
-              <div class="stat-number">{{ memberProfile.totalVisits }}</div>
-              <div class="stat-label">Total Visits</div>
-            </div>
-
-            <div class="stat-item" *ngIf="memberProfile.lastVisit">
-              <div class="stat-value">{{ formatDate(memberProfile.lastVisit) }}</div>
-              <div class="stat-label">Last Visit</div>
-            </div>
-
-            <div class="stat-item" *ngIf="memberProfile.membershipStartDate">
-              <div class="stat-value">{{ formatDate(memberProfile.membershipStartDate) }}</div>
-              <div class="stat-label">Member Since</div>
-            </div>
-          </div>
-
-          <div class="info-grid" *ngIf="!memberProfile.totalVisits && !memberProfile.lastVisit">
-            <div class="info-row">
-              <span class="label">Member Since:</span>
-              <span class="value">{{ formatDate(memberProfile.membershipStartDate) }}</span>
-            </div>
-            <div class="info-row">
-              <span class="label">Status:</span>
-              <span class="value">
-                <span class="status-badge" [class]="getMembershipStatusClass()">
-                  {{ getMembershipStatus() }}
-                </span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h3 class="loading-title">Loading Your Profile</h3>
+      <p class="loading-message">Please wait while we fetch your information...</p>
     </div>
   </div>
-</div>
 
-<!-- Loading State -->
-<div class="loading-container" *ngIf="isLoading && !memberProfile && !loadingError">
-  <div class="loading-content">
-    <div class="loading-spinner">
-      <fa-icon [icon]="faSpinner" class="fa-spin loading-icon"></fa-icon>
-    </div>
-    <h3 class="loading-title">Loading Your Profile</h3>
-    <p class="loading-message">Please wait while we fetch your information...</p>
-    <div class="loading-progress">
-      <div class="progress-bar"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Error State -->
-<div class="error-container" *ngIf="loadingError && !memberProfile">
-  <div class="error-content">
-    <div class="error-icon-container">
-      <fa-icon [icon]="faExclamationTriangle" class="error-icon"></fa-icon>
-    </div>
-    <h3 class="error-title">Unable to Load Profile</h3>
-    <p class="error-message">{{ errorMessage || 'There was an error loading your profile information. Please try again.' }}</p>
-    <div class="error-actions">
-      <button class="btn btn-primary retry-btn" (click)="retryLoading()" [disabled]="isLoading">
-        <fa-icon [icon]="isLoading ? faSpinner : faUser" [class.fa-spin]="isLoading" class="me-2"></fa-icon>
-        {{ isLoading ? 'Retrying...' : 'Retry Loading' }}
-      </button>
-      <button class="btn btn-outline-secondary" (click)="redirectToAccount()">
-        <fa-icon [icon]="faUser" class="me-2"></fa-icon>
-        Go to Account
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Session Warning Modal (if needed) -->
-<div class="session-warning-overlay" *ngIf="false">
-  <div class="session-warning-modal">
-    <div class="warning-header">
-      <fa-icon [icon]="faExclamationTriangle" class="warning-icon"></fa-icon>
-      <h4>Session Expiring Soon</h4>
-    </div>
-    <div class="warning-content">
-      <p>Your session will expire in <strong>5 minutes</strong>. Would you like to extend your session?</p>
-    </div>
-    <div class="warning-actions">
-      <button class="btn btn-primary" (click)="onUserActivity()">
-        Extend Session
-      </button>
-      <button class="btn btn-outline-secondary" (click)="logout()">
-        Logout Now
-      </button>
+  <!-- Error State -->
+  <div class="error-container" *ngIf="loadingError && !memberProfile">
+    <div class="error-content">
+      <div class="error-icon-container">
+        <fa-icon [icon]="faExclamationTriangle" class="error-icon"></fa-icon>
+      </div>
+      <h3 class="error-title">Unable to Load Profile</h3>
+      <p class="error-message">{{ errorMessage || 'There was an error loading your profile information. Please try again.' }}</p>
+      <div class="error-actions">
+        <button class="btn btn-primary retry-btn" (click)="retryLoading()" [disabled]="isLoading">
+          <fa-icon [icon]="isLoading ? faSpinner : faUser" [class.fa-spin]="isLoading" class="me-2"></fa-icon>
+          {{ isLoading ? 'Retrying...' : 'Retry Loading' }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

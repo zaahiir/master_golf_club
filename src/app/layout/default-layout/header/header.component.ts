@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+// header.component.ts
+import { Component, OnInit, Inject, PLATFORM_ID, HostListener, ElementRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AuthService } from '../../../auth/auth.service';
@@ -13,10 +14,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
+  isUserDropdownOpen: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private elementRef: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -55,6 +58,21 @@ export class HeaderComponent implements OnInit {
 
       window.addEventListener('scroll', handleScroll);
     }, 0);
+  }
+
+  toggleUserDropdown(): void {
+    this.isUserDropdownOpen = !this.isUserDropdownOpen;
+  }
+
+  // Close dropdown when clicking outside
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const target = event.target as HTMLElement;
+    const userDropdown = this.elementRef.nativeElement.querySelector('.user-profile-dropdown');
+
+    if (userDropdown && !userDropdown.contains(target)) {
+      this.isUserDropdownOpen = false;
+    }
   }
 
   logout(): void {
